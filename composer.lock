@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94d4bf9ac7f4a933030e46a346ee2917",
+    "content-hash": "e2b45a2c1f6d6f4c80daebe1a288564f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -270,6 +270,39 @@
                 "validator"
             ],
             "time": "2018-12-04T22:38:24+00:00"
+        },
+        {
+            "name": "elcoop/has-fields",
+            "version": "dev-package/has-fields",
+            "dist": {
+                "type": "path",
+                "url": "D:/wamp64/www/waterSport/package/elcoop/has-fields",
+                "reference": "a0ceab8335c0a9aae39b83a03b7fa3e759ce87cc",
+                "shasum": null
+            },
+            "type": "laravel-plugin",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ElCoop\\HasFields\\HasFieldsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ElCoop\\HasFields\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "el-coop",
+                    "email": "contact@elcoop.io"
+                }
+            ],
+            "description": "Has field trait"
         },
         {
             "name": "erusev/parsedown",
