@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2b45a2c1f6d6f4c80daebe1a288564f",
+    "content-hash": "69e4c783775211e5370cc0a24ea59d44",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -273,12 +273,17 @@
         },
         {
             "name": "elcoop/has-fields",
-            "version": "dev-package/has-fields",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/el-coop/hasFields.git",
+                "reference": "088d3806b4d436e37178d21d13b3ad1cfad5987a"
+            },
             "dist": {
-                "type": "path",
-                "url": "D:/wamp64/www/waterSport/package/elcoop/has-fields",
-                "reference": "a0ceab8335c0a9aae39b83a03b7fa3e759ce87cc",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/el-coop/hasFields/zipball/088d3806b4d436e37178d21d13b3ad1cfad5987a",
+                "reference": "088d3806b4d436e37178d21d13b3ad1cfad5987a",
+                "shasum": ""
             },
             "type": "laravel-plugin",
             "extra": {
@@ -293,6 +298,7 @@
                     "ElCoop\\HasFields\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -302,7 +308,8 @@
                     "email": "contact@elcoop.io"
                 }
             ],
-            "description": "Has field trait"
+            "description": "Has field trait",
+            "time": "2019-05-16T19:57:20+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -4437,7 +4444,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "elcoop/has-fields": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
