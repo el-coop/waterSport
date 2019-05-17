@@ -12,9 +12,13 @@
 */
 
 Route::get('/', function () {
-    dd(\App\Models\Admin::fields());
+	return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+foreach (\File::allFiles(__DIR__ . "/web") as $routeFile) {
+	include $routeFile;
+}
