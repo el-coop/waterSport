@@ -15,6 +15,8 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
+Route::get('datatable/list','\ElCoop\Datatable\Controllers\DatatableController@list');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
