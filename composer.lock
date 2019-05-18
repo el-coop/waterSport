@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69e4c783775211e5370cc0a24ea59d44",
+    "content-hash": "2fbc4996caa7830f8dc864620d6084ac",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -277,12 +277,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/el-coop/hasFields.git",
-                "reference": "088d3806b4d436e37178d21d13b3ad1cfad5987a"
+                "reference": "401ab43b58b99c7d1c73dd38090cfa80be039eaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/el-coop/hasFields/zipball/088d3806b4d436e37178d21d13b3ad1cfad5987a",
-                "reference": "088d3806b4d436e37178d21d13b3ad1cfad5987a",
+                "url": "https://api.github.com/repos/el-coop/hasFields/zipball/401ab43b58b99c7d1c73dd38090cfa80be039eaa",
+                "reference": "401ab43b58b99c7d1c73dd38090cfa80be039eaa",
                 "shasum": ""
             },
             "type": "laravel-plugin",
@@ -309,7 +309,40 @@
                 }
             ],
             "description": "Has field trait",
-            "time": "2019-05-16T19:57:20+00:00"
+            "time": "2019-05-17T17:36:05+00:00"
+        },
+        {
+            "name": "elcoop/navbar",
+            "version": "dev-pakcage/navbar",
+            "dist": {
+                "type": "path",
+                "url": "d:/wamp64/www/waterSport/package/elcoop/navbar",
+                "reference": "78c1835359f2b500033e7b9cfc58ee0c824706d6",
+                "shasum": null
+            },
+            "type": "laravel-plugin",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ElCoop\\Navbar\\Providers\\NavbarServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ElCoop\\Navbar\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "el-coop",
+                    "email": "contact@elcoop.io"
+                }
+            ],
+            "description": "navbar component using config file"
         },
         {
             "name": "erusev/parsedown",
@@ -873,16 +906,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.17.1",
+            "version": "2.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "96acbc0c03782e8115156dd4dd8b736267155066"
+                "reference": "8322b7bd1805be31867c13bf3cdaab948a0dd406"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/96acbc0c03782e8115156dd4dd8b736267155066",
-                "reference": "96acbc0c03782e8115156dd4dd8b736267155066",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8322b7bd1805be31867c13bf3cdaab948a0dd406",
+                "reference": "8322b7bd1805be31867c13bf3cdaab948a0dd406",
                 "shasum": ""
             },
             "require": {
@@ -929,7 +962,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-04-27T18:04:27+00:00"
+            "time": "2019-05-16T18:44:35+00:00"
         },
         {
             "name": "nikic/php-parser",

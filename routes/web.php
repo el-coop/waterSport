@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    dd(\App\Models\Admin::fields());
+    return view('layouts.admin');
 });
 
 Auth::routes();
