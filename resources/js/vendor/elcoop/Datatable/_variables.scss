@@ -1,0 +1,11 @@
+$gap: 64px;
+$tablet: 769px;
+$desktop: 960px + (2 * $gap);
+$widescreen: 1152px + (2 * $gap);
+
+$above-phone: "only screen and (min-width : 576px)";
+$above-tablet: "only screen and (min-width : #{$tablet})";
+$above-desktop: "only screen and (min-width : #{$desktop})";
+$above-wide-screen: "only screen and (min-width : #{$widescreen})";
+
+$row-display-bg: '#fff';
