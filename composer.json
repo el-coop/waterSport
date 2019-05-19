@@ -11,6 +11,7 @@
         "php": "^7.1.3",
         "elcoop/datatable": "dev-master",
         "elcoop/has-fields": "dev-master",
+        "elcoop/navbar": "dev-master",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0"

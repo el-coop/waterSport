@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-	return view('welcome');
+    return view('welcome');
 });
 
 Route::get('datatable/list','\ElCoop\Datatable\Controllers\DatatableController@list');

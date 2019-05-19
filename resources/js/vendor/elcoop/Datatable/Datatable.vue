@@ -5,7 +5,7 @@
 				<div class="buttons">
 					<slot name="buttons" :actions="buttonActions"></slot>
 					<a v-if="exportButton" :href="`${this.url}/export?${exportOptions}`" class="button is-dark"
-					   v-text="$translations.datatable.download"></a>
+					   v-text="$translations.datatable.download || 'download'"></a>
 				</div>
 			</div>
 		</div>
@@ -19,7 +19,7 @@
 							  :css="css"
 							  :append-params="params"
 							  :per-page="perPage"
-							  :no-data-template="$translations.datatable.noData"
+							  :no-data-template="$translations.datatable.noData || 'No data available'"
 							  @vuetable:cell-clicked="cellClicked"
 							  @vuetable:row-clicked="rowClicked"
 							  @vuetable:pagination-data="paginationData"
@@ -79,7 +79,7 @@
 			deleteBtn: {
 				type: String,
 				default() {
-					return this.$translations.datatable.delete
+					return this.$translations.datatable.delete || 'Delete'
 				}
 			},
 			url: {

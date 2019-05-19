@@ -15,7 +15,7 @@
 			},
 
 			translate(value) {
-				return this.$translations[value];
+				return this.$translations[value] || value;
 			},
 
 			localNumber(value) {

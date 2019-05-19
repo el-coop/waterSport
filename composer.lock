@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "b49e65ccdd8285489a889e29889b65fd",
+
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -356,6 +357,46 @@
             ],
             "description": "Has field trait",
             "time": "2019-05-17T17:36:05+00:00"
+        },
+        {
+            "name": "elcoop/navbar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/el-coop/navbar.git",
+                "reference": "fd3c5e5eb9a49a999ae3637e9b2dba32924fc904"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/el-coop/navbar/zipball/fd3c5e5eb9a49a999ae3637e9b2dba32924fc904",
+                "reference": "fd3c5e5eb9a49a999ae3637e9b2dba32924fc904",
+                "shasum": ""
+            },
+            "type": "laravel-plugin",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ElCoop\\Navbar\\Providers\\NavbarServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ElCoop\\Navbar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "el-coop",
+                    "email": "contact@elcoop.io"
+                }
+            ],
+            "description": "navbar component using config file",
+            "time": "2019-05-19T22:49:23+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -4949,7 +4990,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "elcoop/datatable": 20,
-        "elcoop/has-fields": 20
+        "elcoop/has-fields": 20,
+        "elcoop/navbar": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
