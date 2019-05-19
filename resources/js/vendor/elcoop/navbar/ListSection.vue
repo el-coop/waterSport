@@ -63,6 +63,7 @@
 	.menu-label {
 		padding: 0.5em 0.75em;
 		cursor: pointer;
+	hsl(0, 0%, 98%)
 		&:hover {
 			background-color: $menu-item-hover-background-color;
 			color: $menu-item-hover-color;

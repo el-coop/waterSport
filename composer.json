@@ -6,18 +6,14 @@
         "framework",
         "laravel"
     ],
-    "repositories": [{
-        "type": "path",
-        "url": "d:/wamp64/www/waterSport/package/elcoop/navbar"
-    }],
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
         "elcoop/has-fields": "dev-master",
+        "elcoop/navbar": "*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0",
-        "elcoop/navbar": "*"
+        "laravel/tinker": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

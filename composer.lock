@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fbc4996caa7830f8dc864620d6084ac",
+    "content-hash": "a95a7bcd5dfccca1446d65c7901b8cc7",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -313,12 +313,17 @@
         },
         {
             "name": "elcoop/navbar",
-            "version": "dev-pakcage/navbar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/el-coop/navbar.git",
+                "reference": "e800cf5b0e4738371904288b81de096364d3fdf5"
+            },
             "dist": {
-                "type": "path",
-                "url": "d:/wamp64/www/waterSport/package/elcoop/navbar",
-                "reference": "78c1835359f2b500033e7b9cfc58ee0c824706d6",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/el-coop/navbar/zipball/e800cf5b0e4738371904288b81de096364d3fdf5",
+                "reference": "e800cf5b0e4738371904288b81de096364d3fdf5",
+                "shasum": ""
             },
             "type": "laravel-plugin",
             "extra": {
@@ -333,6 +338,7 @@
                     "ElCoop\\Navbar\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -342,7 +348,8 @@
                     "email": "contact@elcoop.io"
                 }
             ],
-            "description": "navbar component using config file"
+            "description": "navbar component using config file",
+            "time": "2019-05-19T21:02:23+00:00"
         },
         {
             "name": "erusev/parsedown",
