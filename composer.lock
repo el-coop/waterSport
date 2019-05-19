@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "18a0dad059b61d7496d672640abe27f8",
+    "content-hash": "8be8fb0e294ee20d11d8560c08fa9870",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -278,12 +277,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/el-coop/datatable.git",
-                "reference": "3324e107fe56aeec7c4ee5ffdced1ab177daeb92"
+                "reference": "a5c747860a584b8700528b204969101af8af8cb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/el-coop/datatable/zipball/3324e107fe56aeec7c4ee5ffdced1ab177daeb92",
-                "reference": "3324e107fe56aeec7c4ee5ffdced1ab177daeb92",
+                "url": "https://api.github.com/repos/el-coop/datatable/zipball/a5c747860a584b8700528b204969101af8af8cb6",
+                "reference": "a5c747860a584b8700528b204969101af8af8cb6",
                 "shasum": ""
             },
             "require": {
@@ -316,7 +315,7 @@
                 }
             ],
             "description": "Vuetable package for Laravel",
-            "time": "2019-05-17T19:43:33+00:00"
+            "time": "2019-05-19T21:14:54+00:00"
         },
         {
             "name": "elcoop/has-fields",
@@ -357,7 +356,6 @@
             ],
             "description": "Has field trait",
             "time": "2019-05-17T17:36:05+00:00"
-
         },
         {
             "name": "elcoop/navbar",
@@ -365,12 +363,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/el-coop/navbar.git",
-                "reference": "e800cf5b0e4738371904288b81de096364d3fdf5"
+                "reference": "fd3c5e5eb9a49a999ae3637e9b2dba32924fc904"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/el-coop/navbar/zipball/e800cf5b0e4738371904288b81de096364d3fdf5",
-                "reference": "e800cf5b0e4738371904288b81de096364d3fdf5",
+                "url": "https://api.github.com/repos/el-coop/navbar/zipball/fd3c5e5eb9a49a999ae3637e9b2dba32924fc904",
+                "reference": "fd3c5e5eb9a49a999ae3637e9b2dba32924fc904",
                 "shasum": ""
             },
             "type": "laravel-plugin",
@@ -397,7 +395,7 @@
                 }
             ],
             "description": "navbar component using config file",
-            "time": "2019-05-19T21:02:23+00:00"
+            "time": "2019-05-19T22:49:23+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -4990,7 +4988,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "elcoop/datatable": 20,
-        "elcoop/has-fields": 20
+        "elcoop/has-fields": 20,
+        "elcoop/navbar": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
