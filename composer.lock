@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+
     "content-hash": "18a0dad059b61d7496d672640abe27f8",
     "packages": [
         {
@@ -356,6 +357,47 @@
             ],
             "description": "Has field trait",
             "time": "2019-05-17T17:36:05+00:00"
+
+        },
+        {
+            "name": "elcoop/navbar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/el-coop/navbar.git",
+                "reference": "e800cf5b0e4738371904288b81de096364d3fdf5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/el-coop/navbar/zipball/e800cf5b0e4738371904288b81de096364d3fdf5",
+                "reference": "e800cf5b0e4738371904288b81de096364d3fdf5",
+                "shasum": ""
+            },
+            "type": "laravel-plugin",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ElCoop\\Navbar\\Providers\\NavbarServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ElCoop\\Navbar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "el-coop",
+                    "email": "contact@elcoop.io"
+                }
+            ],
+            "description": "navbar component using config file",
+            "time": "2019-05-19T21:02:23+00:00"
         },
         {
             "name": "erusev/parsedown",
