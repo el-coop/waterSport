@@ -10,7 +10,7 @@ return [
 		],
 		[
 			'name' => 'name',
-			'title' => 'Name',
+			'title' => 'global.name',
 		],
 	]
 ];
