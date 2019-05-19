@@ -1,6 +1,5 @@
 @extends('layouts.plain')
 
 @section('body')
-	@component('elcoop:datatable::component')
-	@endcomponent
+	@include('datatable.withNew')
 @endsection
