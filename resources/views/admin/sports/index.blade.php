@@ -1,5 +1,5 @@
-@extends('layouts.plain')
+@extends('layouts.dashboard')
 
-@section('body')
+@section('content')
 	@include('datatable.withNew')
 @endsection
