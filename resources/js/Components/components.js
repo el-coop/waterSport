@@ -2,7 +2,9 @@
 import VModal from 'vue-js-modal';
 import 'izitoast/dist/css/iziToast.css';
 import VueIziToast from 'vue-izitoast';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(VModal);
 Vue.use(VueIziToast);
 Vue.component('Datatable', require('../vendor/elcoop/Datatable/Datatable').default);

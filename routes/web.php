@@ -20,6 +20,8 @@ Route::get('datatable/list','\ElCoop\Datatable\Controllers\DatatableController@l
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/language/{language}', 'LocaleController@set');
+
 
 foreach (\File::allFiles(__DIR__ . "/web") as $routeFile) {
 	include $routeFile;

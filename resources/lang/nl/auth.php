@@ -15,4 +15,6 @@ return [
 
 	'failed' => 'Deze inlogegevens komen niet overeen met onze gegevens.',
 	'throttle' => 'Te veel inlogpogingen. Probeer het opnieuw in: seconden seconden.',
+	'rememberMe' => 'Onthoud mijn gegevens',
+	'forgot' => 'Wachtwoord vergeten?',
 ];
