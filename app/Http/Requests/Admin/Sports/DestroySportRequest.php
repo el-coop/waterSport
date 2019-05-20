@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests\Admin\Sports;
 
-use App\Models\Sport;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSportRequest extends FormRequest {
+class DestroySportRequest extends FormRequest {
+	/**
+	 * @var \Illuminate\Routing\Route|object|string
+	 */
 	private $sport;
 	
 	/**
@@ -14,12 +16,8 @@ class StoreSportRequest extends FormRequest {
 	 * @return bool
 	 */
 	public function authorize() {
-		if($this->sport = $this->route('sport')){
-			return $this->user()->can('update', $this->sport);
-		}
-		
-		$this->sport = new Sport;
-		return $this->user()->can('create', Sport::class);
+		$this->sport = $this->route('sport');
+		return $this->user()->can('delete', $this->sport);
 	}
 	
 	/**
@@ -29,14 +27,11 @@ class StoreSportRequest extends FormRequest {
 	 */
 	public function rules() {
 		return [
-			'name' => 'required|unique:sports'
+			//
 		];
 	}
 	
 	public function commit() {
-		$this->sport->name = $this->input('name');
-		$this->sport->save();
-		
-		return $this->sport;
+		$this->sport->delete();
 	}
 }

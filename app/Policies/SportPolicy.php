@@ -39,7 +39,7 @@ class SportPolicy {
 	 * @return mixed
 	 */
 	public function update(User $user, Sport $sport) {
-		//
+		return $user->user_type === Admin::class;
 	}
 	
 	/**
@@ -50,7 +50,7 @@ class SportPolicy {
 	 * @return mixed
 	 */
 	public function delete(User $user, Sport $sport) {
-		//
+		return $user->user_type === Admin::class;
 	}
 	
 	/**

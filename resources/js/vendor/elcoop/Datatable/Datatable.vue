@@ -25,8 +25,8 @@
 							  @vuetable:pagination-data="paginationData"
 							  @vuetable:loading='tableLoading'
 							  @vuetable:loaded='tableLoaded'>
-						<template :v-if="(!! $scopedSlots.delete)" #delete="props">
-							<slot name="delete"></slot>
+						<template :v-if="delete" #delete="props">
+							<slot name="delete" :refresh="refresh" :props="props"></slot>
 						</template>
 					</vuetable>
 				</div>
@@ -76,12 +76,6 @@
 			VuetablePagination,
 		},
 		props: {
-			deleteBtn: {
-				type: String,
-				default() {
-					return this.$translations.datatable.delete || 'Delete'
-				}
-			},
 			url: {
 				required: true,
 				type: String
@@ -127,6 +121,10 @@
 			exportButton: {
 				type: Boolean,
 				default: true
+			},
+			delete: {
+				type: Boolean,
+				default: false
 			}
 		},
 
@@ -147,7 +145,6 @@
 				buttonActions: {
 					newObjectForm: this.newObjectForm
 				},
-				deleteSubmitting: false,
 			}
 		},
 
@@ -158,7 +155,7 @@
 
 		methods: {
 			calcFields(settings) {
-				if (this.deleteSlot) {
+				if (this.delete) {
 					settings.push({
 						name: '__slot:delete',
 						title: '',
@@ -245,12 +242,6 @@
 				this.$refs.table.refresh()
 			}
 		},
-		computed: {
-			deleteAction: function () {
-				return window.location.pathname + '/delete/';
-			},
-
-		}
 
 	}
 </script>

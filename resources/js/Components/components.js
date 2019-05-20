@@ -11,6 +11,7 @@ Vue.component('Datatable', require('../vendor/elcoop/Datatable/Datatable').defau
 Vue.component('Drawer', require('../vendor/elcoop/navbar/Drawer').default);
 Vue.component('ListSection', require('../vendor/elcoop/navbar/ListSection').default);
 Vue.component('Navbar', require('../vendor/elcoop/navbar/Navbar').default);
+Vue.component('DatatableDeleteForm', require('./Datatable/DatatableDeleteForm').default);
 
 // form
 Vue.component('AjaxForm', require('./Form/AjaxForm').default);

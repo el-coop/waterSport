@@ -12,5 +12,8 @@ return [
 	'operationFiled' => 'Operation failed',
 	'pleaseCorrect' => 'Graag corrigeren',
 	'formErrors' => "De volgende velden zijn incorrect",
+	'deleteConfirmTitle' => 'Weet je zeker dat je dit wil verwijderen?',
+	'yes' => 'Ja',
+	'no' => 'Nee',
 
 ];

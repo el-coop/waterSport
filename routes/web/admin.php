@@ -6,7 +6,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userType:' . \App\M
 		Route::get('/', 'SportsController@index');
 		Route::group(['prefix' => 'edit'], function () {
 			Route::get('/{sport?}', 'SportsController@edit');
-			Route::post('/', 'SportsController@store');
+			Route::post('/{sport?}', 'SportsController@store');
 		});
+		Route::delete('/{sport}', 'SportsController@destroy');
+		
 	});
 });

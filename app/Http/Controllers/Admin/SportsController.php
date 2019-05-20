@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\Sports\DestroySportRequest;
 use App\Http\Requests\Admin\Sports\StoreSportRequest;
 use App\Models\Sport;
 use Illuminate\Http\Request;
@@ -21,10 +22,11 @@ class SportsController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param \Illuminate\Http\Request $request
+	 * @param StoreSportRequest $request
+	 * @param Sport $sport
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(StoreSportRequest $request) {
+	public function store(StoreSportRequest $request, Sport $sport) {
 		return $request->commit();
 	}
 	
@@ -40,23 +42,16 @@ class SportsController extends Controller {
 	}
 	
 	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param \Illuminate\Http\Request $request
-	 * @param \App\Models\Sport $sport
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, Sport $sport) {
-		//
-	}
-	
-	/**
 	 * Remove the specified resource from storage.
 	 *
+	 * @param DestroySportRequest $request
 	 * @param \App\Models\Sport $sport
-	 * @return \Illuminate\Http\Response
+	 * @return void
 	 */
-	public function destroy(Sport $sport) {
-		//
+	public function destroy(DestroySportRequest $request, Sport $sport) {
+		$request->commit();
+		return [
+			'success' => true
+		];
 	}
 }
