@@ -12,5 +12,10 @@ return [
 			'name' => 'name',
 			'title' => 'global.name',
 		],
+		[
+			'name' => 'date',
+			'title' => 'global.date',
+			'callback' => 'date'
+		]
 	]
 ];

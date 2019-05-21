@@ -9,5 +9,5 @@ return [
 	'password' => 'Wachtwoord',
 	'title' => 'TBT',
 	'logout' => 'Uitloggen',
-
+	'date' => 'Datum'
 ];

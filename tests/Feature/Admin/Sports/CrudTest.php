@@ -36,26 +36,30 @@ class CrudTest extends TestCase {
 	
 	public function test_admin_can_view_create_sport_form() {
 		$this->actingAs($this->admin)->get(action('Admin\SportsController@edit'))->assertSuccessful()->assertJsonFragment([
-			'name' => 'name'
+			'name' => 'name',
 		]);
 	}
 	
 	public function test_admin_can_create_sport() {
+		$this->withoutExceptionHandling();
 		$this->actingAs($this->admin)->post(action('Admin\SportsController@store'), [
-			'name' => 'name'
+			'name' => 'name',
+			'date' => '2020-01-01'
 		])->assertSuccessful()->assertJson([
-			'name' => 'name'
+			'name' => 'name',
+			'date' => '2020-01-01 00:00:00'
 		]);
 		
 		$this->assertDatabaseHas('sports', [
-			'name' => 'name'
+			'name' => 'name',
+			'date' => '2020-01-01 00:00:00'
 		]);
 	}
 	
 	public function test_admin_create_sport_validation() {
 		$this->actingAs($this->admin)->post(action('Admin\SportsController@store'), [
 			'name' => ''
-		])->assertSessionHasErrors('name');
+		])->assertSessionHasErrors('name', 'date');
 		
 		$this->actingAs($this->admin)->post(action('Admin\SportsController@store'), [
 			'name' => $this->sport->name
@@ -72,6 +76,9 @@ class CrudTest extends TestCase {
 		$this->actingAs($this->admin)->get(action('Admin\SportsController@edit', $this->sport))->assertSuccessful()->assertJsonFragment([
 			'name' => 'name',
 			'value' => $this->sport->name
+		])->assertJsonFragment([
+			'name' => 'date',
+			'value' => $this->sport->date->format('Y-m-d')
 		]);
 	}
 	
@@ -80,10 +87,13 @@ class CrudTest extends TestCase {
 	}
 	
 	public function test_admin_can_edit_sport() {
+		$this->withoutExceptionHandling();
 		$this->actingAs($this->admin)->post(action('Admin\SportsController@store', $this->sport), [
-			'name' => 'name'
+			'name' => 'name',
+			'date' => '2020-01-01 00:00:00'
 		])->assertSuccessful()->assertJson([
-			'name' => 'name'
+			'name' => 'name',
+			'date' => '2020-01-01 00:00:00'
 		]);
 		
 		$this->assertDatabaseHas('sports', [
