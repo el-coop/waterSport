@@ -9,6 +9,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userType:' . \App\M
 			Route::post('/{sport?}', 'SportsController@store');
 		});
 		Route::delete('/{sport}', 'SportsController@destroy');
-		
+		Route::group(['prefix' => 'practice'], function (){
+			Route::get('/{sport}', 'SportsController@getPracticeDays');
+			Route::post('/{sport}', 'PracticeDaysController@store');
+			Route::patch('/{sport}/{practiceDay}', 'PracticeDaysController@update');
+			Route::delete('/{sport}/{practiceDay}', 'PracticeDaysController@destroy');
+		});
+
 	});
 });

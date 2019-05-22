@@ -15,5 +15,6 @@ return [
 	'deleteConfirmTitle' => 'Weet je zeker dat je dit wil verwijderen?',
 	'yes' => 'Ja',
 	'no' => 'Nee',
+	'deleteSuccess' => 'Successvol verwijderd',
 
 ];

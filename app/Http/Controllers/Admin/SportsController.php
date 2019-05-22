@@ -46,12 +46,16 @@ class SportsController extends Controller {
 	 *
 	 * @param DestroySportRequest $request
 	 * @param \App\Models\Sport $sport
-	 * @return void
+	 * @return array
 	 */
 	public function destroy(DestroySportRequest $request, Sport $sport) {
 		$request->commit();
 		return [
 			'success' => true
 		];
+	}
+
+	public function getPracticeDays(Sport $sport) {
+		return $sport->practiceDays;
 	}
 }

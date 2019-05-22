@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-	@include('datatable.withNew')
+    @component('datatable.withNew')
+        @slot('extraSlotView', 'admin.sports.practiceDays')
+    @endcomponent
 @endsection

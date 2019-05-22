@@ -20,12 +20,15 @@ class Sport extends Model {
 			],
 			[
 				'name' => 'date',
-				'label' => __('global.date'),
+				'label' => __('sports.competitionDate'),
 				'type' => 'text',
 				'subType' => 'date',
 				'value' => $this->date ? $this->date->format('Y-m-d') : null
 			]
 		]);
 	}
-	
+
+	public function practiceDays() {
+		return $this->hasMany(PracticeDay::class);
+	}
 }
