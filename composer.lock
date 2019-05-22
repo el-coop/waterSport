@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b49e65ccdd8285489a889e29889b65fd",
-
+    "content-hash": "ba707cbad4c2d25263837c98d28ca6dd",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -278,12 +277,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/el-coop/datatable.git",
-                "reference": "a5c747860a584b8700528b204969101af8af8cb6"
+                "reference": "94dc91b557fd5937d03a5489727c5020a5c1c117"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/el-coop/datatable/zipball/a5c747860a584b8700528b204969101af8af8cb6",
-                "reference": "a5c747860a584b8700528b204969101af8af8cb6",
+                "url": "https://api.github.com/repos/el-coop/datatable/zipball/94dc91b557fd5937d03a5489727c5020a5c1c117",
+                "reference": "94dc91b557fd5937d03a5489727c5020a5c1c117",
                 "shasum": ""
             },
             "require": {
@@ -316,7 +315,7 @@
                 }
             ],
             "description": "Vuetable package for Laravel",
-            "time": "2019-05-19T21:14:54+00:00"
+            "time": "2019-05-20T18:53:51+00:00"
         },
         {
             "name": "elcoop/has-fields",
@@ -364,12 +363,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/el-coop/navbar.git",
-                "reference": "fd3c5e5eb9a49a999ae3637e9b2dba32924fc904"
+                "reference": "f84a55cc037bfc9ca9707196909fbd7ab9ce1808"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/el-coop/navbar/zipball/fd3c5e5eb9a49a999ae3637e9b2dba32924fc904",
-                "reference": "fd3c5e5eb9a49a999ae3637e9b2dba32924fc904",
+                "url": "https://api.github.com/repos/el-coop/navbar/zipball/f84a55cc037bfc9ca9707196909fbd7ab9ce1808",
+                "reference": "f84a55cc037bfc9ca9707196909fbd7ab9ce1808",
                 "shasum": ""
             },
             "type": "laravel-plugin",
@@ -396,7 +395,7 @@
                 }
             ],
             "description": "navbar component using config file",
-            "time": "2019-05-19T22:49:23+00:00"
+            "time": "2019-05-22T01:00:16+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -588,16 +587,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.17",
+            "version": "v5.8.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "33c04dd2a431adeeb49926a4f2b20590cc033ca2"
+                "reference": "9f571be04435883dab6f23ecfadb204273b7f527"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/33c04dd2a431adeeb49926a4f2b20590cc033ca2",
-                "reference": "33c04dd2a431adeeb49926a4f2b20590cc033ca2",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/9f571be04435883dab6f23ecfadb204273b7f527",
+                "reference": "9f571be04435883dab6f23ecfadb204273b7f527",
                 "shasum": ""
             },
             "require": {
@@ -731,7 +730,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-05-14T16:02:41+00:00"
+            "time": "2019-05-21T16:40:34+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -798,16 +797,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.51",
+            "version": "1.0.52",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "755ba7bf3fb9031e6581d091db84d78275874396"
+                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/755ba7bf3fb9031e6581d091db84d78275874396",
-                "reference": "755ba7bf3fb9031e6581d091db84d78275874396",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c5a5097156387970e6f0ccfcdf03f752856f3391",
+                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391",
                 "shasum": ""
             },
             "require": {
@@ -878,7 +877,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-03-30T13:22:34+00:00"
+            "time": "2019-05-20T20:21:14+00:00"
         },
         {
             "name": "maatwebsite/excel",

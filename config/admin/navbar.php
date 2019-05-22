@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'sports' => [
-		'sports' => 'Admin\SportsController@index'
+	'sports.sports' => [
+		'sports.index' => 'Admin\SportsController@index'
 	]
 ];

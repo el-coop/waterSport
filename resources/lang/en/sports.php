@@ -1,5 +1,7 @@
 <?php
 
 return [
-	'competitionDate' => 'Competition Date'
+	'competitionDate' => 'Competition Date',
+	'sports' => 'Sports',
+	'index' => 'Index'
 ];
