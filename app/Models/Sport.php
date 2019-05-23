@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Sport extends Model {
+
+	protected $dates = [
+		'date'
+	];
 	
 	public function getFullDataAttribute() {
 		return collect([
@@ -14,7 +18,17 @@ class Sport extends Model {
 				'type' => 'text',
 				'value' => $this->name
 			],
+			[
+				'name' => 'date',
+				'label' => __('sports.competitionDate'),
+				'type' => 'text',
+				'subType' => 'date',
+				'value' => $this->date ? $this->date->format('Y-m-d') : null
+			]
 		]);
 	}
-	
+
+	public function practiceDays() {
+		return $this->hasMany(PracticeDay::class);
+	}
 }
