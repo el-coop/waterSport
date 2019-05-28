@@ -18,4 +18,7 @@ return [
 	'delete' => 'Delete',
 	'add' => 'Add',
 	'deleteSuccess' => 'Delete successful',
+	'text' => 'Text',
+	'textarea' => 'Textarea',
+	'checkbox' => 'Checkbox'
 ];

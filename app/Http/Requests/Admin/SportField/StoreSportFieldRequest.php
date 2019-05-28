@@ -34,16 +34,16 @@ class StoreSportFieldRequest extends FormRequest {
 			'name_en' => 'required|string',
 			'name_nl' => 'required|string',
 			'type' => 'required|string|in:text,textarea,checkbox',
-			'placeholder_en' => 'required|string',
-			'placeholder_nl' => 'required|string'
+			'placeholder_en' => 'string',
+			'placeholder_nl' => 'string'
 		];
 	}
 
 	public function commit() {
 		$this->sportField->name_en = $this->input('name_en');
 		$this->sportField->name_nl = $this->input('name_nl');
-		$this->sportField->placeholder_en = $this->input('placeholder_en');
-		$this->sportField->placeholder_nl = $this->input('placeholder_nl');
+		$this->sportField->placeholder_en = $this->input('placeholder_en', '');
+		$this->sportField->placeholder_nl = $this->input('placeholder_nl', '');
 		$this->sportField->type = $this->input('type');
 		$this->sport->fields()->save($this->sportField);
 		return $this->sportField;

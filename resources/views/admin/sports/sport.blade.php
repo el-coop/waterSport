@@ -9,12 +9,12 @@
         </div>
         <div class="card-content">
             <dynamic-table :columns="[{
-                name: 'name_en',
-                label: '@lang('global.name') EN',
+                name: 'name_nl',
+                label: '@lang('global.name_nl')',
                 type: 'text'
             },{
-                name: 'name_nl',
-                label: '@lang('global.name') NL',
+                name: 'name_en',
+                label: '@lang('global.name_en')',
                 type: 'text'
             },{
                 name: 'type',
@@ -27,12 +27,12 @@
                 },
                 translate: true
             }, {
-                name: 'placeholder_en',
-                label: '@lang('global.placeholder') EN',
+                name: 'placeholder_nl',
+                label: '@lang('global.placeholder_nl')',
                 type: 'text'
             }, {
-                name: 'placeholder_nl',
-                label: '@lang('global.placeholder') NL',
+                name: 'placeholder_en',
+                label: '@lang('global.placeholder_en')',
                 type: 'text'
             }]" :init-fields="{{$sport->fields}}" action="{{action('Admin\SportFieldsController@store', $sport)}}">
             </dynamic-table>
