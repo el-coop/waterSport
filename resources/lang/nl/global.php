@@ -9,5 +9,13 @@ return [
 	'password' => 'Wachtwoord',
 	'title' => 'TBT',
 	'logout' => 'Uitloggen',
-	'date' => 'Datum'
+	'date' => 'Datum',
+	'name_nl' => 'Nederlandse naam',
+	'name_en' => 'Engelse naam',
+	'type' => 'Type',
+	'text' => 'Tekst',
+	'textarea' => 'Tekstveld',
+	'placeholder_nl' => 'Plaatshouder NL',
+	'placeholder_en' => 'Plaatshouder EN',
+	'checkbox' => 'TBT'
 ];

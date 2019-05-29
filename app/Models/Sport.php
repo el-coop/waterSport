@@ -31,4 +31,8 @@ class Sport extends Model {
 	public function practiceDays() {
 		return $this->hasMany(PracticeDay::class);
 	}
+
+	public function fields() {
+		return $this->hasMany(SportField::class);
+	}
 }

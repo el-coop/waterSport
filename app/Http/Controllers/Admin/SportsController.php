@@ -17,8 +17,8 @@ class SportsController extends Controller {
 	public function index() {
 		return view('admin.sports.index');
 	}
-	
-	
+
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -29,8 +29,8 @@ class SportsController extends Controller {
 	public function store(StoreSportRequest $request, Sport $sport) {
 		return $request->commit();
 	}
-	
-	
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -40,7 +40,7 @@ class SportsController extends Controller {
 	public function edit(Sport $sport) {
 		return $sport->fullData;
 	}
-	
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -57,5 +57,13 @@ class SportsController extends Controller {
 
 	public function getPracticeDays(Sport $sport) {
 		return $sport->practiceDays;
+	}
+
+	/**
+	 * @param Sport $sport
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function show(Sport $sport) {
+		return view('admin.sports.sport', compact('sport'));
 	}
 }

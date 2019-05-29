@@ -18,5 +18,8 @@ return [
 	'delete' => 'Verwijderen',
 	'add' => 'Toevoegen',
 	'deleteSuccess' => 'Successvol verwijderd',
+	'text' => 'Tekst',
+	'textarea' => 'Tekstveld',
+	'checkbox' => 'TBT'
 
 ];

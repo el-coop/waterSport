@@ -8,7 +8,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userType:' . \App\M
 			Route::get('/{sport?}', 'SportsController@edit');
 			Route::post('/{sport?}', 'SportsController@store');
 		});
+		Route::get('/{sport}', 'SportsController@show');
 		Route::delete('/{sport}', 'SportsController@destroy');
+		Route::group(['prefix' => '{sport}'], function (){
+			Route::post('/', 'SportFieldsController@store');
+			Route::patch('/{sportField}', 'SportFieldsController@update');
+			Route::delete('/{sportField}', 'SportFieldsController@destroy');
+		});
 		Route::group(['prefix' => 'practice'], function (){
 			Route::get('/{sport}', 'SportsController@getPracticeDays');
 			Route::post('/{sport}', 'PracticeDaysController@store');
