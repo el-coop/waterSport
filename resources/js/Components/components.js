@@ -14,6 +14,7 @@ Vue.component('Navbar', require('../vendor/elcoop/navbar/Navbar').default);
 Vue.component('DatatableDeleteForm', require('./Datatable/DatatableDeleteForm').default);
 Vue.component('DynamicTable', require('./Global/DynamicTable').default);
 Vue.component('ModalComponent', require('./Global/ModalComponent').default);
+Vue.component('ParticipantForm', require('./Participant/ParticipantForm').default);
 
 // form
 Vue.component('AjaxForm', require('./Form/AjaxForm').default);

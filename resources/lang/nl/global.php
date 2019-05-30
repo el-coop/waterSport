@@ -10,6 +10,8 @@ return [
 	'title' => 'TBT',
 	'logout' => 'Uitloggen',
 	'date' => 'Datum',
+	'register' => 'Aanmelden',
+	'language' => 'Taal',
 	'name_nl' => 'Nederlandse naam',
 	'name_en' => 'Engelse naam',
 	'type' => 'Type',

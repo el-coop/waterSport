@@ -14,10 +14,11 @@ import {
 	faFileUpload,
 	faTimesCircle,
 	faEuroSign,
-	faExternalLinkSquareAlt
+	faExternalLinkSquareAlt,
+	faEdit
 } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faLink, faSignOutAlt, faBars, faFileUpload, faTimesCircle, faEuroSign, faExternalLinkSquareAlt);
+library.add(faLink, faSignOutAlt, faBars, faFileUpload, faTimesCircle, faEuroSign, faExternalLinkSquareAlt, faEdit);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

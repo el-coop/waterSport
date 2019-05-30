@@ -6,11 +6,11 @@ use App\Model;
 use Faker\Generator as Faker;
 
 $factory->define(\App\Models\SportField::class, function (Faker $faker) {
-    return [
-        'name_en' => $faker->name,
+	return [
+		'name_en' => $faker->name,
 		'name_nl' => $faker->name,
-		'type' => 'text',
+		'type' => $faker->randomElement(['text', 'checkbox', 'textarea']),
 		'placeholder_en' => $faker->name,
 		'placeholder_nl' => $faker->name
-    ];
+	];
 });

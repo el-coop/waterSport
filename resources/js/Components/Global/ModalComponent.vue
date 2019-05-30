@@ -1,5 +1,6 @@
 <template>
 	<modal :name="name" transition="slide-up-opacity" :height="height" :adaptive="true"
+		   @opened="$emit('opened')"
 		   :width="width"
 		   :pivotY="pivotY"
 		   :pivotX="pivotX"
