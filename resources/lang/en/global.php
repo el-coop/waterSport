@@ -9,5 +9,7 @@ return [
 	'en' => 'English',
 	'nl' => 'Nederlands',
 	'logout' => 'Log out',
-	'date' => 'Date'
+	'date' => 'Date',
+	'register' => 'Register',
+	'language' => 'Language',
 ];

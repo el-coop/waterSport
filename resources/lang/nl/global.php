@@ -9,5 +9,7 @@ return [
 	'password' => 'Wachtwoord',
 	'title' => 'TBT',
 	'logout' => 'Uitloggen',
-	'date' => 'Datum'
+	'date' => 'Datum',
+	'register' => 'Aanmelden',
+	'language' => 'Taal',
 ];
