@@ -126,6 +126,12 @@ class CrudTest extends TestCase {
 			'id' => $this->sport->id
 		]);
 	}
-	
-	
+
+	public function test_not_logged_cant_get_sport_page() {
+		$this->get(action('Admin\SportsController@show', $this->sport))->assertRedirect(action('Auth\LoginController@login'));
+	}
+
+	public function test_admin_can_get_sport_page() {
+		$this->actingAs($this->admin)->get(action('Admin\SportsController@show', $this->sport))->assertSuccessful()->assertSee($this->sport->name);
+	}
 }

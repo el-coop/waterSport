@@ -3,5 +3,7 @@
 return [
 	'competitionDate' => 'TBT',
 	'sports' => 'TBT',
-	'index' => 'TBT'
+	'index' => 'TBT',
+	'fields' => 'Velden',
+
 ];

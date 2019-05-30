@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App;
 use App\Models\Sport;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use function foo\func;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -45,7 +47,17 @@ class RegisterController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function showRegistrationForm() {
-		$sports = Sport::all();
+		$sports = Sport::select('id', 'name', 'date')->with(['practiceDays' => function ($query) {
+			$query->select('id', 'sport_id', 'date');
+		}, 'fields' => function ($query) {
+			$language = App::getLocale();
+			$query->select('id', 'sport_id', 'type', "name_{$language} as title", "placeholder_{$language} as placeholder");
+		}])->get()->each(function ($sport) {
+			$sport->competition = $sport->date->format('d/m/Y');
+			$sport->practiceDays->each(function ($practiceDay) {
+				$practiceDay->formattedDate = $practiceDay->date->format('d/m/Y');
+			});
+		});
 		return view('auth.register', compact('sports'));
 	}
 	

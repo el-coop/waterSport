@@ -12,4 +12,12 @@ return [
 	'date' => 'Date',
 	'register' => 'Register',
 	'language' => 'Language',
+	'placeholder_nl' => 'Dutch Placeholder',
+	'placeholder_en' => 'English Placeholder',
+	'type' => 'Type',
+	'text' => 'Text',
+	'textarea' => 'Textarea',
+	'checkbox' => 'Checkbox',
+	'name_nl' => 'Dutch Name',
+	'name_en' => 'English Name',
 ];

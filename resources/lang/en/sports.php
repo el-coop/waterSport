@@ -3,5 +3,6 @@
 return [
 	'competitionDate' => 'Competition Date',
 	'sports' => 'Sports',
-	'index' => 'Index'
+	'index' => 'Index',
+	'fields' => 'Fields',
 ];
