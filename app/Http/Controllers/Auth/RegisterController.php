@@ -6,7 +6,6 @@ use App;
 use App\Models\Sport;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use function foo\func;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
