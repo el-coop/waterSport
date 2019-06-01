@@ -18,5 +18,9 @@ class Competitor extends Model {
 	public function user() {
 		return $this->morphOne(User::class, 'user');
 	}
+
+	public function sports() {
+		return $this->belongsToMany(Sport::class);
+	}
 	
 }

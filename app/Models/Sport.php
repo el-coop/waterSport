@@ -35,4 +35,8 @@ class Sport extends Model {
 	public function fields() {
 		return $this->hasMany(SportField::class);
 	}
+
+	public function competitors() {
+		return $this->belongsToMany(Competitor::class);
+	}
 }
