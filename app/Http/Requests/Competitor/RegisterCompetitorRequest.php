@@ -6,6 +6,8 @@ use App\Models\Competitor;
 use App\Models\PracticeDay;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Password;
+use Str;
 
 class RegisterCompetitorRequest extends FormRequest {
 	/**
@@ -35,6 +37,7 @@ class RegisterCompetitorRequest extends FormRequest {
 	
 	public function commit() {
 		$competitor = new Competitor;
+		$competitor->data = [];
 		$competitor->save();
 		$user = new User;
 		
@@ -42,12 +45,13 @@ class RegisterCompetitorRequest extends FormRequest {
 		foreach ($this->input('sports') as $sport => $data) {
 			$data = collect($data);
 			$competitor->practiceDays()->attach(PracticeDay::find($data->get('practiceDay')), ['sport_id' => $sport]);
-			$sports->put($sport, ['data' => $data->except('practiceDay')]);
+			$sports->put($sport, ['data' => $data->except('practiceDay', 0)]);
 		}
 		$competitor->sports()->sync($sports);
 		$user->name = $this->input('name');
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
+		$user->password = bcrypt(Str::random(18));
 		$competitor->user()->save($user);
 		
 		Password::broker()->sendResetLink(
