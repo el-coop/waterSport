@@ -60,6 +60,11 @@ class RegisterController extends Controller {
 		return view('auth.register', compact('sports'));
 	}
 	
+	
+	public function register() {
+		dd('here');
+	}
+	
 	/**
 	 * Get a validator for an incoming registration request.
 	 *
