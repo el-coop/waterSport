@@ -26,7 +26,7 @@ class SportsController extends Controller {
 	 * @param Sport $sport
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(StoreSportRequest $request, Sport $sport) {
+	public function store(StoreSportRequest $request) {
 		return $request->commit();
 	}
 
@@ -39,6 +39,11 @@ class SportsController extends Controller {
 	 */
 	public function edit(Sport $sport) {
 		return $sport->fullData;
+	}
+
+
+	public function update(StoreSportRequest $request, Sport $sport) {
+		return $request->commit();
 	}
 
 	/**
