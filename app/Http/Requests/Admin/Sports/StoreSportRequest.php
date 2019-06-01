@@ -28,8 +28,12 @@ class StoreSportRequest extends FormRequest {
 	 * @return array
 	 */
 	public function rules() {
+		$nameRule = 'required|unique:sports';
+		if ($this->sport->name){
+			$nameRule .= ',name,' . $this->sport->id;
+		}
 		return [
-			'name' => 'required|unique:sports',
+			'name' => $nameRule,
 			'date' => 'required|date'
 		];
 	}

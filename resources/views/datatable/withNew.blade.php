@@ -1,6 +1,11 @@
 @component('elcoop:datatable::component')
 	@slot('buttons')
+		@isset($fieldType)
+			<a class="button is-light"
+			   href="{{ action('Admin\FieldController@index', $fieldType) }}">@lang('sports.fields')</a>
+		@endisset
 		<button class="button is-light" @click="actions.newObjectForm">@lang('datatable.add')</button>
+
 	@endslot
 	@slot('delete')
 		<datatable-delete-form :action="`{{ Request::url() }}/${props.rowData.id}`"

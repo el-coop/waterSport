@@ -2,7 +2,6 @@
 
 @section('content')
     @component('datatable.withNew')
-        @slot('withEdiLink')
-            @slot('extraSlotView', 'admin.sports.practiceDays')
-            @endcomponent
+        @slot('fieldType', 'Competitor')
+    @endcomponent
 @endsection
