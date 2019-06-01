@@ -44,8 +44,7 @@ class RegisterCompetitorRequest extends FormRequest {
 		$sports = collect();
 		foreach ($this->input('sports') as $sport => $data) {
 			$data = collect($data);
-			$competitor->practiceDays()->attach(PracticeDay::find($data->get('practiceDay')), ['sport_id' => $sport]);
-			$sports->put($sport, ['data' => $data->except('practiceDay', 0)]);
+			$sports->put($sport, ['data' => $data->except('practiceDay', 0), 'practice_day_id' => $data->get('practiceDay')]);
 		}
 		$competitor->sports()->sync($sports);
 		$user->name = $this->input('name');

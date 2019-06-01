@@ -79,14 +79,9 @@ class RegistrationTest extends TestCase {
 			'language' => 'en',
 		]);
 		
-		$this->assertDatabaseHas('competitor_practice_day', [
-			'sport_id' => $sport->id,
-			'practice_day_id' => $practiceDay->id,
-			'competitor_id' => $competitor->id
-		]);
-		
 		$this->assertDatabaseHas('competitor_sport', [
 			'sport_id' => $sport->id,
+			'practice_day_id' => $practiceDay->id,
 			'competitor_id' => $competitor->id,
 			'data' => json_encode([
 				$field->id => 'yes'
