@@ -37,6 +37,6 @@ class Sport extends Model {
 	}
 
 	public function competitors() {
-		return $this->belongsToMany(Competitor::class);
+		return $this->belongsToMany(Competitor::class)->withPivot('data');
 	}
 }

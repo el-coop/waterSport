@@ -17,6 +17,7 @@ class CreateCompetitorSportTable extends Migration
             $table->bigIncrements('id');
 			$table->bigInteger('sport_id')->unsigned();
 			$table->bigInteger('competitor_id')->unsigned();
+			$table->json('data');
 			$table->timestamps();
 
 			$table->foreign('sport_id')
