@@ -66,4 +66,8 @@ class Competitor extends Model {
 		return $fullData;
 	}
 
+	static function indexPage() {
+		return action('Admin\CompetitorController@index', [], false);
+	}
+
 }
