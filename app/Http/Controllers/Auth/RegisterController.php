@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App;
+use App\Http\Requests\Competitor\RegisterCompetitorRequest;
 use App\Models\Sport;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -61,8 +63,9 @@ class RegisterController extends Controller {
 	}
 	
 	
-	public function register() {
-		dd('here');
+	public function register(RegisterCompetitorRequest $request) {
+		$request->commit();
+		return redirect('login')->with('confirmEmail', true);
 	}
 	
 	/**

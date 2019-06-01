@@ -9,8 +9,8 @@
 					</span>
 				<span v-text="sports[sport].name"></span>
 				<span class="tag is-danger ml-auto" @click="removeSport(index)">
-						<font-awesome-icon icon="times-circle"></font-awesome-icon>
-					</span>
+					<font-awesome-icon icon="times-circle"></font-awesome-icon>
+				</span>
 			</p>
 		</div>
 		<div class="field">
@@ -74,6 +74,7 @@
 				}
 				this.sportsData[parseInt(data.sport)] = data.data;
 				this.selectedSport = null;
+				this.$emit('data', this.sportsData);
 			}
 		},
 
