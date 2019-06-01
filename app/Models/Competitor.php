@@ -11,12 +11,24 @@ class Competitor extends Model {
 	
 	protected $casts = [
 		'data' => 'array',
-		'sports_day' => 'array'
+	];
+
+	protected $appends = [
+		'sportsList'
 	];
 	
 	
 	public function user() {
 		return $this->morphOne(User::class, 'user');
+	}
+
+	public function sports() {
+		return $this->belongsToMany(Sport::class)->withPivot('data');
+	}
+
+	public function getSportsListAttribute() {
+		return $this->sports->implode('name', ', ');
+
 	}
 	
 }

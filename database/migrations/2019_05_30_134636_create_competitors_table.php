@@ -16,7 +16,6 @@ class CreateCompetitorsTable extends Migration
         Schema::create('competitors', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->json('data');
-			$table->json('sports_data');
             $table->timestamps();
         });
     }
