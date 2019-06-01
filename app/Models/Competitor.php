@@ -11,7 +11,10 @@ class Competitor extends Model {
 	
 	protected $casts = [
 		'data' => 'array',
-		'sports_day' => 'array'
+	];
+
+	protected $appends = [
+		'sportsList'
 	];
 	
 	
@@ -20,7 +23,12 @@ class Competitor extends Model {
 	}
 
 	public function sports() {
-		return $this->belongsToMany(Sport::class);
+		return $this->belongsToMany(Sport::class)->withPivot('data');
+	}
+
+	public function getSportsListAttribute() {
+		return $this->sports->implode('name', ', ');
+
 	}
 	
 }
