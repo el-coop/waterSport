@@ -4,6 +4,8 @@ namespace App\Http\Requests\Admin\Competitor;
 
 use App\Models\Competitor;
 use App\Models\User;
+use Str;
+use Password;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCompetitorRequest extends FormRequest {
@@ -35,8 +37,12 @@ class StoreCompetitorRequest extends FormRequest {
 		$user->name = $this->input('name');
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
+		$user->password = bcrypt(Str::random(18));
 		$competitor->save();
 		$competitor->user()->save($user);
+		Password::broker()->sendResetLink(
+			['email' => $user->email]
+		);
 		return [
 			'id' => $competitor->id,
 			'name' => $this->input('name'),

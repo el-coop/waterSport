@@ -87,7 +87,6 @@ class CrudTest extends TestCase {
 	}
 	
 	public function test_admin_can_edit_sport() {
-		$this->withoutExceptionHandling();
 		$this->actingAs($this->admin)->patch(action('Admin\SportsController@update', $this->sport), [
 			'name' => 'name',
 			'date' => '2020-01-01 00:00:00'

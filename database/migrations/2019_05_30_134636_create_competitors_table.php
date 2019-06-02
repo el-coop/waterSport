@@ -15,7 +15,7 @@ class CreateCompetitorsTable extends Migration
     {
         Schema::create('competitors', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->json('data');
+			$table->json('data')->nullable();
             $table->timestamps();
         });
     }
