@@ -1,12 +1,8 @@
 <template>
-	<div class="card mr-half">
-		<header class="card-header">
-			<p class="card-header-title" v-text="'Personal details'">
-			</p>
-		</header>
-		<div class="card-content">
-			<slot/>
-		</div>
+	<div>
+		<h4 class="title is-4" v-text="'Personal details'">
+		</h4>
+		<slot/>
 	</div>
 </template>
 

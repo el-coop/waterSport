@@ -24,8 +24,6 @@ class CrudTest extends TestCase {
 		$this->sport = factory(Sport::class)->create();
 		$this->practiceDay = factory(PracticeDay::class)->make();
 		$this->sport->practiceDays()->save($this->practiceDay);
-
-
 	}
 
 	public function test_guest_cant_create_practice_day() {

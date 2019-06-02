@@ -3,6 +3,13 @@
 
 @section('content')
 	<div class="section">
+		@if($errors->any())
+			<pre>
+			<?php
+				print_r($errors->all());
+				?>
+			</pre>
+		@endif
 		<participant-form :sports="{{ $sports }}">
 			<template slot="personal">
 				<text-field

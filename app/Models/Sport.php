@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Sport extends Model {
-
+	
 	protected $dates = [
 		'date'
 	];
@@ -27,16 +27,16 @@ class Sport extends Model {
 			]
 		]);
 	}
-
+	
 	public function practiceDays() {
 		return $this->hasMany(PracticeDay::class);
 	}
-
+	
 	public function fields() {
 		return $this->hasMany(SportField::class);
 	}
-
+	
 	public function competitors() {
-		return $this->belongsToMany(Competitor::class)->withPivot('data');
+		return $this->belongsToMany(Competitor::class)->using(CompetitorSport::class)->withPivot('data', 'practiceDay');
 	}
 }

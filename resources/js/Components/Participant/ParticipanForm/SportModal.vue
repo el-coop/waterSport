@@ -16,7 +16,12 @@
 			</div>
 			<component v-for="(field, key) in fields" :key="key" :field="fieldSetup(field)"
 					   :is="`${field.type}-field`"></component>
-			<button class="button is-success is-fullwidth" v-text="$translations.save"></button>
+			<div class="buttons">
+				<button class="button is-success" v-text="$translations.save"></button>
+				<button type="button" class="button is-danger" @click="$modal.hide('sportModal')">
+					Cancel
+				</button>
+			</div>
 		</form>
 	</ModalComponent>
 </template>
