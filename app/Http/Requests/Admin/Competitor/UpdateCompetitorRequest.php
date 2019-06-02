@@ -25,7 +25,8 @@ class UpdateCompetitorRequest extends FormRequest {
 		return [
 			'name' => 'required|string',
 			'email' => 'required|email|unique:users,email,' . $this->competitor->user->id,
-			'language' => 'required|in:en,nl'
+			'language' => 'required|in:en,nl',
+			'competitor' => 'required|array'
 			];
 	}
 
@@ -33,6 +34,7 @@ class UpdateCompetitorRequest extends FormRequest {
 		$this->competitor->user->name = $this->input('name');
 		$this->competitor->user->email = $this->input('email');
 		$this->competitor->user->language = $this->input('language');
+		$this->competitor->data = array_filter($this->input('competitor'));
 		$this->competitor->user->save();
 		$this->competitor->save();
 		return [
