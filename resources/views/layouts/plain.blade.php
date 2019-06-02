@@ -15,6 +15,14 @@
 <body>
 <div id="app">
 	@yield('body')
+	@if(session()->has('toast'))
+		<toast message="{{ session()->get('toast')['message'] }}" title="{{ session()->get('toast')['title'] }}"
+			   type="{{ session()->get('toast')['type'] }}"
+			   @isset(session()->get('toast')['position'])
+			   position="{{session()->get('toast')['position']}}"
+				@endisset
+		></toast>
+	@endif
 </div>
 
 <script>

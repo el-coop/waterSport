@@ -3,9 +3,8 @@
 
 @section('content')
 	<div class="section">
-		<participant-form :sports="{{ $sports }}">
-
-			<dynamic-fields slot="personal" :fields="{{ $competitor->fulldata->map(function($item) use($errors){
+		<participant-form method="patch" :sports="{{ $sports }}" :init-selected-sports="{{ $selectedSports }}" :init-sports-data="{{ $sportsData }}">
+			<dynamic-fields slot="personal" :fields="{{ $user->user->fulldata->map(function($item) use($errors){
 					$fieldName = str_replace(']','',str_replace('[','.',$item['name']));
 
 					$item['value'] = old($fieldName, $item['value']);

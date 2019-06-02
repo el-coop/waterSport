@@ -6,16 +6,17 @@ use ElCoop\HasFields\HasFields;
 use Illuminate\Database\Eloquent\Model;
 
 class Competitor extends Model {
-
+	
 	use HasFields;
-
+	
 	protected static function boot() {
 		parent::boot();
 		static::deleted(function ($competitor) {
 			$competitor->user->delete();
 		});
 	}
-
+	
+	
 	protected $casts = [
 		'data' => 'array',
 	];
@@ -23,8 +24,11 @@ class Competitor extends Model {
 	protected $appends = [
 		'sportsList'
 	];
-
-
+	
+	public function homePage() {
+		return action('CompetitorController@edit');
+	}
+	
 	public function user() {
 		return $this->morphOne(User::class, 'user');
 	}
@@ -40,7 +44,7 @@ class Competitor extends Model {
 	public function getSportsListAttribute() {
 		return $this->sports->implode('name', ', ');
 	}
-
+	
 	public function getFullDataAttribute() {
 		$fullData = collect([
 			[
@@ -69,9 +73,9 @@ class Competitor extends Model {
 		}
 		return $fullData;
 	}
-
+	
 	static function indexPage() {
 		return action('Admin\CompetitorController@index', [], false);
 	}
-
+	
 }

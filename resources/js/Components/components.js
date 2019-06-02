@@ -15,10 +15,12 @@ Vue.component('DatatableDeleteForm', require('./Datatable/DatatableDeleteForm').
 Vue.component('DynamicTable', require('./Global/DynamicTable').default);
 Vue.component('ModalComponent', require('./Global/ModalComponent').default);
 Vue.component('ParticipantForm', require('./Participant/ParticipantForm').default);
+Vue.component('Toast', require('./Global/Toast').default);
 
 // form
 Vue.component('AjaxForm', require('./Form/AjaxForm').default);
 Vue.component('DynamicForm', require('./Form/DynamicForm').default);
+Vue.component('DynamicFields', require('./Form/DynamicFields').default);
 Vue.component('TextField', require('./Form/TextField').default);
 Vue.component('TextareaField', require('./Form/TextareatField').default);
 Vue.component('SelectField', require('./Form/SelectField').default);

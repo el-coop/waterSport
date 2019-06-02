@@ -8,6 +8,8 @@ use App\Models\PracticeDay;
 use App\Models\Sport;
 use App\Models\SportField;
 use App\Models\User;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Notification;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -33,7 +35,7 @@ class RegistrationTest extends TestCase {
 	}
 	
 	public function test_competitor_cant_view_registration_form() {
-		$this->actingAs($this->competitor)->get(action('Auth\RegisterController@showRegistrationForm'))->assertRedirect(action('HomeController@index'));
+		$this->actingAs($this->competitor)->get(action('Auth\RegisterController@showRegistrationForm'))->assertRedirect(action('CompetitorController@edit'));
 	}
 	
 	public function test_guest_can_view_registration_form() {
@@ -46,10 +48,11 @@ class RegistrationTest extends TestCase {
 	}
 	
 	public function test_competitor_cant_post_registration_form() {
-		$this->actingAs($this->competitor)->post(action('Auth\RegisterController@register'))->assertRedirect(action('HomeController@index'));
+		$this->actingAs($this->competitor)->post(action('Auth\RegisterController@register'))->assertRedirect(action('CompetitorController@edit'));
 	}
 	
 	public function test_guest_can_post_registration_form() {
+		Notification::fake();
 		$sport = factory(Sport::class)->create();
 		$practiceDay = factory(PracticeDay::class)->create([
 			'sport_id' => $sport->id
@@ -77,6 +80,7 @@ class RegistrationTest extends TestCase {
 			'name' => 'name',
 			'email' => 'email@email.com',
 			'language' => 'en',
+			'user_type' => Competitor::class
 		]);
 		
 		$this->assertDatabaseHas('competitor_sport', [
@@ -87,19 +91,24 @@ class RegistrationTest extends TestCase {
 				$field->id => 'yes'
 			])
 		]);
+		
+		Notification::assertSentTo(User::where('email', 'email@email.com')->first(), ResetPassword::class);
 	}
 	
 	
 	public function test_validates_registration_form() {
+		$sport = factory(Sport::class)->create();
+		
 		$this->post(action('Auth\RegisterController@showRegistrationForm'), [
 			'name' => '',
 			'email' => 'email',
 			'language' => 'gla',
 			'sports' => [
-				1,
-				'practiceDay' => 1
+				$sport->id => [
+					'practiceDay' => 0
+				]
 			]
-		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', 'sports.practiceDay', 'sports.0']);
+		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$sport->id}.practiceDay", "sports.{$sport->id}.0"]);
 	}
 	
 }
