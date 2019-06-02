@@ -2,14 +2,9 @@
 
 namespace App\Http\Requests\Competitor;
 
-use App\Models\Competitor;
-use App\Models\PracticeDay;
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Password;
-use Str;
 
-class RegisterCompetitorRequest extends FormRequest {
+class UpdateCompetitorRequest extends FormRequest {
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
@@ -25,9 +20,10 @@ class RegisterCompetitorRequest extends FormRequest {
 	 * @return array
 	 */
 	public function rules() {
+		
 		return [
 			'name' => ['required', 'string', 'max:255'],
-			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+			'email' => ['required', 'string', 'email', 'max:255', "unique:users,email," . $this->user()->id],
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
 			'sports.*.practiceDay' => 'required|exists:practice_days,id',
@@ -36,25 +32,17 @@ class RegisterCompetitorRequest extends FormRequest {
 	}
 	
 	public function commit() {
-		$competitor = new Competitor;
-		$competitor->data = [];
-		$competitor->save();
-		$user = new User;
+		$user = $this->user();
 		
+		$user->name = $this->input('name');
+		$user->email = $this->input('email');
+		$user->language = $this->input('language');
 		$sports = collect();
 		foreach ($this->input('sports') as $sport => $data) {
 			$data = collect($data);
 			$sports->put($sport, ['data' => $data->except('practiceDay', 0), 'practice_day_id' => $data->get('practiceDay')]);
 		}
-		$competitor->sports()->sync($sports);
-		$user->name = $this->input('name');
-		$user->email = $this->input('email');
-		$user->language = $this->input('language');
-		$user->password = bcrypt(Str::random(18));
-		$competitor->user()->save($user);
-		
-		Password::broker()->sendResetLink(
-			['email' => $user->email]
-		);
+		$user->user->sports()->sync($sports);
+		$user->save();
 	}
 }

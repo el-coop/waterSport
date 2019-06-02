@@ -7,7 +7,7 @@
 					<span class="panel-icon" @click="editSport(sport)">
 						<font-awesome-icon icon="edit"></font-awesome-icon>
 					</span>
-				<span v-text="sports[sport].name"></span>
+				<span v-text="findSport(sport).name"></span>
 				<span class="tag is-danger ml-auto" @click="removeSport(index)">
 					<font-awesome-icon icon="times-circle"></font-awesome-icon>
 				</span>
@@ -40,8 +40,15 @@
 				required: true
 			},
 			initSelectedSports: {
+				type: Array,
 				default() {
 					return [];
+				}
+			},
+			value: {
+				type: Object,
+				default() {
+					return {}
 				}
 			}
 		},
@@ -50,8 +57,7 @@
 			return {
 				selectedSports: this.initSelectedSports,
 				newSport: null,
-				selectedSport: null,
-				sportsData: {}
+				selectedSport: null
 			};
 		},
 
@@ -62,7 +68,7 @@
 				this.newSport = null;
 			},
 			editSport(sport) {
-				this.selectedSport = this.sports[sport];
+				this.selectedSport = this.findSport(sport);
 				this.$modal.show('sportModal')
 			},
 			removeSport(sportIndex) {
@@ -72,9 +78,14 @@
 				if (!this.selectedSports.includes(data.sport)) {
 					this.selectedSports.push(data.sport);
 				}
-				this.sportsData[parseInt(data.sport)] = data.data;
+				this.value[parseInt(data.sport)] = data.data;
 				this.selectedSport = null;
-				this.$emit('data', this.sportsData);
+				this.$emit('input', this.value);
+			},
+			findSport(id) {
+				return this.sports.find((sport) => {
+					return sport.id === parseInt(id);
+				});
 			}
 		},
 
@@ -83,14 +94,14 @@
 				const options = {};
 				this.sports.forEach((sport, index) => {
 					if (!this.selectedSports.includes(index)) {
-						options[index] = sport.name;
+						options[sport.id] = sport.name;
 					}
 				});
 				return options;
 			},
 			formData() {
 				if (this.selectedSport) {
-					return this.sportsData[parseInt(this.selectedSport.id)] || {};
+					return this.value[parseInt(this.selectedSport.id)] || {};
 				}
 
 				return {};

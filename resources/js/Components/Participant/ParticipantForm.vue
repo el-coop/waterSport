@@ -5,14 +5,15 @@
 				<div class="tile is-child">
 					<form method="post" ref="form">
 						<input type="hidden" name="_token" :value="csrf">
+						<input v-if="method" type="hidden" name="_method" :value="method">
 						<PersonalDetails>
 							<slot name="personal"/>
 						</PersonalDetails>
 						<template v-for="(data, sport) in sportsData">
-							<input :key="`sport_${key}`" type="hidden" :name="`sports[${sport}][0]`"
+							<input :key="`sport_${sport}`" type="hidden" :name="`sports[${sport}][0]`"
 								   :value="sport">
 							<template v-for="(info,key) in data">
-								<input :key="`sport_${key}`" type="hidden" :name="`sports[${sport}][${key}]`"
+								<input :key="`sport_${sport}_${key}`" type="hidden" :name="`sports[${sport}][${key}]`"
 									   :value="info">
 							</template>
 						</template>
@@ -22,7 +23,7 @@
 			<div class="tile is-parent">
 				<div class="tile is-child">
 					<SportSelector :sports="sports" :init-selected-sports="initSelectedSports"
-								   @data="sportsData = $event"/>
+								   v-model="sportsData"/>
 				</div>
 			</div>
 		</div>
@@ -46,19 +47,32 @@
 		components: {SportSelector, PersonalDetails},
 		props: {
 			sports: {
-				required: true
+				required: true,
+				type: Array
 			},
 			initSelectedSports: {
+				type: Array,
 				default() {
 					return [];
 				}
+			},
+
+			initSportsData: {
+				type: Object,
+				default() {
+					return {}	;
+				}
+			},
+
+			method: {
+				type: String
 			}
 		},
 
 		data() {
 			return {
-				sportsData: {},
-				csrf: window.token.content
+				sportsData: this.initSportsData,
+				csrf: window.token.content,
 			}
 		}
 

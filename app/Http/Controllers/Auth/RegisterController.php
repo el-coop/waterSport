@@ -59,7 +59,8 @@ class RegisterController extends Controller {
 				$practiceDay->formattedDate = $practiceDay->date->format('d/m/Y');
 			});
 		});
-		return view('auth.register', compact('sports'));
+		$competitor = new App\Models\Competitor;
+		return view('auth.register', compact('sports', 'competitor'));
 	}
 	
 	
