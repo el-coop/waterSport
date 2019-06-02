@@ -40,4 +40,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userType:' . \App\M
 		Route::patch('/order', 'FieldController@saveOrder');
 		Route::patch('/{field}', 'FieldController@edit');
 	});
+
+	Route::group(['prefix' => 'settings'],  function (){
+		Route::get('/' , 'SettingsController@show');
+		Route::patch('/', 'SettingsController@update');
+	});
 });

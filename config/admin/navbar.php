@@ -6,5 +6,8 @@ return [
 	],
 	'competitors.competitors' => [
 		'sports.index' => 'Admin\CompetitorController@index'
+	],
+	'global.general' => [
+		'global.settings' => 'Admin\SettingsController@show'
 	]
 ];
