@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba707cbad4c2d25263837c98d28ca6dd",
+    "content-hash": "1c2636b3e5a468eb57286c7fa61ac8c8",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -396,6 +396,41 @@
             ],
             "description": "navbar component using config file",
             "time": "2019-05-22T01:00:16+00:00"
+        },
+        {
+            "name": "elcoop/valuestore",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/el-coop/Valuestore.git",
+                "reference": "47a8e4b8093321227a61379a87433478371c73ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/el-coop/Valuestore/zipball/47a8e4b8093321227a61379a87433478371c73ad",
+                "reference": "47a8e4b8093321227a61379a87433478371c73ad",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7"
+            },
+            "type": "valuestore",
+            "autoload": {
+                "psr-4": {
+                    "ElCoop\\Valuestore\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "el-coop",
+                    "email": "contact@elcoop.io"
+                }
+            ],
+            "time": "2018-12-24T21:26:55+00:00"
         },
         {
             "name": "erusev/parsedown",
