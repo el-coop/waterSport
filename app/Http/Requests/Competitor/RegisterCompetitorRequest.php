@@ -31,18 +31,19 @@ class RegisterCompetitorRequest extends FormRequest {
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
 			'sports.*.practiceDay' => 'required|exists:practice_days,id',
-			'sports.*' => 'array'
+			'sports.*' => 'array',
+			'competitor' => 'required|array',
 		];
 	}
 	
 	public function commit() {
 		$competitor = new Competitor;
-		$competitor->data = [];
+		$competitor->data = array_filter($this->input('competitor'));
 		$competitor->save();
 		$user = new User;
 		
 		$sports = collect();
-		foreach ($this->input('sports') as $sport => $data) {
+		foreach ($this->input('sports', []) as $sport => $data) {
 			$data = collect($data);
 			$sports->put($sport, ['data' => $data->except('practiceDay', 0), 'practice_day_id' => $data->get('practiceDay')]);
 		}
@@ -50,7 +51,8 @@ class RegisterCompetitorRequest extends FormRequest {
 		$user->name = $this->input('name');
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
-		$user->password = bcrypt(Str::random(18));
+		$user->password = '';
+		
 		$competitor->user()->save($user);
 		
 		Password::broker()->sendResetLink(

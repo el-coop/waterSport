@@ -37,7 +37,7 @@ class StoreCompetitorRequest extends FormRequest {
 		$user->name = $this->input('name');
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
-		$user->password = bcrypt(Str::random(18));
+		$user->password = '';
 		$competitor->save();
 		$competitor->user()->save($user);
 		Password::broker()->sendResetLink(

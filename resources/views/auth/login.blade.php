@@ -43,11 +43,11 @@
 				])
 					@if(\Session::has('confirmEmail'))
 						<p class="title">
-							Check your email to confirm your registration
+							{{ App::make('settings')->get('registration_success_	' . App::getLocale()) }}
 						</p>
 					@else
 						<p class="title">
-							Please log in to see your schedule and update your information
+							{{ App::make('settings')->get('login_text_' . App::getLocale()) }}
 						</p>
 					@endif
 				@endcomponent

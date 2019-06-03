@@ -53,6 +53,12 @@ class CompetitorController extends Controller {
 		]);
 	}
 	
+	public function showResetForm(Request $request, $token = null) {
+		return view('competitor.setPassword')->with(
+			['token' => $token]
+		);
+	}
+	
 	/**
 	 * Remove the specified resource from storage.
 	 *

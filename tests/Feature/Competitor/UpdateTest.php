@@ -8,6 +8,7 @@ use App\Models\PracticeDay;
 use App\Models\Sport;
 use App\Models\SportField;
 use App\Models\User;
+use ElCoop\HasFields\Models\Field;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -21,6 +22,7 @@ class UpdateTest extends TestCase {
 	private $sport;
 	private $practiceDays;
 	private $field;
+	private $competitorField;
 	
 	public function setUp(): void {
 		parent::setUp();
@@ -42,6 +44,9 @@ class UpdateTest extends TestCase {
 			],
 			'practice_day_id' => $this->practiceDays->first()->id
 		]]);
+		
+		$this->competitorField = factory(Field::class)->create();
+		
 	}
 	
 	public function test_guest_cant_view_competitor_profile() {
@@ -70,6 +75,9 @@ class UpdateTest extends TestCase {
 			'name' => 'name',
 			'email' => $this->competitor->email,
 			'language' => 'en',
+			'competitor' => [
+				$this->competitorField->id => 'gla'
+			],
 			'sports' => [
 				$this->sport->id => [
 					$this->sport->id,
@@ -82,6 +90,13 @@ class UpdateTest extends TestCase {
 			'type' => 'success',
 			'title' => '',
 			'message' => __('vue.updateSuccess', [], 'en')
+		]);
+		
+		$this->assertDatabaseHas('competitors', [
+			'id' => $this->competitor->user->id,
+			'data' => json_encode([
+				$this->competitorField->id => 'gla'
+			])
 		]);
 		
 		$this->assertDatabaseHas('users', [
@@ -116,6 +131,6 @@ class UpdateTest extends TestCase {
 					$this->field->id => 'yes'
 				]
 			]
-		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$this->sport->id}.practiceDay", "sports.{$this->sport->id}.0"]);
+		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$this->sport->id}.practiceDay", "sports.{$this->sport->id}.0", 'competitor']);
 	}
 }
