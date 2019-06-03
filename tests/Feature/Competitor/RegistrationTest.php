@@ -8,6 +8,8 @@ use App\Models\PracticeDay;
 use App\Models\Sport;
 use App\Models\SportField;
 use App\Models\User;
+use App\Notifications\Competitor\CompetitorCreated;
+use ElCoop\HasFields\Models\Field;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Notification;
 use Tests\TestCase;
@@ -20,6 +22,7 @@ class RegistrationTest extends TestCase {
 	
 	private $admin;
 	private $competitor;
+	private $field;
 	
 	public function setUp(): void {
 		parent::setUp();
@@ -27,6 +30,8 @@ class RegistrationTest extends TestCase {
 		factory(Admin::class)->create()->user()->save($this->admin);
 		$this->competitor = factory(User::class)->make();
 		factory(Competitor::class)->create()->user()->save($this->competitor);
+		
+		$this->field = factory(Field::class)->create();
 	}
 	
 	
@@ -64,6 +69,9 @@ class RegistrationTest extends TestCase {
 			'name' => 'name',
 			'email' => 'email@email.com',
 			'language' => 'en',
+			'competitor' => [
+				$this->field->id => 'gla'
+			],
 			'sports' => [
 				$sport->id => [
 					$sport->id,
@@ -75,6 +83,13 @@ class RegistrationTest extends TestCase {
 		])->assertRedirect(action('Auth\LoginController@showLoginForm'));
 		
 		$competitor = Competitor::find(Competitor::max('id'));
+		
+		$this->assertDatabaseHas('competitors', [
+			'id' => $competitor->id,
+			'data' => json_encode([
+				$this->field->id => 'gla'
+			])
+		]);
 		
 		$this->assertDatabaseHas('users', [
 			'name' => 'name',
@@ -92,7 +107,7 @@ class RegistrationTest extends TestCase {
 			])
 		]);
 		
-		Notification::assertSentTo(User::where('email', 'email@email.com')->first(), ResetPassword::class);
+		Notification::assertSentTo(User::where('email', 'email@email.com')->first(), CompetitorCreated::class);
 	}
 	
 	
@@ -108,7 +123,7 @@ class RegistrationTest extends TestCase {
 					'practiceDay' => 0
 				]
 			]
-		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$sport->id}.practiceDay", "sports.{$sport->id}.0"]);
+		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$sport->id}.practiceDay", "sports.{$sport->id}.0",'competitor']);
 	}
 	
 }

@@ -27,7 +27,8 @@ class UpdateCompetitorRequest extends FormRequest {
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
 			'sports.*.practiceDay' => 'required|exists:practice_days,id',
-			'sports.*' => 'array'
+			'sports.*' => 'array',
+			'competitor' => 'required|array',
 		];
 	}
 	
@@ -38,11 +39,13 @@ class UpdateCompetitorRequest extends FormRequest {
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
 		$sports = collect();
-		foreach ($this->input('sports') as $sport => $data) {
+		foreach ($this->input('sports',[]) as $sport => $data) {
 			$data = collect($data);
 			$sports->put($sport, ['data' => $data->except('practiceDay', 0), 'practice_day_id' => $data->get('practiceDay')]);
 		}
 		$user->user->sports()->sync($sports);
+		$user->user->data = array_filter($this->input('competitor'));
+		$user->user->save();
 		$user->save();
 	}
 }

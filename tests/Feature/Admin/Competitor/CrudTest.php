@@ -5,6 +5,7 @@ namespace Tests\Feature\Admin\Competitor;
 use App\Models\Admin;
 use App\Models\Competitor;
 use App\Models\User;
+use App\Notifications\Competitor\CompetitorCreated;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Notification;
 use Tests\TestCase;
@@ -63,7 +64,7 @@ class CrudTest extends TestCase {
 			'email' => 'test@test.com',
 			'user_type' => Competitor::class
 		]);
-		Notification::assertSentTo(User::where('email', 'test@test.com')->first(), ResetPassword::class);
+		Notification::assertSentTo(User::where('email', 'test@test.com')->first(), CompetitorCreated::class);
 	}
 
 	public function test_create_competitor_validation() {

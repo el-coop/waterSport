@@ -68,10 +68,7 @@ class Competitor extends Model {
 				'value' => $this->user->language ?? 'nl',
 			]
 		]);
-		if ($this->exists) {
-			$fullData = $fullData->concat($this->getFieldsData());
-		}
-		return $fullData;
+		return $fullData->concat($this->getFieldsData());
 	}
 	
 	static function indexPage() {

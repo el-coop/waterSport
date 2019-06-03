@@ -12,7 +12,7 @@
     "devDependencies": {
         "axios": "^0.18.1",
         "browser-sync": "^2.26.5",
-        "browser-sync-webpack-plugin": "^2.0.1",
+        "browser-sync-webpack-plugin": "^2.2.2",
         "cross-env": "^5.1",
         "laravel-mix": "^4.0.16",
         "resolve-url-loader": "^2.3.1",
