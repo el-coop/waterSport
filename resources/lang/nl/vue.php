@@ -20,6 +20,14 @@ return [
 	'deleteSuccess' => 'Successvol verwijderd',
 	'text' => 'Tekst',
 	'textarea' => 'Tekstveld',
-	'checkbox' => 'TBT'
+	'checkbox' => 'TBT',
+	'saveOrder' => 'Opslaan',
+	'sessionExpired' => 'Sessie verlopen',
+	'generalError' => 'Algemene fout',
+	'personalDetails' => 'TBT',
+	'competitionDay' => 'TBT',
+	'practiceDay' => 'TBT',
+	'sports' => 'TBT',
+	'addSport' => 'TBT'
 
 ];

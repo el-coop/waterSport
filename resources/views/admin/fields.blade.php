@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
+@section('title',__('sports.fields'))
+
 @section('content')
 	<div class="card">
 		<div class="card-content">

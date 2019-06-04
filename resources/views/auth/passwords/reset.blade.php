@@ -34,6 +34,10 @@
                     </form>
                 @endcomponent
             </div>
+            <div class="column">
+                @include('logoCard')
+            </div>
+
         </div>
     </div>
 @endsection

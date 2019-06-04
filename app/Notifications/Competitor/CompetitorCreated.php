@@ -48,7 +48,7 @@ class CompetitorCreated extends Notification implements ShouldQueue {
 			$email->line($line);
 		}
 		
-		$email->action(__('Fill Profile', [], $notifiable->language), action('CompetitorController@showResetForm', $this->token, true));
+		$email->action(__('competitors.fillProfile', [], $notifiable->language), action('CompetitorController@showResetForm', $this->token, true));
 		
 		return $email;
 	}
