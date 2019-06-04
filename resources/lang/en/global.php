@@ -20,4 +20,5 @@ return [
 	'checkbox' => 'Checkbox',
 	'name_nl' => 'Dutch Name',
 	'name_en' => 'English Name',
+	'password_confirm' => 'Confirm Password',
 ];

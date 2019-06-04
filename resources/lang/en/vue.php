@@ -22,4 +22,11 @@ return [
 	'textarea' => 'Textarea',
 	'checkbox' => 'Checkbox',
 	'saveOrder' => 'Save Order',
+	'sessionExpired' => 'Session Expired Please Refresh',
+	'generalError' => 'An Error Has Occurred Please Try Again Later',
+	'personalDetails' => 'Personal details',
+	'competitionDay' => 'Competition Day',
+	'practiceDay' => 'Practice Day',
+	'sports' => 'Sports',
+	'addSport' => 'Add sport'
 ];

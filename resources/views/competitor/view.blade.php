@@ -1,9 +1,11 @@
 @extends('layouts.site')
-@section('title',__('global.register'))
+
+@section('title', $user->name)
 
 @section('content')
 	<div class="section">
-		<participant-form method="patch" :sports="{{ $sports }}" :init-selected-sports="{{ $selectedSports }}" :init-sports-data="{{ $sportsData }}">
+		<participant-form method="patch" :sports="{{ $sports }}" :init-selected-sports="{{ $selectedSports }}"
+						  :init-sports-data="{{ $sportsData }}">
 			<dynamic-fields slot="personal" :fields="{{ $user->user->fulldata->map(function($item) use($errors){
 					$fieldName = str_replace(']','',str_replace('[','.',$item['name']));
 

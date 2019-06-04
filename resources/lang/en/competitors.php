@@ -1,5 +1,7 @@
 <?php
 
 return [
-	'competitors' => 'Competitors'
+	'competitors' => 'Competitors',
+	'setPassword' => 'Set Password',
+	'fillProfile' => 'Fill Profile'
 ];

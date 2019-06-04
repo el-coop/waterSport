@@ -1,14 +1,9 @@
 @extends('layouts.site')
 
-@section('title',__('worker/worker.setPassword'))
+@section('title',__('competitors.setPassword'))
 
 @section('content')
 	<div class="section">
-		@if($errors->any())
-			<pre>
-			<?php print_r($errors->all()) ?>
-				</pre>
-		@endif
 		<div class="columns">
 			<div class="column">
 				@component('components.card',[
@@ -16,7 +11,7 @@
 				])
 					@slot('title')
 						<p class="title is-4">
-							@lang('Set Password')
+							@lang('competitors.setPassword')
 						</p>
 					@endslot
 
@@ -33,7 +28,7 @@
 								:field="{label: '@lang('global.password_confirm')',name: 'password_confirmation', subType: 'password'}"></text-field>
 						<div class="buttons">
 							<button class="button is-primary">
-								@lang('Set Password')
+								@lang('competitors.setPassword')
 							</button>
 						</div>
 					</form>

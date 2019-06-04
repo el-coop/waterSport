@@ -1,6 +1,6 @@
 <template>
 	<div class="pl-1 border-left">
-		<h4 class="title is-4" v-text="'Sports'"></h4>
+		<h4 class="title is-4" v-text="$translations.sports"></h4>
 
 		<div class="panel" v-if="selectedSports.length">
 			<p class="panel-block" v-for="(sport, index) in selectedSports">
@@ -14,7 +14,7 @@
 			</p>
 		</div>
 		<div class="field">
-			<label class="label" v-text="'Add sport'"></label>
+			<label class="label" v-text="$translations.addSport"></label>
 			<div class="select is-fullwidth">
 				<select v-model="newSport">
 					<option v-for="(option, val) in options" :key="val" :value="val"

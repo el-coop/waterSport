@@ -2,11 +2,11 @@
 	<ModalComponent name="sportModal" @opened="opened">
 		<form v-if="sport" @submit.prevent="submit" ref="form">
 			<div class="field">
-				<label class="label" v-text="'Competition Day'"/>
+				<label class="label" v-text="$translations.competitionDay"/>
 				<button type="button" class="button is-link" v-text="sport.competition"></button>
 			</div>
 			<div class="field">
-				<label class="label" v-text="'Practice Day'"/>
+				<label class="label" v-text="$translations.practiceDay"/>
 				<div class="buttons">
 					<button v-for="day in sport.practice_days" type="button" class="button"
 							:class="{'is-link': practiceDay === day.id}"
