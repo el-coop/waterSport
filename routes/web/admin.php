@@ -45,4 +45,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userType:' . \App\M
 		Route::get('/' , 'SettingsController@show');
 		Route::patch('/', 'SettingsController@update');
 	});
+	Route::group(['prefix' => 'sportManagers'], function (){
+		Route::get('/', 'SportManagerController@index');
+		Route::group(['prefix' => 'edit'], function () {
+			Route::get('/{sportManager?}', 'SportManagerController@edit');
+			Route::post('/', 'SportManagerController@store');
+			Route::patch('/{sportManager}', 'SportManagerController@update');
+		});
+		Route::delete('/{sportManager}', 'SportManagerController@destroy');
+	});
 });
