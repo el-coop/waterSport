@@ -2,7 +2,8 @@
 
 return [
 	'sports.sports' => [
-		'sports.index' => 'Admin\SportsController@index'
+		'sports.index' => 'Admin\SportsController@index',
+		'sports.managers' => 'Admin\SportManagerController@index'
 	],
 	'competitors.competitors' => [
 		'sports.index' => 'Admin\CompetitorController@index'

@@ -7,10 +7,12 @@ use App\Models\Competitor;
 use App\Models\PracticeDay;
 use App\Models\Sport;
 use App\Models\SportField;
+use App\Models\SportManager;
 use App\Policies\CompetitorPolicy;
 use App\Policies\FieldPolicy;
 use App\Policies\PracticeDayPolicy;
 use App\Policies\SportFieldPolicy;
+use App\Policies\SportManagerPolicy;
 use App\Policies\SportPolicy;
 use ElCoop\HasFields\Models\Field;
 use Illuminate\Support\Facades\Gate;
@@ -27,7 +29,8 @@ class AuthServiceProvider extends ServiceProvider {
 		PracticeDay::class => PracticeDayPolicy::class,
 		SportField::class => SportFieldPolicy::class,
 		Competitor::class => CompetitorPolicy::class,
-		Field::class => FieldPolicy::class
+		Field::class => FieldPolicy::class,
+		SportManager::class => SportManagerPolicy::class
 	];
 	
 	/**
