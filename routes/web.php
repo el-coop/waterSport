@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'Auth\RegisterController@showRegistrationForm');
-Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/', 'Auth\RegisterController@register');
 
 Route::get('datatable/list', '\ElCoop\Datatable\Controllers\DatatableController@list');
 
