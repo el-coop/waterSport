@@ -55,7 +55,7 @@ class SportManager extends Model {
 			],
 			[
 				'name' => 'sport',
-				'label' => __('sport.sport'),
+				'label' => __('sports.sport'),
 				'type' => 'select',
 				'options' => $sportValues->toArray(),
 				'value' => $this->sport->id ?? ''
