@@ -1,5 +1,7 @@
 <template>
 	<ModalComponent name="sportModal" @opened="opened">
+		<h5 class="title is-5" v-text="sport.name"></h5>
+		<p class="content" v-html="sport.formattedDescription"></p>
 		<form v-if="sport" @submit.prevent="submit" ref="form">
 			<div class="field">
 				<label class="label" v-text="$translations.competitionDay"/>

@@ -34,12 +34,14 @@ class StoreSportRequest extends FormRequest {
 		}
 		return [
 			'name' => $nameRule,
-			'date' => 'required|date'
+			'date' => 'required|date',
+			'description' => 'required|string',
 		];
 	}
 	
 	public function commit() {
 		$this->sport->name = $this->input('name');
+		$this->sport->description = $this->input('description');
 		$this->sport->date = $this->input('date');
 		$this->sport->save();
 		

@@ -5,5 +5,6 @@ return [
 	'sports' => 'Sports',
 	'index' => 'Index',
 	'fields' => 'Fields',
-	'sport' => 'Sport'
+	'sport' => 'Sport',
+	'description' => 'Description'
 ];

@@ -30,6 +30,7 @@
 					options: {
 						text: '@lang('admin/fields.text')',
 						textarea: '@lang('admin/fields.textarea')',
+						checkbox: '@lang('admin/fields.checkbox')',
 					},
 					translate: true
 				},{

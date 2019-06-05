@@ -19,12 +19,18 @@ class Sport extends Model {
 				'value' => $this->name
 			],
 			[
+				'name' => 'description',
+				'label' => __('sports.description'),
+				'type' => 'textarea',
+				'value' => $this->description
+			],
+			[
 				'name' => 'date',
 				'label' => __('sports.competitionDate'),
 				'type' => 'text',
 				'subType' => 'date',
 				'value' => $this->date ? $this->date->format('Y-m-d') : null
-			]
+			],
 		]);
 	}
 	
@@ -39,7 +45,7 @@ class Sport extends Model {
 	public function competitors() {
 		return $this->belongsToMany(Competitor::class)->using(CompetitorSport::class)->withPivot('data', 'practiceDay');
 	}
-
+	
 	public function sportManagers() {
 		return $this->hasMany(SportManager::class);
 	}
