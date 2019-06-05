@@ -12,10 +12,11 @@
 */
 
 Route::get('/', 'Auth\RegisterController@showRegistrationForm');
+Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('datatable/list', '\ElCoop\Datatable\Controllers\DatatableController@list');
 
-Auth::routes(['register' => false]);
+Auth::routes(['verify' => false, 'register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/language/{language}', 'LocaleController@set');

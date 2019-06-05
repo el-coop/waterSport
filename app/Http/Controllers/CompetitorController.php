@@ -23,13 +23,14 @@ class CompetitorController extends Controller {
 			$data = collect($sport->pivot->data)->put('practiceDay', $sport->pivot->practice_day_id);
 			return [$sport->id => $data];
 		});
-		$sports = Sport::select('id', 'name', 'date')->with(['practiceDays' => function ($query) {
+		$sports = Sport::select('id', 'name', 'date','description')->with(['practiceDays' => function ($query) {
 			$query->select('id', 'sport_id', 'date');
 		}, 'fields' => function ($query) {
 			$language = App::getLocale();
 			$query->select('id', 'sport_id', 'type', "name_{$language} as title", "placeholder_{$language} as placeholder");
 		}])->get()->each(function ($sport) {
 			$sport->competition = $sport->date->format('d/m/Y');
+			$sport->formattedDescription = nl2br($sport->description);
 			$sport->practiceDays->each(function ($practiceDay) {
 				$practiceDay->formattedDate = $practiceDay->date->format('d/m/Y');
 			});

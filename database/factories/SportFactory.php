@@ -8,6 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Sport::class, function (Faker $faker) {
 	return [
 		'name' => $faker->unique()->company(),
-		'date' => $faker->date()
+		'date' => $faker->date(),
+		'description' => $faker->paragraph,
 	];
 });

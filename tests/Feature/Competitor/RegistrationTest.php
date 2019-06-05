@@ -65,7 +65,7 @@ class RegistrationTest extends TestCase {
 		$field = factory(SportField::class)->create([
 			'sport_id' => $sport->id
 		]);
-		$this->post(action('Auth\RegisterController@showRegistrationForm'), [
+		$this->post(action('Auth\RegisterController@register'), [
 			'name' => 'name',
 			'email' => 'email@email.com',
 			'language' => 'en',
@@ -114,7 +114,7 @@ class RegistrationTest extends TestCase {
 	public function test_validates_registration_form() {
 		$sport = factory(Sport::class)->create();
 		
-		$this->post(action('Auth\RegisterController@showRegistrationForm'), [
+		$this->post(action('Auth\RegisterController@register'), [
 			'name' => '',
 			'email' => 'email',
 			'language' => 'gla',

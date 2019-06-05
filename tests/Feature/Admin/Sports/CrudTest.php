@@ -44,15 +44,18 @@ class CrudTest extends TestCase {
 		$this->withoutExceptionHandling();
 		$this->actingAs($this->admin)->post(action('Admin\SportsController@store'), [
 			'name' => 'name',
-			'date' => '2020-01-01'
+			'date' => '2020-01-01',
+			'description' => 'test'
 		])->assertSuccessful()->assertJson([
 			'name' => 'name',
-			'date' => '2020-01-01 00:00:00'
+			'date' => '2020-01-01 00:00:00',
+			'description' => 'test'
 		]);
 		
 		$this->assertDatabaseHas('sports', [
 			'name' => 'name',
-			'date' => '2020-01-01 00:00:00'
+			'date' => '2020-01-01 00:00:00',
+			'description' => 'test'
 		]);
 	}
 	
@@ -89,15 +92,18 @@ class CrudTest extends TestCase {
 	public function test_admin_can_edit_sport() {
 		$this->actingAs($this->admin)->patch(action('Admin\SportsController@update', $this->sport), [
 			'name' => 'name',
-			'date' => '2020-01-01 00:00:00'
+			'date' => '2020-01-01 00:00:00',
+			'description' => 'test'
 		])->assertSuccessful()->assertJson([
 			'name' => 'name',
-			'date' => '2020-01-01 00:00:00'
+			'date' => '2020-01-01 00:00:00',
+			'description' => 'test'
 		]);
 		
 		$this->assertDatabaseHas('sports', [
 			'id' => $this->sport->id,
-			'name' => 'name'
+			'name' => 'name',
+			'description' => 'test'
 		]);
 	}
 	
