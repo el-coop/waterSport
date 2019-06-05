@@ -31,7 +31,7 @@
 
 <style scoped lang="scss">
 
-	$contrast-bg: invert(#f4f4f4);
+	$contrast-bg: #143359;
 	$background: hsl(0, 0%, 96%);
 	$above-tablet: "only screen and (min-width : #{769px})";
 

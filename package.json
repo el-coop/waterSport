@@ -23,8 +23,8 @@
         "vuetable-2": "^1.7.5"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.18",
-        "@fortawesome/free-solid-svg-icons": "^5.8.2",
+        "@fortawesome/fontawesome-svg-core": "^1.2.19",
+        "@fortawesome/free-solid-svg-icons": "^5.9.0",
         "@fortawesome/vue-fontawesome": "^0.1.6",
         "bulma": "^0.7.5",
         "vue-izitoast": "^1.1.2",
