@@ -7,6 +7,7 @@ use App\Models\Competitor;
 use App\Models\Sport;
 use App\Models\SportManager;
 use App\Models\User;
+use App\Notifications\SportManager\SportManagerCreated;
 use Tests\TestCase;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Notification;
@@ -101,7 +102,7 @@ class CrudTest extends TestCase {
 			'user_type' => SportManager::class
 		]);
 		$manager = User::where('email', 'test@test.com')->first();
-		Notification::assertSentTo($manager, ResetPassword::class);
+		Notification::assertSentTo($manager, SportManagerCreated::class);
 		$this->assertDatabaseHas('sport_managers', [
 			'sport_id' => $sport->id,
 			'id' => $manager->user->id

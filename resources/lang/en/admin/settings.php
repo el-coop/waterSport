@@ -19,4 +19,10 @@ return [
 	
 	'conformation_submitted_email_body_en' => 'Confirmation submitted email body en',
 	'conformation_submitted_email_body_nl' => 'Confirmation submitted email body nl',
+
+	'sport_manager_registration_email_subject_en' => 'Sport manager registration email subject en',
+	'sport_manager_registration_email_subject_nl' => 'Sport manager registration email subject nl',
+
+	'sport_manager_registration_email_body_en' => 'Sport manager registration email body en',
+	'sport_manager_registration_email_body_nl' => 'Sport manager registration email body nl'
 ];

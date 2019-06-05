@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\Competitor\CompetitorCreated;
+use App\Notifications\SportManager\SportManagerCreated;
 use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -43,11 +44,14 @@ class User extends Authenticatable {
 	}
 	
 	public function sendPasswordResetNotification($token) {
-		if ($this->password !== '' || !in_array($this->user_type, [Competitor::class])) {
+		if ($this->password !== '' || !in_array($this->user_type, [Competitor::class, SportManager::class])) {
 			$this->notify(new ResetPasswordNotification($token));
 			return;
 		}
-		
-		$this->notify(new CompetitorCreated($token));
+		if ( $this->user_type == SportManager::class){
+			$this->notify(new SportManagerCreated($token));
+		} else {
+			$this->notify(new CompetitorCreated($token));
+		}
 	}
 }

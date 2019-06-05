@@ -28,7 +28,7 @@
 			</div>
 			<div class="field mt-1">
 				<div class="control">
-					<button class="button is-success">@lang('global.save')</button>
+					<button class="button is-success">@lang('vue.save')</button>
 				</div>
 			</div>
 		</form>
