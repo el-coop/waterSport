@@ -4,7 +4,7 @@
     <div class="dashboard" v-cloak>
         @include('elcoop:navbar::navbar')
         <main>
-            <navbar>@component('components.logout')
+            <navbar class="is-dark">@component('components.logout')
                 @endcomponent
             </navbar>
             <div class="container is-fluid">

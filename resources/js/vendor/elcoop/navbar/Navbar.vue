@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar has-shadow">
+	<nav class="navbar">
 		<div class="container" :class="{'is-fluid': fluid}">
 			<div class="navbar-brand is-hidden-desktop">
 				<div class="navbar-item" v-if="menu" @click="openDrawer">
@@ -71,12 +71,12 @@
 </script>
 
 <style scoped lang="scss">
-	$contrast-bg: invert(#f4f4f4);
+	$contrast-bg: #143359;
 	.navbar {
 		margin-bottom: 1rem;
 
 		&.is-dark {
-			background-color: lighten($contrast-bg, 30%);
+			background-color: $contrast-bg;
 		}
 	}
 
