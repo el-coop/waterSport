@@ -22,7 +22,7 @@
 			</div>
 			<div class="tile is-parent">
 				<div class="tile is-child">
-					<SportSelector :sports="sports" :init-selected-sports="initSelectedSports"
+					<SportSelector :sports="sports" :init-selected-sports="selectedSports"
 								   v-model="sportsData"/>
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 			initSportsData: {
 				type: Object,
 				default() {
-					return {}	;
+					return {};
 				}
 			},
 
@@ -73,8 +73,9 @@
 			return {
 				sportsData: this.initSportsData,
 				csrf: window.token.content,
+				selectedSports: this.initSelectedSports
 			}
-		}
+		},
 
 	}
 </script>
