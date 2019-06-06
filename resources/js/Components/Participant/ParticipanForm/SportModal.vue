@@ -62,14 +62,11 @@
 			},
 			fieldSetup(field) {
 				return {
-					label: field.type !== 'checkbox' ? field.title : null,
+					label: field.title,
 					placeholder: field.placeholder,
 					name: field.id,
 					required: true,
 					value: this.form ? this.form[field.id] : null,
-					options: [{
-						name: field.title
-					}]
 				}
 			},
 

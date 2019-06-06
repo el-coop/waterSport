@@ -1,10 +1,9 @@
 <template>
-	<div class="field" v-if="Object.keys(field.options).length">
-		<label class="label" v-text="field.label" v-if="field.label && !(field.hideLabel || false)"></label>
-		<label class="checkbox" v-for="(option, index) in field.options" :key="index">
-			<input type="checkbox" :name="fieldName(index)" :value="index" :checked="option.checked || value"
+	<div class="field">
+		<label class="checkbox">
+			<input type="checkbox" :name="field.name" :value="field.checked || value" :checked="field.checked || value"
 				   @keypress.enter.prevent>
-			<span v-text="option.name"></span>&nbsp;&nbsp;
+			<span v-text="field.label"></span>&nbsp;&nbsp;
 		</label>
 	</div>
 </template>
@@ -14,17 +13,7 @@
 
 	export default {
 		name: "CheckboxField",
-		mixins: [FieldMixin],
-
-		methods: {
-			fieldName(index) {
-				let name = this.field.name;
-				if (this.field.options.length > 1 || Object.keys(this.field.options).length > 1) {
-					name += `[${index}]`;
-				}
-				return name;
-			}
-		}
+		mixins: [FieldMixin]
 	}
 </script>
 <style scoped>

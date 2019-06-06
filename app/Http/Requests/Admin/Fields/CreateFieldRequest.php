@@ -18,7 +18,7 @@ class CreateFieldRequest extends FormRequest {
 	public function authorize() {
 		return $this->user()->can('create', Field::class);
 	}
-	
+
 	/**
 	 * Get the validation rules that apply to the request.
 	 *
@@ -29,14 +29,13 @@ class CreateFieldRequest extends FormRequest {
 			'name_en' => 'required|string|' . Rule::unique('fields')->where('form', $this->input('form')),
 			'type' => 'required|string|in:text,textarea,checkbox',
 			'form' => 'required|string|in:' . Competitor::class . ',' . Sport::class,
-			'options' => 'required_if:type,checkbox|array',
 			'status' => 'required|string|in:protected,required,encrypted,none',
 			'name_nl' => 'required|string|' . Rule::unique('fields')->where('form', $this->input('form')),
 			'placeholder_nl' => 'nullable|string',
 			'placeholder_en' => 'nullable|string'
 		];
 	}
-	
+
 	public function commit() {
 		$field = new Field;
 		$field->form = $this->input('form');
@@ -53,9 +52,6 @@ class CreateFieldRequest extends FormRequest {
 			case Competitor::class:
 				$field->order = Competitor::getLastFieldOrder() + 1;
 				break;
-		}
-		if ($field->type == 'checkbox') {
-			$field->options = $this->input('options');
 		}
 		$field->save();
 		return $field;
