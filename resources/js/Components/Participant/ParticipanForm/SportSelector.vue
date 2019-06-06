@@ -78,9 +78,10 @@
 				if (!this.selectedSports.includes(data.sport)) {
 					this.selectedSports.push(data.sport);
 				}
-				this.value[parseInt(data.sport)] = data.data;
+				const val = Object.assign({}, this.value);
+				val[parseInt(data.sport)] = data.data;
 				this.selectedSport = null;
-				this.$emit('input', this.value);
+				this.$emit('input', val);
 			},
 			findSport(id) {
 				return this.sports.find((sport) => {
@@ -93,7 +94,7 @@
 			options() {
 				const options = {};
 				this.sports.forEach((sport, index) => {
-					if (!this.selectedSports.includes(index)) {
+					if (!this.selectedSports.includes(sport.id 	)) {
 						options[sport.id] = sport.name;
 					}
 				});
