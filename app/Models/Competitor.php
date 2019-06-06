@@ -74,5 +74,17 @@ class Competitor extends Model {
 	static function indexPage() {
 		return action('Admin\CompetitorController@index', [], false);
 	}
+
+	public function getScheduleAttribute() {
+		dd($this->sports->first()->pivot);
+		$sports = $this->sports;
+		return $sports->map(function ($sport){
+			return [
+				'sport' => 	$sport->name,
+				'practiceDay' => $sport->pivot->competitorSports->date,
+				'competition' => $sport->date
+			];
+		});
+	}
 	
 }

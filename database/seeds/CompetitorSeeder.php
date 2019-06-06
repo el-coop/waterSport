@@ -15,5 +15,15 @@ class CompetitorSeeder extends Seeder {
 			$sports = \App\Models\Sport::inRandomOrder()->limit(2)->get();
 			$competitor->sports()->attach($sports,['data' => '[]']);
 		});
+		factory(\App\Models\Competitor::class,1)->create()->each(function ($competitor){
+			$user = factory(\App\Models\User::class)->make([
+				'email' => 'competitor@elcoop.io',
+				'password' => bcrypt(123456)
+			]);
+			$competitor->user()->save($user);
+			$sports = \App\Models\Sport::inRandomOrder()->limit(2)->get();
+			$competitor->sports()->attach($sports,['data' => '[]']);
+
+		});
 	}
 }
