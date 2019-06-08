@@ -1,18 +1,18 @@
-{{dd($user->user->schedule)}}
-<dynamic-table :columns="[
-    {
-        name: 'sport',
-        label: '@lang('sports.sport')'
-        type: text
+<dynamic-table :columns="[{
+    name: 'sport',
+    label: '@lang('sports.sport')',
+    type: 'text'
     }, {
-        name: 'practice'
-        label: '@lang('practiceDays.practiceDay')'
-        type: text
+        name: 'practiceDay',
+        label: '@lang('vue.practiceDay')',
+        type: 'text',
+			subType: 'date',
     }, {
         name: 'competition',
-        label: '@lang('vue.competitionDay')'
-        type: text
+        label: '@lang('sports.competitionDate')',
+        type: 'text',
+			subType: 'date',
     }
-]" :init-fields="{{$user->user->schedule}}">
+    ]" :init-fields="{{$user->user->schedule}}">
 
 </dynamic-table>

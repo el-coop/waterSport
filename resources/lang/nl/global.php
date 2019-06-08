@@ -21,5 +21,6 @@ return [
 	'name_nl' => 'Nederlandse naam',
 	'name_en' => 'Engelse naam',
 	'password_confirm' => 'Wachtwoord bevestigen',
-	'general' => 'TBT'
+	'general' => 'TBT',
+	'profile' => 'Profiel',
 ];

@@ -76,13 +76,13 @@ class Competitor extends Model {
 	}
 
 	public function getScheduleAttribute() {
-		dd($this->sports->first()->pivot);
 		$sports = $this->sports;
 		return $sports->map(function ($sport){
+			$practiceDay = $sport->pivot->practice_day_id;
 			return [
 				'sport' => 	$sport->name,
-				'practiceDay' => $sport->pivot->competitorSports->date,
-				'competition' => $sport->date
+				'practiceDay' => $practiceDay ? PracticeDay::find($practiceDay)->date->format('Y-m-d') : '',
+				'competition' => $sport->date->format('Y-m-d')
 			];
 		});
 	}
