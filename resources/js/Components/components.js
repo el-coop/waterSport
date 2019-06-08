@@ -16,6 +16,8 @@ Vue.component('DynamicTable', require('./Global/DynamicTable').default);
 Vue.component('ModalComponent', require('./Global/ModalComponent').default);
 Vue.component('ParticipantForm', require('./Participant/ParticipantForm').default);
 Vue.component('Toast', require('./Global/Toast').default);
+Vue.component('Tabs', require('./Global/Tabs/Tabs').default);
+Vue.component('Tab', require('./Global/Tabs/Tab').default);
 
 // form
 Vue.component('AjaxForm', require('./Form/AjaxForm').default);

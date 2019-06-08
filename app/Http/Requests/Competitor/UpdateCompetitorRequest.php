@@ -26,7 +26,7 @@ class UpdateCompetitorRequest extends FormRequest {
 			'email' => ['required', 'string', 'email', 'max:255', "unique:users,email," . $this->user()->id],
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
-			'sports.*.practiceDay' => 'required|exists:practice_days,id',
+		 	'sports.*.practiceDay' => 'required|exists:practice_days,id',
 			'sports.*' => 'array',
 			'competitor' => 'required|array',
 		];

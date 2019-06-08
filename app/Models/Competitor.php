@@ -74,5 +74,17 @@ class Competitor extends Model {
 	static function indexPage() {
 		return action('Admin\CompetitorController@index', [], false);
 	}
+
+	public function getScheduleAttribute() {
+		$sports = $this->sports;
+		return $sports->map(function ($sport){
+			$practiceDay = $sport->pivot->practice_day_id;
+			return [
+				'sport' => 	$sport->name,
+				'practiceDay' => $practiceDay ? PracticeDay::find($practiceDay)->date->format('Y-m-d') : '',
+				'competition' => $sport->date->format('Y-m-d')
+			];
+		});
+	}
 	
 }
