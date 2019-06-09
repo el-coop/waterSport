@@ -1,5 +1,5 @@
 <?php
 
 return [
-	'sportManagers' => 'TBT'
+	'sportManagers' => 'Sportmanager'
 ];

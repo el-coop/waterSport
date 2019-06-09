@@ -5,7 +5,7 @@ return [
 	'login' => 'Inloggen',
 	'email' => 'Email',
 	'password' => 'Wachtwoord',
-	'title' => 'TBT',
+	'title' => 'Titel',
 	'en' => 'English',
 	'nl' => 'Nederlands',
 	'logout' => 'Uitloggen',
@@ -17,9 +17,10 @@ return [
 	'type' => 'Type',
 	'text' => 'Tekst',
 	'textarea' => 'Tekstveld',
-	'checkbox' => 'TBT',
+	'checkbox' => 'Selectievakje',
 	'name_nl' => 'Nederlandse naam',
 	'name_en' => 'Engelse naam',
 	'password_confirm' => 'Wachtwoord bevestigen',
-	'general' => 'TBT'
+	'general' => 'Algemeen',
+	'status' => 'Satus'
 ];

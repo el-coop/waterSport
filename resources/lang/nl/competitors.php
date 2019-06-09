@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'competitors' => 'TBT',
-	'setPassword' => 'TBT',
-	'fillProfile' => 'TBT'
+	'competitors' => 'Deelnemers',
+	'setPassword' => 'Wachtwoord instellen',
+	'fillProfile' => 'Profiel invullen'
 ];

@@ -1,5 +1,5 @@
 <?php
 
 return [
-	'practiceDays' => 'TBT'
+	'practiceDays' => 'Oefendagen'
 ];

@@ -20,14 +20,14 @@ return [
 	'deleteSuccess' => 'Successvol verwijderd',
 	'text' => 'Tekst',
 	'textarea' => 'Tekstveld',
-	'checkbox' => 'TBT',
+	'checkbox' => 'Selectievakje',
 	'saveOrder' => 'Opslaan',
 	'sessionExpired' => 'Sessie verlopen',
 	'generalError' => 'Algemene fout',
-	'personalDetails' => 'TBT',
-	'competitionDay' => 'TBT',
-	'practiceDay' => 'TBT',
-	'sports' => 'TBT',
-	'addSport' => 'TBT'
+	'personalDetails' => 'Persoonsgegevens',
+	'competitionDay' => 'Competitiedag',
+	'practiceDay' => 'Oefendag',
+	'sports' => 'Sporten',
+	'addSport' => 'Sport toevoegen'
 
 ];
