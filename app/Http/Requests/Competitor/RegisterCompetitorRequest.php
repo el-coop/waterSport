@@ -5,6 +5,7 @@ namespace App\Http\Requests\Competitor;
 use App\Models\Competitor;
 use App\Models\PracticeDay;
 use App\Models\User;
+use ElCoop\HasFields\Models\Field;
 use Illuminate\Foundation\Http\FormRequest;
 use Password;
 use Str;
@@ -18,14 +19,14 @@ class RegisterCompetitorRequest extends FormRequest {
 	public function authorize() {
 		return true;
 	}
-	
+
 	/**
 	 * Get the validation rules that apply to the request.
 	 *
 	 * @return array
 	 */
 	public function rules() {
-		return [
+		$rules = collect([
 			'name' => ['required', 'string', 'max:255'],
 			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 			'language' => ['required', 'in:en,nl'],
@@ -33,15 +34,21 @@ class RegisterCompetitorRequest extends FormRequest {
 			'sports.*.practiceDay' => 'required|exists:practice_days,id',
 			'sports.*' => 'array',
 			'competitor' => 'required|array',
-		];
+		]);
+		if ($this->input('validate')) {
+			$requiredFields = Field::getRequiredFields(Competitor::class);
+			$protectedFields = Field::getProtectedFields(Competitor::class);
+			$rules = $rules->merge($requiredFields)->merge($protectedFields);
+		}
+		return $rules->toArray();
 	}
-	
+
 	public function commit() {
 		$competitor = new Competitor;
 		$competitor->data = array_filter($this->input('competitor'));
 		$competitor->save();
 		$user = new User;
-		
+
 		$sports = collect();
 		foreach ($this->input('sports', []) as $sport => $data) {
 			$data = collect($data);
@@ -52,9 +59,9 @@ class RegisterCompetitorRequest extends FormRequest {
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
 		$user->password = '';
-		
+
 		$competitor->user()->save($user);
-		
+
 		Password::broker()->sendResetLink(
 			['email' => $user->email]
 		);

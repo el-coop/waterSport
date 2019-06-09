@@ -6,6 +6,7 @@
 				   @keypress.enter.prevent>
 			<span v-text="field.label"></span>&nbsp;&nbsp;
 		</label>
+		<p v-if="error" class="help is-danger" v-text="errorText"></p>
 	</div>
 </template>
 
