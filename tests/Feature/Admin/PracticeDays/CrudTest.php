@@ -31,12 +31,14 @@ class CrudTest extends TestCase {
 	}
 
 	public function test_admin_can_create_practice_day() {
+		$this->withoutExceptionHandling();
+		$practiceDate = $this->sport->date->subDays(1);
 		$this->actingAs($this->admin)->post(action('Admin\PracticeDaysController@store', $this->sport), [
-			'date' => '2020-01-01'
+			'date' => $practiceDate
 		])->assertSuccessful();
 		$this->assertDatabaseHas('practice_days', [
 			'sport_id' => $this->sport->id,
-			'date' => '2020-01-01 00:00:00'
+			'date' => $practiceDate
 		]);
 	}
 
@@ -51,19 +53,21 @@ class CrudTest extends TestCase {
 	}
 
 	public function test_admin_can_update_practice_day() {
+		$practiceDate = $this->sport->date->subDays(1);
+		
 		$this->actingAs($this->admin)->patch(action('Admin\PracticeDaysController@update', [$this->sport, $this->practiceDay]), [
-			'date' => '2020-01-01'
+			'date' => $practiceDate
 		])->assertSuccessful();
 		$this->assertDatabaseHas('practice_days', [
 			'sport_id' => $this->sport->id,
-			'date' => '2020-01-01 00:00:00',
+			'date' => $practiceDate,
 			'id' => $this->practiceDay->id
 		]);
 	}
 
 	public function test_admin_update_practice_day_validation() {
 		$this->actingAs($this->admin)->patch(action('Admin\PracticeDaysController@update', [$this->sport, $this->practiceDay]), [
-			'date' => 'tst'
+			'date' => $this->sport->date->addDay(1)
 		])->assertSessionHasErrors('date');
 	}
 
