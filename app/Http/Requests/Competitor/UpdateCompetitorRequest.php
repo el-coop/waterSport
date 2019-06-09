@@ -20,13 +20,12 @@ class UpdateCompetitorRequest extends FormRequest {
 	 * @return array
 	 */
 	public function rules() {
-		
 		return [
 			'name' => ['required', 'string', 'max:255'],
 			'email' => ['required', 'string', 'email', 'max:255', "unique:users,email," . $this->user()->id],
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
-		 	'sports.*.practiceDay' => 'required|exists:practice_days,id',
+			'sports.*.practiceDay' => 'required|exists:practice_days,id',
 			'sports.*' => 'array',
 			'competitor' => 'required|array',
 		];
@@ -39,7 +38,7 @@ class UpdateCompetitorRequest extends FormRequest {
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
 		$sports = collect();
-		foreach ($this->input('sports',[]) as $sport => $data) {
+		foreach ($this->input('sports', []) as $sport => $data) {
 			$data = collect($data);
 			$sports->put($sport, ['data' => $data->except('practiceDay', 0), 'practice_day_id' => $data->get('practiceDay')]);
 		}

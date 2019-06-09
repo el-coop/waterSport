@@ -1,7 +1,8 @@
 <template>
 	<div class="field">
 		<label class="checkbox">
-			<input type="checkbox" :name="field.name" :value="field.checked || value" :checked="field.checked || value"
+			<input type="checkbox" :name="field.name" value="1" :checked="field.checked || value"
+				   :required="field.required || false"
 				   @keypress.enter.prevent>
 			<span v-text="field.label"></span>&nbsp;&nbsp;
 		</label>
