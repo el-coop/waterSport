@@ -31,8 +31,9 @@
 		<div class="tile is-parent">
 			<div class="tile is-child">
 				<div class="buttons has-content-justified-center">
-					<button class="button is-info" @click="$refs.form.submit()">Save</button>
-					<button class="button is-success" @click="submitForm">Submit</button>
+					<button class="button is-info" @click="$refs.form.submit()" v-text="$translations.save">
+					</button>
+					<button class="button is-success" @click="submitForm" v-text="$translations.submit"></button>
 				</div>
 			</div>
 		</div>

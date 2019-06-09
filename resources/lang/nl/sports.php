@@ -6,6 +6,7 @@ return [
 	'index' => 'TBT',
 	'fields' => 'Velden',
 	'sport' => 'TBT',
-	'description' => 'TBT'
+	'description' => 'TBT',
+	'practiceDayTitle' => 'TBT'
 
 ];

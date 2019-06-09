@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
 @section('title', $sport->name)
 @section('content')
-    <div class="card">
-        <div class="card-header">
-            <p class="card-header-title">
-                @lang('sports.fields')
-            </p>
-        </div>
-        <div class="card-content">
-            <dynamic-table :columns="[{
+	<div class="card">
+		<div class="card-header">
+			<p class="card-header-title">
+				{{ $sport->name}} / @lang('sports.fields')
+			</p>
+		</div>
+		<div class="card-content">
+			<dynamic-table :columns="[{
                 name: 'name_nl',
                 label: '@lang('global.name_nl')',
                 type: 'text'
@@ -35,7 +35,7 @@
                 label: '@lang('global.placeholder_en')',
                 type: 'text'
             }]" :init-fields="{{$sport->fields}}" action="{{action('Admin\SportFieldsController@store', $sport)}}">
-            </dynamic-table>
-        </div>
-    </div>
+			</dynamic-table>
+		</div>
+	</div>
 @endsection
