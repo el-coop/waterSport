@@ -31,7 +31,6 @@ class CrudTest extends TestCase {
 	}
 
 	public function test_admin_can_create_practice_day() {
-		$this->withoutExceptionHandling();
 		$practiceDate = $this->sport->date->subDays(1);
 		$this->actingAs($this->admin)->post(action('Admin\PracticeDaysController@store', $this->sport), [
 			'date' => $practiceDate
