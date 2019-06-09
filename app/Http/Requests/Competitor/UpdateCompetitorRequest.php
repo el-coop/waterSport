@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Competitor;
 
+use App\Models\Competitor;
+use ElCoop\HasFields\Models\Field;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCompetitorRequest extends FormRequest {
@@ -20,8 +22,7 @@ class UpdateCompetitorRequest extends FormRequest {
 	 * @return array
 	 */
 	public function rules() {
-		
-		return [
+		$rules = collect([
 			'name' => ['required', 'string', 'max:255'],
 			'email' => ['required', 'string', 'email', 'max:255', "unique:users,email," . $this->user()->id],
 			'language' => ['required', 'in:en,nl'],
@@ -29,7 +30,13 @@ class UpdateCompetitorRequest extends FormRequest {
 		 	'sports.*.practiceDay' => 'required|exists:practice_days,id',
 			'sports.*' => 'array',
 			'competitor' => 'required|array',
-		];
+		]);
+		if ($this->input('validate')){
+			$requiredFields = Field::getRequiredFields(Competitor::class);
+			$protectedFields = Field::getProtectedFields(Competitor::class);
+			$rules = $rules->merge($requiredFields)->merge($protectedFields);
+		}
+		return $rules->toArray();
 	}
 	
 	public function commit() {
