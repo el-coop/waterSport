@@ -17,6 +17,7 @@
 									   :value="info">
 							</template>
 						</template>
+						<input v-if="submitData" type="hidden" name="validate" value="1">
 					</form>
 				</div>
 			</div>
@@ -31,7 +32,7 @@
 			<div class="tile is-child">
 				<div class="buttons has-content-justified-center">
 					<button class="button is-info" @click="$refs.form.submit()">Save</button>
-					<button class="button is-success" @click="$refs.form.submit()">Submit</button>
+					<button class="button is-success" @click="submitForm">Submit</button>
 				</div>
 			</div>
 		</div>
@@ -73,9 +74,18 @@
 			return {
 				sportsData: this.initSportsData,
 				csrf: window.token.content,
-				selectedSports: this.initSelectedSports
+				selectedSports: this.initSelectedSports,
+				submitData: false
 			}
 		},
+
+		methods: {
+			async submitForm() {
+				this.submitData = true;
+				await this.$nextTick;
+				this.$refs.form.submit();
+			}
+		}
 
 	}
 </script>
