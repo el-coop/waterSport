@@ -9,7 +9,7 @@ return [
 		'sports.index' => 'Admin\CompetitorController@index'
 	],
 	'global.general' => [
-		'admin\settings.settings' => 'Admin\SettingsController@show',
-		'admin\settings.files' => 'Admin\PdfController@index'
+		'admin/settings.settings' => 'Admin\SettingsController@show',
+		'admin/settings.files' => 'Admin\PdfController@index'
 	]
 ];
