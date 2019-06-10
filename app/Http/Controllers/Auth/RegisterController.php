@@ -48,7 +48,7 @@ class RegisterController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function showRegistrationForm() {
-		$sports = Sport::select('id', 'name', 'date', 'description')->with(['practiceDays' => function ($query) {
+		$sports = Sport::select('id', 'name', 'date', 'description', 'practice_day_title_nl', 'practice_day_title_en')->with(['practiceDays' => function ($query) {
 			$query->select('id', 'sport_id', 'date');
 		}, 'fields' => function ($query) {
 			$language = App::getLocale();

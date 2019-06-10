@@ -31,6 +31,18 @@ class Sport extends Model {
 				'subType' => 'date',
 				'value' => $this->date ? $this->date->format('Y-m-d') : null
 			],
+			[
+				'name' => 'practiceDayTitleNl',
+				'label' => __('sports.practiceDayTitleNl'),
+				'type' => 'text',
+				'value' => $this->practice_day_title_nl
+			],
+			[
+				'name' => 'practiceDayTitleEn',
+				'label' => __('sports.practiceDayTitleEn'),
+				'type' => 'text',
+				'value' => $this->practice_day_title_en
+			],
 		]);
 	}
 	

@@ -69,6 +69,7 @@ class SportsController extends Controller {
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function show(Sport $sport) {
-		return view('admin.sports.sport', compact('sport'));
+		$indexLink = action('Admin\SportsController@index',[],false);
+		return view('admin.sports.sport', compact('indexLink','sport'));
 	}
 }

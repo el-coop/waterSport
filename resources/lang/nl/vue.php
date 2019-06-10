@@ -28,6 +28,7 @@ return [
 	'competitionDay' => 'TBT',
 	'practiceDay' => 'TBT',
 	'sports' => 'TBT',
-	'addSport' => 'TBT'
-
+	'addSport' => 'TBT',
+	'submit' => 'Indienen voor beoordeling',
+	
 ];
