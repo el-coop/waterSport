@@ -20,10 +20,14 @@ class CompetitorController extends Controller {
 		$user = $request->user()->load('user.sports');
 		$selectedSports = $user->user->sports->pluck('id');
 		$sportsData = $user->user->sports->mapWithKeys(function ($sport) {
-			$data = collect($sport->pivot->data)->put('practiceDay', $sport->pivot->practice_day_id);
+			if (is_string($sport->pivot->data)) {
+				$data = collect(['practiceDay' => $sport->pivot->practice_day_id]);
+			} else {
+				$data = collect($sport->pivot->data)->put('practiceDay', $sport->pivot->practice_day_id);
+			}
 			return [$sport->id => $data];
 		});
-		$sports = Sport::select('id', 'name', 'date','description')->with(['practiceDays' => function ($query) {
+		$sports = Sport::select('id', 'name', 'date', 'description','practice_day_title_nl','practice_day_title_en')->with(['practiceDays' => function ($query) {
 			$query->select('id', 'sport_id', 'date');
 		}, 'fields' => function ($query) {
 			$language = App::getLocale();

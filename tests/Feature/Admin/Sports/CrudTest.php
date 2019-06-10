@@ -45,17 +45,23 @@ class CrudTest extends TestCase {
 		$this->actingAs($this->admin)->post(action('Admin\SportsController@store'), [
 			'name' => 'name',
 			'date' => '2020-01-01',
-			'description' => 'test'
+			'description' => 'test',
+			'practiceDayTitleNl' => 'test',
+			'practiceDayTitleEn' => 'test',
 		])->assertSuccessful()->assertJson([
 			'name' => 'name',
 			'date' => '2020-01-01 00:00:00',
-			'description' => 'test'
+			'description' => 'test',
+			'practice_day_title_nl' => 'test',
+			'practice_day_title_en' => 'test',
 		]);
 		
 		$this->assertDatabaseHas('sports', [
 			'name' => 'name',
 			'date' => '2020-01-01 00:00:00',
-			'description' => 'test'
+			'description' => 'test',
+			'practice_day_title_nl' => 'test',
+			'practice_day_title_en' => 'test',
 		]);
 	}
 	
@@ -93,17 +99,23 @@ class CrudTest extends TestCase {
 		$this->actingAs($this->admin)->patch(action('Admin\SportsController@update', $this->sport), [
 			'name' => 'name',
 			'date' => '2020-01-01 00:00:00',
-			'description' => 'test'
+			'description' => 'test',
+			'practiceDayTitleNl' => 'test',
+			'practiceDayTitleEn' => 'test',
 		])->assertSuccessful()->assertJson([
 			'name' => 'name',
 			'date' => '2020-01-01 00:00:00',
-			'description' => 'test'
+			'description' => 'test',
+			'practice_day_title_nl' => 'test',
+			'practice_day_title_en' => 'test',
 		]);
 		
 		$this->assertDatabaseHas('sports', [
 			'id' => $this->sport->id,
 			'name' => 'name',
-			'description' => 'test'
+			'description' => 'test',
+			'practice_day_title_nl' => 'test',
+			'practice_day_title_en' => 'test',
 		]);
 	}
 	

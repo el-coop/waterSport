@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Competitor;
+use App\Models\Sport;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class CompetitorSeeder extends Seeder {
@@ -9,11 +12,24 @@ class CompetitorSeeder extends Seeder {
 	 * @return void
 	 */
 	public function run() {
-		factory(\App\Models\Competitor::class,10)->create()->each(function ($competitor){
-			$user = factory(\App\Models\User::class)->make();
+		factory(Competitor::class, 10)->create()->each(function ($competitor) {
+			$user = factory(User::class)->make();
 			$competitor->user()->save($user);
-			$sports = \App\Models\Sport::inRandomOrder()->limit(2)->get();
-			$competitor->sports()->attach($sports,['data' => '[]']);
+			$sports = Sport::inRandomOrder()->limit(2)->get();
+			foreach ($sports as $sport){
+				$competitor->sports()->attach($sport, ['data' => '[]','practice_day_id' => $sport->practiceDays()->inRandomOrder()->first()->id]);
+			}
+		});
+		factory(Competitor::class, 1)->create()->each(function ($competitor) {
+			$user = factory(User::class)->make([
+				'email' => 'competitor@elcoop.io',
+				'password' => bcrypt(123456)
+			]);
+			$competitor->user()->save($user);
+			$sports = Sport::inRandomOrder()->limit(2)->get();
+			foreach ($sports as $sport){
+				$competitor->sports()->attach($sport, ['data' => '[]','practice_day_id' => $sport->practiceDays()->inRandomOrder()->first()->id]);
+			}
 		});
 	}
 }

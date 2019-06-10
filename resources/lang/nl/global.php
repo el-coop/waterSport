@@ -22,5 +22,7 @@ return [
 	'name_en' => 'Engelse naam',
 	'password_confirm' => 'Wachtwoord bevestigen',
 	'general' => 'Algemeen',
-	'status' => 'Satus'
+	'status' => 'Satus',
+	'general' => 'TBT',
+	'profile' => 'Profiel',
 ];

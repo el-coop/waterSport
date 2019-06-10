@@ -28,5 +28,6 @@ return [
 	'competitionDay' => 'Competition Day',
 	'practiceDay' => 'Practice Day',
 	'sports' => 'Sports',
-	'addSport' => 'Add sport'
+	'addSport' => 'Add sport',
+	'submit' => 'Submit for review',
 ];

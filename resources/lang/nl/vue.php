@@ -28,6 +28,6 @@ return [
 	'competitionDay' => 'Competitiedag',
 	'practiceDay' => 'Oefendag',
 	'sports' => 'Sporten',
-	'addSport' => 'Sport toevoegen'
-
+	'addSport' => 'Sport toevoegen',
+	'submit' => 'Indienen voor beoordeling',
 ];

@@ -37,7 +37,7 @@
 				return `${callbackOptions.prefix}${value}`
 			},
 			date(value) {
-				const date = new Date(value);
+				const date = new Date(value+'Z');
 				let year = date.getUTCFullYear();
 
 				let month = (1 + date.getUTCMonth()).toString();
@@ -45,7 +45,6 @@
 
 				let day = date.getUTCDate().toString();
 				day = day.length > 1 ? day : '0' + day;
-
 				return day + '/' + month + '/' + year;
 			},
 

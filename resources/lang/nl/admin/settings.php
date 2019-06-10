@@ -1,9 +1,10 @@
 <?php
 return [
 	'settings' => 'Instellingen',
-	
 	'login_text_en' => 'Login tekst EN',
 	'login_text_nl' => 'Login tekst NL',
+	'files' => 'Documenten',
+	'chooseFile' => 'Kies een bestand',
 	
 	'registration_success_en' => 'Registratie succesvol EN',
 	'registration_success_nl' => 'Registratie succesvol NL',

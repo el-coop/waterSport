@@ -8,7 +8,7 @@
 				<button type="button" class="button is-link" v-text="sport.competition"></button>
 			</div>
 			<div class="field">
-				<label class="label" v-text="$translations.practiceDay"/>
+				<label class="label" v-text="sport[`practice_day_title_${lang}`]"/>
 				<div class="buttons">
 					<button v-for="day in sport.practice_days" type="button" class="button"
 							:class="{'is-link': practiceDay === day.id}"
@@ -45,7 +45,8 @@
 
 		data() {
 			return {
-				practiceDay: null
+				practiceDay: null,
+				lang: document.documentElement.lang
 			}
 		},
 
