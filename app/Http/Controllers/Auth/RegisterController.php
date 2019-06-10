@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App;
 use App\Http\Requests\Competitor\RegisterCompetitorRequest;
+use App\Models\Pdf;
 use App\Models\Sport;
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -60,8 +61,11 @@ class RegisterController extends Controller {
 				$practiceDay->formattedDate = $practiceDay->date->format('d/m/Y');
 			});
 		});
+		
+		$file = Pdf::where('use', 'homepagePdf')->first();
+		
 		$competitor = new App\Models\Competitor;
-		return view('auth.register', compact('sports', 'competitor'));
+		return view('auth.register', compact('sports', 'competitor', 'file'));
 	}
 	
 	

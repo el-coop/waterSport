@@ -24,11 +24,13 @@ class UpdatePdfRequest extends FormRequest {
 	public function rules() {
 		return [
 			'name' => 'required|string|unique:pdfs,name,' . $this->pdf->id,
+			'use' => 'required|string|in:registrationEmailPdf,homepagePdf',
 		];
 	}
 
 	public function commit() {
 		$this->pdf->name = $this->input('name');
+		$this->pdf->use = $this->input('use');
 		$this->pdf->save();
 		return $this->pdf;
 	}

@@ -30,4 +30,7 @@ return [
 	'sports' => 'Sports',
 	'addSport' => 'Add sport',
 	'submit' => 'Submit for review',
+	'registrationEmailPdf' => 'Registration email attachment',
+	'homepagePdf' => 'Registration Page PDF'
+
 ];

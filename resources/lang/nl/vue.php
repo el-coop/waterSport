@@ -30,4 +30,6 @@ return [
 	'sports' => 'Sporten',
 	'addSport' => 'Sport toevoegen',
 	'submit' => 'Indienen voor beoordeling',
+	'registrationEmailPdf' => 'TBT',
+	'homepagePdf' => 'TBT'
 ];
