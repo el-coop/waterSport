@@ -1,7 +1,10 @@
 <?php
 return [
 	'settings' => 'Instellingen',
-	
+	'files' => 'Documenten',
+	'chooseFile' => 'Kies een bestand',
+
+
 	'login_text_en' => 'TBT',
 	'login_text_nl' => 'TBT',
 	

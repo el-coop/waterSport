@@ -54,4 +54,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userType:' . \App\M
 		});
 		Route::delete('/{sportManager}', 'SportManagerController@destroy');
 	});
+
+	Route::group(['prefix' => 'files'], function (){
+		Route::get('/', 'PdfController@index');
+		Route::post('/', 'PdfController@store');
+		Route::patch('/{pdf}', 'PdfController@update');
+		Route::delete('/{pdf}', 'PdfController@destroy');
+	});
 });
