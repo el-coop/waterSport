@@ -17,6 +17,12 @@ class CompetitorController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Request $request) {
+		$message = '';
+		if ($request->user()->user->submitted) {
+			$locale = App::getLocale();
+			$message = app('settings')->get("confirmation_success_text_{$locale}");
+		}
+		
 		$user = $request->user()->load('user.sports');
 		$selectedSports = $user->user->sports->pluck('id');
 		$sportsData = $user->user->sports->mapWithKeys(function ($sport) {
@@ -27,7 +33,7 @@ class CompetitorController extends Controller {
 			}
 			return [$sport->id => $data];
 		});
-		$sports = Sport::select('id', 'name', 'date', 'description','practice_day_title_nl','practice_day_title_en')->with(['practiceDays' => function ($query) {
+		$sports = Sport::select('id', 'name', 'date', 'description', 'practice_day_title_nl', 'practice_day_title_en')->with(['practiceDays' => function ($query) {
 			$query->select('id', 'sport_id', 'date');
 		}, 'fields' => function ($query) {
 			$language = App::getLocale();
@@ -39,7 +45,7 @@ class CompetitorController extends Controller {
 				$practiceDay->formattedDate = $practiceDay->date->format('d/m/Y');
 			});
 		});
-		return view('competitor.view', compact('user', 'sports', 'selectedSports', 'sportsData'));
+		return view('competitor.view', compact('user', 'sports', 'selectedSports', 'sportsData', 'message'));
 	}
 	
 	/**

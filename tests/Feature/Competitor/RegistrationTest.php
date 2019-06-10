@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Competitor;
 
+use App\Events\CompetitorSubmitted;
 use App\Models\Admin;
 use App\Models\Competitor;
 use App\Models\PracticeDay;
@@ -10,6 +11,7 @@ use App\Models\SportField;
 use App\Models\User;
 use App\Notifications\Competitor\CompetitorCreated;
 use ElCoop\HasFields\Models\Field;
+use Event;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Notification;
 use Tests\TestCase;
@@ -108,6 +110,74 @@ class RegistrationTest extends TestCase {
 		]);
 		
 		Notification::assertSentTo(User::where('email', 'email@email.com')->first(), CompetitorCreated::class);
+	}
+	
+	public function test_guest_can_post_registration_form_with_confirmation() {
+		Notification::fake();
+		Event::fake();
+		$sport = factory(Sport::class)->create();
+		$practiceDay = factory(PracticeDay::class)->create([
+			'sport_id' => $sport->id
+		]);
+		$field = factory(SportField::class)->create([
+			'sport_id' => $sport->id
+		]);
+		$this->post(action('Auth\RegisterController@register'), [
+			'name' => 'name',
+			'email' => 'email@email.com',
+			'language' => 'en',
+			'competitor' => [
+				$this->field->id => 'gla'
+			],
+			'validate' => true,
+			'sports' => [
+				$sport->id => [
+					$sport->id,
+					'practiceDay' => $practiceDay->id,
+					$field->id => 'yes'
+				]
+			
+			]
+		])->assertRedirect(action('Auth\LoginController@showLoginForm'));
+		
+		$competitor = Competitor::find(Competitor::max('id'));
+		
+		$this->assertDatabaseHas('competitors', [
+			'id' => $competitor->id,
+			'data' => json_encode([
+				$this->field->id => 'gla'
+			]),
+			'submitted' => true
+		]);
+		
+		$this->assertDatabaseHas('users', [
+			'name' => 'name',
+			'email' => 'email@email.com',
+			'language' => 'en',
+			'user_type' => Competitor::class
+		]);
+		
+		$this->assertDatabaseHas('competitor_sport', [
+			'sport_id' => $sport->id,
+			'practice_day_id' => $practiceDay->id,
+			'competitor_id' => $competitor->id,
+			'data' => json_encode([
+				$field->id => 'yes'
+			])
+		]);
+		
+		Notification::assertSentTo(User::where('email', 'email@email.com')->first(), CompetitorCreated::class);
+		Event::assertDispatched(CompetitorSubmitted::class, function ($event) {
+			return $event->competitor->id == User::where('email', 'email@email.com')->first()->user->id;
+		});
+	}
+	
+	public function test_competitor_submitted_email_sent() {
+		Notification::fake();
+		
+		event(new CompetitorSubmitted($this->competitor->user));
+		
+		Notification::assertSentTo($this->competitor, \App\Notifications\Competitor\CompetitorSubmitted::class);
 	}
 	
 	

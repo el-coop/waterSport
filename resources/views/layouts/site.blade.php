@@ -2,7 +2,7 @@
 
 @section('body')
 	<main>
-		<navbar title="@lang('global.title')" :menu="false" title-link="{{ action('HomeController@index') }}"
+		<navbar title="@lang('global.title')" :menu="false" title-link="/"
 				class="is-dark" :fluid="false">
 			@auth
 				@component('components.logout', [
