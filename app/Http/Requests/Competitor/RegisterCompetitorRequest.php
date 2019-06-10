@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Competitor;
 
+use App\Events\CompetitorSubmitted;
 use App\Models\Competitor;
 use App\Models\PracticeDay;
 use App\Models\User;
@@ -19,7 +20,7 @@ class RegisterCompetitorRequest extends FormRequest {
 	public function authorize() {
 		return true;
 	}
-
+	
 	/**
 	 * Get the validation rules that apply to the request.
 	 *
@@ -42,13 +43,13 @@ class RegisterCompetitorRequest extends FormRequest {
 		}
 		return $rules->toArray();
 	}
-
+	
 	public function commit() {
 		$competitor = new Competitor;
 		$competitor->data = array_filter($this->input('competitor'));
 		$competitor->save();
 		$user = new User;
-
+		
 		$sports = collect();
 		foreach ($this->input('sports', []) as $sport => $data) {
 			$data = collect($data);
@@ -59,9 +60,14 @@ class RegisterCompetitorRequest extends FormRequest {
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
 		$user->password = '';
-
 		$competitor->user()->save($user);
-
+		
+		if ($this->input('validate')) {
+			$competitor->submitted = true;
+			$competitor->save();
+			event(new CompetitorSubmitted($competitor));
+		}
+		
 		Password::broker()->sendResetLink(
 			['email' => $user->email]
 		);

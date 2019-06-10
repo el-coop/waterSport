@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "1c2636b3e5a468eb57286c7fa61ac8c8",
@@ -329,12 +329,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/el-coop/hasFields.git",
-                "reference": "9e864785faf143422a5241aa186ac936829dfef4"
+                "reference": "830863fdd96f35a9932756fc2f7fc4ba6112f387"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/el-coop/hasFields/zipball/9e864785faf143422a5241aa186ac936829dfef4",
-                "reference": "9e864785faf143422a5241aa186ac936829dfef4",
+                "url": "https://api.github.com/repos/el-coop/hasFields/zipball/830863fdd96f35a9932756fc2f7fc4ba6112f387",
+                "reference": "830863fdd96f35a9932756fc2f7fc4ba6112f387",
                 "shasum": ""
             },
             "type": "laravel-plugin",
@@ -361,7 +361,7 @@
                 }
             ],
             "description": "Has field trait",
-            "time": "2019-06-09T12:59:18+00:00"
+            "time": "2019-06-10T12:27:47+00:00"
         },
         {
             "name": "elcoop/navbar",

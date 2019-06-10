@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Competitor;
 
+use App\Events\CompetitorSubmitted;
 use App\Models\Competitor;
 use ElCoop\HasFields\Models\Field;
 use Illuminate\Foundation\Http\FormRequest;
@@ -22,7 +23,7 @@ class UpdateCompetitorRequest extends FormRequest {
 	 * @return array
 	 */
 	public function rules() {
-
+		
 		$rules = collect([
 			'name' => ['required', 'string', 'max:255'],
 			'email' => ['required', 'string', 'email', 'max:255', "unique:users,email," . $this->user()->id],
@@ -32,7 +33,7 @@ class UpdateCompetitorRequest extends FormRequest {
 			'sports.*' => 'array',
 			'competitor' => 'required|array',
 		]);
-		if ($this->input('validate')){
+		if ($this->input('validate')) {
 			$requiredFields = Field::getRequiredFields(Competitor::class);
 			$protectedFields = Field::getProtectedFields(Competitor::class);
 			$rules = $rules->merge($requiredFields)->merge($protectedFields);
@@ -53,6 +54,10 @@ class UpdateCompetitorRequest extends FormRequest {
 		}
 		$user->user->sports()->sync($sports);
 		$user->user->data = array_filter($this->input('competitor'));
+		if ($this->input('validate')) {
+			$user->user->submitted = true;
+			event(new CompetitorSubmitted($user->user));
+		}
 		$user->user->save();
 		$user->save();
 	}

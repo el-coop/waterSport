@@ -33,7 +33,8 @@
 				<div class="buttons has-content-justified-center">
 					<button class="button is-info" @click="$refs.form.submit()" v-text="$translations.save">
 					</button>
-					<button class="button is-success" @click="submitForm" v-text="$translations.submit"></button>
+					<button v-if="! submitted" class="button is-success" @click="submitForm"
+							v-text="$translations.submit"></button>
 				</div>
 			</div>
 		</div>
@@ -64,6 +65,11 @@
 				default() {
 					return {};
 				}
+			},
+
+			submitted: {
+				type: Boolean,
+				default: false
 			},
 
 			method: {

@@ -18,5 +18,8 @@ return [
 	'conformation_submitted_email_subject_nl' => 'TBT',
 	
 	'conformation_submitted_email_body_en' => 'TBT',
-	'conformation_submitted_email_body_nl' => 'TBT'
+	'conformation_submitted_email_body_nl' => 'TBT',
+	
+	'confirmation_success_text_nl' => 'TBT',
+	'confirmation_success_text_en' => 'TBT'
 ];
