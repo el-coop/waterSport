@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'Competitor' => 'TBT',
+	'Competitor' => 'Deelnemer',
 	'back' => 'Terug naar lijst',
 	'name_nl' => 'Nederlandse naam',
 	'name_en' => 'Engelse naam',
@@ -14,5 +14,5 @@ return [
 	'none' => 'Medewerker',
 	'placeholder_nl' => 'Plaatshouder NL',
 	'placeholder_en' => 'Plaatshouder EN',
-	'checkbox' => 'TBT',
+	'checkbox' => 'Selectievakje',
 ];

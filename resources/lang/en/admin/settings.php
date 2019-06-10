@@ -1,7 +1,9 @@
 <?php
 return [
 	'settings' => 'Settings',
-	
+	'files' => 'Files',
+	'chooseFile' => 'Choose a file',
+
 	'login_text_en' => 'Login text en',
 	'login_text_nl' => 'Login text nl',
 	

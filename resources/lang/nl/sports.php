@@ -1,12 +1,12 @@
 <?php
 
 return [
-	'competitionDate' => 'TBT',
-	'sports' => 'TBT',
-	'index' => 'TBT',
+	'competitionDate' => 'Competitie dagen',
+	'sports' => 'Sportonderdelen',
+	'index' => 'Index',
 	'fields' => 'Velden',
-	'sport' => 'TBT',
-	'description' => 'TBT',
+	'sport' => 'Sport',
+	'description' => 'Omschrijving',
 	'practiceDayTitle' => 'TBT'
 
 ];

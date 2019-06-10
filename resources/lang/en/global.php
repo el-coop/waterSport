@@ -5,7 +5,7 @@ return [
 	'login' => 'Login',
 	'email' => 'Email',
 	'password' => 'Password',
-	'title' => 'Amsterdam Water Sports',
+	'title' => 'Amsterdamse Waterspelen',
 	'en' => 'English',
 	'nl' => 'Nederlands',
 	'logout' => 'Log out',
