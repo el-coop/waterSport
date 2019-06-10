@@ -15,11 +15,11 @@ return [
 	'registration_email_body_en' => 'Registratie email tekst EN',
 	'registration_email_body_nl' => 'Registratie email tekst NL',
 	
-	'conformation_submitted_email_subject_en' => 'Bevestiging email onderwerp EN',
-	'conformation_submitted_email_subject_nl' => 'Bevestiging email onderwerp NL',
+	'confirmation_submitted_email_subject_en' => 'Bevestiging email onderwerp EN',
+	'confirmation_submitted_email_subject_nl' => 'Bevestiging email onderwerp NL',
 	
-	'conformation_submitted_email_body_en' => 'Bevestiging email tekst EN',
-	'conformation_submitted_email_body_nl' => 'Bevestiging email onderwerp NL',
+	'confirmation_submitted_email_body_en' => 'Bevestiging email tekst EN',
+	'confirmation_submitted_email_body_nl' => 'Bevestiging email onderwerp NL',
 
 	'sport_manager_registration_email_subject_en' => 'Sport manager registratie email onderwerp EN',
 	'sport_manager_registration_email_subject_nl' => 'Sport manager registratioe email onderwerp NL',
