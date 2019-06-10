@@ -57,6 +57,8 @@ class UpdateCompetitorRequest extends FormRequest {
 		if ($this->input('validate')) {
 			$user->user->submitted = true;
 			event(new CompetitorSubmitted($user->user));
+			$this->session()->flash('fireworks', true);
+
 		}
 		$user->user->save();
 		$user->save();

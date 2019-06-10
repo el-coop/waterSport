@@ -18,6 +18,7 @@ Vue.component('ParticipantForm', require('./Participant/ParticipantForm').defaul
 Vue.component('Toast', require('./Global/Toast').default);
 Vue.component('Tabs', require('./Global/Tabs/Tabs').default);
 Vue.component('Tab', require('./Global/Tabs/Tab').default);
+Vue.component('SubmitModal', require('./Global/SubmitModal').default);
 
 // form
 Vue.component('AjaxForm', require('./Form/AjaxForm').default);

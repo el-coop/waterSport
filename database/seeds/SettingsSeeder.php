@@ -30,6 +30,8 @@ class SettingsSeeder extends Seeder {
 		$this->settingsFakeNoOverwrite('sport_manager_registration_email_subject_en', $faker->text);
 		$this->settingsFakeNoOverwrite('sport_manager_registration_email_body_nl', $faker->paragraph);
 		$this->settingsFakeNoOverwrite('sport_manager_registration_email_body_en', $faker->paragraph);
+		$this->settingsFakeNoOverwrite('application_success_modal_en', $faker->paragraph);
+		$this->settingsFakeNoOverwrite('application_success_modal_nl' , $faker->paragraph);
 		
 		
 	}
