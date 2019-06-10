@@ -25,4 +25,5 @@ return [
 	'alreadyHave' => 'Already have an account?',
 	'rememberMe' => 'Remember me',
 	'forgot' => 'I forgot my password',
+	'termsConditions' => 'Terms and Conditions'
 ];

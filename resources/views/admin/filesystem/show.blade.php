@@ -13,6 +13,15 @@
     type: 'file',
     invisible: true,
     edit: false
+},{
+    name: 'use',
+    label: '@lang('admin/settings.use')',
+    type: 'select',
+    options: {
+        registrationEmailPdf: '@lang('vue.registrationEmailPdf')',
+        homepagePdf: '@lang('vue.homepagePdf')'
+    },
+    callback: 'translate'
 }]" :init-fields="{{$pdfs}}" action="{{action('Admin\PdfController@store')}}"
                        :headers="{'Content-Type': 'multipart/form-data'}">
         </dynamic-table>

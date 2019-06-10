@@ -43,7 +43,7 @@
 				])
 					@if(\Session::has('confirmEmail'))
 						<p class="title">
-							{{ App::make('settings')->get('registration_success_	' . App::getLocale()) }}
+							{{ App::make('settings')->get('registration_success_' . App::getLocale()) }}
 						</p>
 					@else
 						<p class="title">

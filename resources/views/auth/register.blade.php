@@ -14,5 +14,10 @@
 				}) }}">
 			</dynamic-fields>
 		</participant-form>
+		@isset($file)
+			<div class="has-text-centered">
+				Watersportverbond <a href="{{ action('ResourceController@view', $file) }}">@lang('auth.termsConditions')</a>
+			</div>
+		@endisset
 	</div>
 @endsection

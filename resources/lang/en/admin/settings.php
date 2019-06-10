@@ -1,6 +1,7 @@
 <?php
 return [
 	'settings' => 'Settings',
+	'use' => 'Use',
 	'files' => 'Files',
 	'chooseFile' => 'Choose a file',
 

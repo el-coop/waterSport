@@ -20,6 +20,7 @@ Auth::routes(['verify' => false, 'register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/language/{language}', 'LocaleController@set');
+Route::get('/pdf/{pdf}', 'ResourceController@view');
 
 
 foreach (\File::allFiles(__DIR__ . "/web") as $routeFile) {

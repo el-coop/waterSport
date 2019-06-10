@@ -1,6 +1,8 @@
 <?php
 return [
 	'settings' => 'Instellingen',
+	'use' => 'TBT',
+	
 	'login_text_en' => 'Login tekst EN',
 	'login_text_nl' => 'Login tekst NL',
 	'files' => 'Documenten',

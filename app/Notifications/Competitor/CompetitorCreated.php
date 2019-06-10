@@ -40,7 +40,7 @@ class CompetitorCreated extends Notification implements ShouldQueue {
 	 * @return \Illuminate\Notifications\Messages\MailMessage
 	 */
 	public function toMail($notifiable) {
-		$file = Pdf::first();
+		$file = Pdf::where('use','registrationEmailPdf')->first();
 		$message = explode(PHP_EOL, app('settings')->get("registration_email_body_{$notifiable->language}"));
 		$email = (new MailMessage)
 			->subject(app('settings')->get("registration_email_subject_{$notifiable->language}"))
