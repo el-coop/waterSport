@@ -143,7 +143,7 @@ class UpdateTest extends TestCase {
 			'type' => 'success',
 			'title' => '',
 			'message' => __('vue.updateSuccess', [], 'en')
-		]);
+		])->assertSessionHas('fireworks');
 		
 		$this->assertDatabaseHas('competitors', [
 			'id' => $this->competitor->user->id,
