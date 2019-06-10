@@ -34,9 +34,9 @@ class RegisterCompetitorRequest extends FormRequest {
 			'sports.*.0' => 'required|exists:sports,id',
 			'sports.*.practiceDay' => 'required|exists:practice_days,id',
 			'sports.*' => 'array',
-			'competitor' => 'required|array',
 		]);
 		if ($this->input('validate')) {
+			$rules['competitor'] = 'required|array';
 			$requiredFields = Field::getRequiredFields(Competitor::class);
 			$protectedFields = Field::getProtectedFields(Competitor::class);
 			$rules = $rules->merge($requiredFields)->merge($protectedFields);

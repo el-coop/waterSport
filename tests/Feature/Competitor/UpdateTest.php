@@ -196,6 +196,6 @@ class UpdateTest extends TestCase {
 					$this->field->id => 'yes'
 				]
 			]
-		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$this->sport->id}.practiceDay", "sports.{$this->sport->id}.0", 'competitor']);
+		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$this->sport->id}.practiceDay", "sports.{$this->sport->id}.0"]);
 	}
 }

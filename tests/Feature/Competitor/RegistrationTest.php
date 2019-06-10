@@ -193,7 +193,7 @@ class RegistrationTest extends TestCase {
 					'practiceDay' => 0
 				]
 			]
-		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$sport->id}.practiceDay", "sports.{$sport->id}.0",'competitor']);
+		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$sport->id}.practiceDay", "sports.{$sport->id}.0"]);
 	}
 	
 }
