@@ -51,7 +51,7 @@ class CompetitorCreated extends Notification implements ShouldQueue {
 			$email->line($line);
 		}
 		if ($file){
-			$email->attach(storage_path("app/public /pdf/{$file->file}"), [
+			$email->attach(storage_path("app/public/pdf/{$file->file}"), [
 				'as' => $file->name . '.pdf',
 				'mime' => 'application/pdf'
 			]);
