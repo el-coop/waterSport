@@ -13,13 +13,13 @@
 				<div class="navbar-item">
 					@if(\Request::is('/'))
 						<a href="{{ action('Auth\LoginController@showLoginForm') }}" class="navbar-link is-arrowless">
-							Login
+							@lang('global.login')
 						</a>
 					@else
 
 						<a href="{{ action('Auth\RegisterController@showRegistrationForm') }}"
 						   class="navbar-link is-arrowless">
-							Register
+							@lang('global.register')
 						</a>
 					@endif
 				</div>

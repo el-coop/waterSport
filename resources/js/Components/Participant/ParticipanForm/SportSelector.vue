@@ -22,8 +22,7 @@
 				</select>
 			</div>
 		</div>
-		<button @click="addSport" class="button is-success is-fullwidth" :disabled="! newSport">
-			Add
+		<button @click="addSport" class="button is-success is-fullwidth" :disabled="! newSport" v-text="$translations.add">
 		</button>
 		<SportModal :sport="selectedSport || {}" @filled="saveSportsForm" :form="formData"/>
 	</div>
