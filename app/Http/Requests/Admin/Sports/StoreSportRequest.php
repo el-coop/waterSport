@@ -34,7 +34,6 @@ class StoreSportRequest extends FormRequest {
 		}
 		return [
 			'name' => $nameRule,
-			'date' => 'required|date',
 			'description' => 'required|string',
 			'practiceDayTitleNl' => 'required|string',
 			'practiceDayTitleEn' => 'required|string',
@@ -44,7 +43,6 @@ class StoreSportRequest extends FormRequest {
 	public function commit() {
 		$this->sport->name = $this->input('name');
 		$this->sport->description = $this->input('description');
-		$this->sport->date = $this->input('date');
 		$this->sport->practice_day_title_nl = $this->input('practiceDayTitleNl');
 		$this->sport->practice_day_title_en = $this->input('practiceDayTitleEn');
 		$this->sport->save();

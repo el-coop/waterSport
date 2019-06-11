@@ -22,6 +22,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userType:' . \App\M
 			Route::patch('/{sport}/{practiceDay}', 'PracticeDaysController@update');
 			Route::delete('/{sport}/{practiceDay}', 'PracticeDaysController@destroy');
 		});
+
+		Route::group(['prefix' => 'competition'], function (){
+			Route::get('/{sport}', 'SportsController@getCompetitionDays');
+			Route::post('/{sport}', 'CompetitionDayController@store');
+			Route::patch('/{sport}/{competitionDay}', 'CompetitionDayController@update');
+			Route::delete('/{sport}/{competitionDay}', 'CompetitionDayController@destroy');
+		});
 	});
 
 	Route::group(['prefix' => 'competitors'], function (){

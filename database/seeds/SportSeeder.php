@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CompetitionDay;
 use App\Models\PracticeDay;
 use App\Models\Sport;
 use App\Models\SportField;
@@ -17,6 +18,9 @@ class SportSeeder extends Seeder {
 				'sport_id' => $sport->id
 			]);
 			factory(SportField::class, 4)->create([
+				'sport_id' => $sport->id
+			]);
+			factory(CompetitionDay::class,3)->create([
 				'sport_id' => $sport->id
 			]);
 		});

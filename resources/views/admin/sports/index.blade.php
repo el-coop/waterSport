@@ -5,6 +5,6 @@
 @section('content')
     @component('datatable.withNew')
         @slot('withEdiLink')
-        @slot('extraSlotView', 'admin.sports.practiceDays')
+        @slot('extraSlotViews', ['admin.sports.competitionDays','admin.sports.practiceDays'])
     @endcomponent
 @endsection
