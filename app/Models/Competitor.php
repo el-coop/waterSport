@@ -81,7 +81,7 @@ class Competitor extends Model {
 			$practiceDay = $sport->pivot->practice_day_id;
 			return [
 				'sport' => 	$sport->name,
-				'practiceDay' => $practiceDay ? PracticeDay::find($practiceDay)->date->format('Y-m-d') : '',
+				'practiceDay' => $practiceDay ? PracticeDay::find($practiceDay)->date: '',
 				'competition' => $sport->date->format('Y-m-d')
 			];
 		});

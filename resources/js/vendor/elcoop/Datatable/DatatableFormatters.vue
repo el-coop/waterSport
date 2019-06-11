@@ -37,6 +37,9 @@
 				return `${callbackOptions.prefix}${value}`
 			},
 			date(value) {
+				if(value.indexOf(':') < 0){
+					value+=' 0:0:0';
+				}
 				const date = new Date(value+'Z');
 				let year = date.getUTCFullYear();
 

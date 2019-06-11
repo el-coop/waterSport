@@ -5,6 +5,10 @@
                     subType: 'date',
                     callback: 'date',
                     label: '@lang('global.date')'
+                },{
+                    name: 'time',
+                    subType: 'time',
+                    label: '@lang('global.time')'
                 }]"
 				   :init-fields-from-url="`{{Request::url()}}/practice/${object.id}`"
 				   :action="`{{Request::url()}}/practice/${object.id}`">

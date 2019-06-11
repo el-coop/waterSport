@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App;
 use Illuminate\Database\Eloquent\Model;
 
 class Sport extends Model {
@@ -60,5 +61,20 @@ class Sport extends Model {
 	
 	public function sportManagers() {
 		return $this->hasMany(SportManager::class);
+	}
+	
+	static function registrationOptions() {
+		return static::select('id', 'name', 'date', 'description', 'practice_day_title_nl', 'practice_day_title_en')->with(['practiceDays' => function ($query) {
+			$query->select('id', 'sport_id', 'date_time');
+		}, 'fields' => function ($query) {
+			$language = App::getLocale();
+			$query->select('id', 'sport_id', 'type', "name_{$language} as title", "placeholder_{$language} as placeholder");
+		}])->get()->each(function ($sport) {
+			$sport->competition = $sport->date->format('d/m/Y');
+			$sport->formattedDescription = nl2br($sport->description);
+			$sport->practiceDays->each(function ($practiceDay) {
+				$practiceDay->formattedDate = $practiceDay->date_time->format('d/m/Y H:i');
+			});
+		});
 	}
 }
