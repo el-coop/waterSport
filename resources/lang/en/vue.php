@@ -6,6 +6,7 @@ return [
 		'noData' => 'No data available',
 		'delete' => 'Delete',
 	],
+	'competitionDates' => 'Competition Dates',
 	'save' => 'Save',
 	'updateSuccess' => 'Update successful',
 	'tryLater' => 'Please try again later',

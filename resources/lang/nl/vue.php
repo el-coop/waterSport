@@ -6,6 +6,7 @@ return [
 		'noData' => 'Geen data beschikbaar',
 		'delete' => 'Verwijderen',
 	],
+	'competitionDates' => 'Competitie dagen',
 	'save' => 'Opslaan',
 	'updateSuccess' => 'Update succesvol',
 	'tryLater' => 'Probeer het later opnieuw',

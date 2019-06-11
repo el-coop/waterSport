@@ -76,13 +76,25 @@ class Competitor extends Model {
 	}
 
 	public function getScheduleAttribute() {
-		$sports = $this->sports;
-		return $sports->map(function ($sport){
-			$practiceDay = $sport->pivot->practice_day_id;
+		$dates = collect();
+		$this->sports->map(function ($sport) use ($dates) {
+			 $sport->competitionDays->map(function ($date) use ( $dates){
+			 	$dates->push($date);
+			 });
+		});
+		$practiceDates = $this->practiceDays;
+		$dates = $dates->merge($practiceDates);
+		$dates = $dates->sortBy('date_time')->values();
+		return $dates->map(function ($date){
+			if (class_basename($date) == class_basename(PracticeDay::class)){
+				$type = __('vue.practiceDay');
+			} else {
+				$type = __('vue.competitionDay');
+			}
 			return [
-				'sport' => 	$sport->name,
-				'practiceDay' => $practiceDay ? PracticeDay::find($practiceDay)->date: '',
-				'competition' => $sport->competitionDaysList
+				'date' => $date->date_time->format('d/m/Y H:i'),
+				'type' => $type,
+				'sport' => $date->sport->name
 			];
 		});
 	}
