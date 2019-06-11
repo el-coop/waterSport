@@ -23,10 +23,14 @@ class UpdateCompetitorRequest extends FormRequest {
 	 * @return array
 	 */
 	public function rules() {
+		$user = $this->user();
+		if ($this->route('competitor')) {
+			$user = $this->route('competitor')->user;
+		}
 		
 		$rules = collect([
 			'name' => ['required', 'string', 'max:255'],
-			'email' => ['required', 'string', 'email', 'max:255', "unique:users,email," . $this->user()->id],
+			'email' => ['required', 'string', 'email', 'max:255', "unique:users,email," . $user->id],
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
 			'sports.*.practiceDays' => 'required|exists:practice_days,id',
@@ -44,15 +48,19 @@ class UpdateCompetitorRequest extends FormRequest {
 	
 	public function commit() {
 		$user = $this->user();
+		if ($this->route('competitor')) {
+			$user = $this->route('competitor')->user;
+		}
 		
 		$user->name = $this->input('name');
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
 		$sports = collect();
+		$user->user->practiceDays()->detach();
 		foreach ($this->input('sports', []) as $sport => $data) {
 			$data = collect($data);
 			$sports->put($sport, ['data' => $data->except('practiceDays', 0)]);
-			$user->user->practiceDays()->sync($data->get('practiceDays'));
+			$user->user->practiceDays()->attach($data->get('practiceDays'));
 		}
 		$user->user->sports()->sync($sports);
 		$user->user->data = array_filter($this->input('competitor'));
@@ -60,7 +68,7 @@ class UpdateCompetitorRequest extends FormRequest {
 			$user->user->submitted = true;
 			event(new CompetitorSubmitted($user->user));
 			$this->session()->flash('fireworks', true);
-
+			
 		}
 		$user->user->save();
 		$user->save();
