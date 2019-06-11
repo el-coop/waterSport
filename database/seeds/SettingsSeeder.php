@@ -22,10 +22,10 @@ class SettingsSeeder extends Seeder {
 		$this->settingsFakeNoOverwrite('registration_email_subject_en', $faker->text);
 		$this->settingsFakeNoOverwrite('registration_email_body_nl', $faker->paragraph);
 		$this->settingsFakeNoOverwrite('registration_email_body_en', $faker->paragraph);
-		$this->settingsFakeNoOverwrite('confirmation_submitted_email_subject_nl', $faker->text);
-		$this->settingsFakeNoOverwrite('confirmation_submitted_email_subject_en', $faker->text);
-		$this->settingsFakeNoOverwrite('confirmation_submitted_email_body_nl', $faker->paragraph);
-		$this->settingsFakeNoOverwrite('confirmation_submitted_email_body_en', $faker->paragraph);
+//		$this->settingsFakeNoOverwrite('confirmation_submitted_email_subject_nl', $faker->text);
+//		$this->settingsFakeNoOverwrite('confirmation_submitted_email_subject_en', $faker->text);
+//		$this->settingsFakeNoOverwrite('confirmation_submitted_email_body_nl', $faker->paragraph);
+//		$this->settingsFakeNoOverwrite('confirmation_submitted_email_body_en', $faker->paragraph);
 		$this->settingsFakeNoOverwrite('sport_manager_registration_email_subject_nl', $faker->text);
 		$this->settingsFakeNoOverwrite('sport_manager_registration_email_subject_en', $faker->text);
 		$this->settingsFakeNoOverwrite('sport_manager_registration_email_body_nl', $faker->paragraph);

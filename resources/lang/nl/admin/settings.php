@@ -27,5 +27,8 @@ return [
 	'sport_manager_registration_email_subject_nl' => 'Sport manager registratioe email onderwerp NL',
 
 	'sport_manager_registration_email_body_en' => 'Sport manager registratie email tekst EN',
-	'sport_manager_registration_email_body_nl' => 'Sport manager registratie email tekst NL'
+	'sport_manager_registration_email_body_nl' => 'Sport manager registratie email tekst NL',
+	
+	'confirmation_success_text_nl' => 'TBT',
+	'confirmation_success_text_en' => 'TBT'
 ];

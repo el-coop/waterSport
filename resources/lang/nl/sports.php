@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'competitionDates' => 'Competitie dagen',
+	'competitionDates' => 'Wedstrijddag',
 	'sports' => 'Sportonderdelen',
 	'index' => 'Index',
 	'fields' => 'Velden',

@@ -25,5 +25,6 @@ return [
 	'alreadyHave' => 'Ik heb al een account.',
 	'rememberMe' => 'Onthoud mijn gegevens',
 	'forgot' => 'Wachtwoord vergeten?',
-	'termsConditions' => 'Algemene voorwaarden'
+	'termsConditions' => 'Algemene voorwaarden',
+	'emailWarning' => 'Let op! Dit moet hetzelfde mailadres zijn waarmee jij je hebt aangemeld.'
 ];

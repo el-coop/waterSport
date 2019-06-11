@@ -19,7 +19,7 @@
 						@csrf
 						<input type="hidden" name="token" value="{{ $token }}">
 						<text-field
-								:field="{label: '@lang('global.email')',name: 'email', subType: 'email', value: '{{ old('email') }}'}"
+								:field="{label: '@lang('global.email') (@lang('auth.emailWarning'))',name: 'email', subType: 'email', value: '{{ old('email') }}'}"
 								:error="{{ $errors->has('email') ? collect($errors->get('email')): 'null'}}"></text-field>
 						<text-field
 								:field="{label: '@lang('global.password')',name: 'password', subType: 'password'}"

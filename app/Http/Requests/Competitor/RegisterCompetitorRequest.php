@@ -36,12 +36,10 @@ class RegisterCompetitorRequest extends FormRequest {
 			'sports.*.practiceDays.*' => 'required|exists:practice_days,id',
 			'sports.*' => 'array',
 		]);
-		if ($this->input('validate')) {
-			$rules['competitor'] = 'required|array';
-			$requiredFields = Field::getRequiredFields(Competitor::class);
-			$protectedFields = Field::getProtectedFields(Competitor::class);
-			$rules = $rules->merge($requiredFields)->merge($protectedFields);
-		}
+		$rules['competitor'] = 'required|array';
+		$requiredFields = Field::getRequiredFields(Competitor::class);
+		$protectedFields = Field::getProtectedFields(Competitor::class);
+		$rules = $rules->merge($requiredFields)->merge($protectedFields);
 		return $rules->toArray();
 	}
 	
@@ -64,12 +62,9 @@ class RegisterCompetitorRequest extends FormRequest {
 		$user->language = $this->input('language');
 		$user->password = '';
 		$competitor->user()->save($user);
+		$competitor->save();
 		
-		if ($this->input('validate')) {
-			$competitor->submitted = true;
-			$competitor->save();
-			event(new CompetitorSubmitted($competitor));
-		}
+		event(new CompetitorSubmitted($competitor));
 		
 		Password::broker()->sendResetLink(
 			['email' => $user->email]
