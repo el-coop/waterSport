@@ -10,6 +10,7 @@ return [
 	'nl' => 'Nederlands',
 	'logout' => 'Log out',
 	'date' => 'Date',
+	'time' => 'Time',
 	'register' => 'Register',
 	'language' => 'Language',
 	'placeholder_nl' => 'Dutch Placeholder',

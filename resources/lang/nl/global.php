@@ -10,6 +10,7 @@ return [
 	'nl' => 'Nederlands',
 	'logout' => 'Uitloggen',
 	'date' => 'Datum',
+	'time' => 'TBT',
 	'register' => 'Aanmelden',
 	'language' => 'Taal',
 	'placeholder_nl' => 'Plaatshouder NL',
@@ -23,6 +24,5 @@ return [
 	'password_confirm' => 'Wachtwoord bevestigen',
 	'general' => 'Algemeen',
 	'status' => 'Satus',
-	'general' => 'TBT',
 	'profile' => 'Profiel',
 ];
