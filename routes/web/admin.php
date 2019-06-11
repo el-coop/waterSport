@@ -38,6 +38,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userType:' . \App\M
 			Route::post('/', 'CompetitorController@store');
 			Route::patch('/{competitor}', 'CompetitorController@update');
 		});
+		Route::get('/{competitor}', 'CompetitorController@show');
+		Route::patch('/{competitor}', 'CompetitorController@updateForm');
 		Route::delete('/{competitor}', 'CompetitorController@destroy');
 	});
 	Route::group(['prefix' => 'field'], function () {
