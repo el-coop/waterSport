@@ -15,7 +15,6 @@ class CreateCompetitorSportTable extends Migration {
 			$table->bigIncrements('id');
 			$table->bigInteger('sport_id')->unsigned();
 			$table->bigInteger('competitor_id')->unsigned();
-			$table->bigInteger('practice_day_id')->unsigned()->nullable();
 			$table->json('data');
 			$table->timestamps();
 			
@@ -25,12 +24,8 @@ class CreateCompetitorSportTable extends Migration {
 			$table->foreign('competitor_id')
 				->references('id')->on('competitors')
 				->onDelete('cascade');
-			$table->foreign('practice_day_id')
-				->references('id')->on('practice_days');
 			
 			$table->unique(['competitor_id', 'sport_id']);
-			$table->unique(['competitor_id', 'practice_day_id']);
-			
 		});
 	}
 	

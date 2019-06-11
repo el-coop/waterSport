@@ -77,7 +77,7 @@ class RegistrationTest extends TestCase {
 			'sports' => [
 				$sport->id => [
 					$sport->id,
-					'practiceDay' => $practiceDay->id,
+					'practiceDays' => [$practiceDay->id],
 					$field->id => 'yes'
 				]
 			
@@ -102,11 +102,15 @@ class RegistrationTest extends TestCase {
 		
 		$this->assertDatabaseHas('competitor_sport', [
 			'sport_id' => $sport->id,
-			'practice_day_id' => $practiceDay->id,
 			'competitor_id' => $competitor->id,
 			'data' => json_encode([
 				$field->id => 'yes'
 			])
+		]);
+		
+		$this->assertDatabaseHas('competitor_practice_day',[
+			'competitor_id' => $competitor->id,
+			'practice_day_id' => $practiceDay->id
 		]);
 		
 		Notification::assertSentTo(User::where('email', 'email@email.com')->first(), CompetitorCreated::class);
@@ -133,7 +137,7 @@ class RegistrationTest extends TestCase {
 			'sports' => [
 				$sport->id => [
 					$sport->id,
-					'practiceDay' => $practiceDay->id,
+					'practiceDays' => [$practiceDay->id],
 					$field->id => 'yes'
 				]
 			
@@ -159,11 +163,15 @@ class RegistrationTest extends TestCase {
 		
 		$this->assertDatabaseHas('competitor_sport', [
 			'sport_id' => $sport->id,
-			'practice_day_id' => $practiceDay->id,
 			'competitor_id' => $competitor->id,
 			'data' => json_encode([
 				$field->id => 'yes'
 			])
+		]);
+		
+		$this->assertDatabaseHas('competitor_practice_day',[
+			'competitor_id' => $competitor->id,
+			'practice_day_id' => $practiceDay->id
 		]);
 		
 		Notification::assertSentTo(User::where('email', 'email@email.com')->first(), CompetitorCreated::class);
@@ -190,10 +198,10 @@ class RegistrationTest extends TestCase {
 			'language' => 'gla',
 			'sports' => [
 				$sport->id => [
-					'practiceDay' => 0
+					'practiceDays' => [0]
 				]
 			]
-		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$sport->id}.practiceDay", "sports.{$sport->id}.0"]);
+		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$sport->id}.practiceDays.0", "sports.{$sport->id}.0"]);
 	}
 	
 }

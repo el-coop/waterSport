@@ -45,8 +45,9 @@ class UpdateTest extends TestCase {
 			'data' => [
 				$this->field->id => 'gla'
 			],
-			'practice_day_id' => $this->practiceDays->first()->id
 		]]);
+		
+		$this->competitor->user->practiceDays()->attach($this->practiceDays->first()->id);
 		
 		$this->competitorField = factory(Field::class)->create();
 		
@@ -84,7 +85,7 @@ class UpdateTest extends TestCase {
 			'sports' => [
 				$this->sport->id => [
 					$this->sport->id,
-					'practiceDay' => $this->practiceDays->last()->id,
+					'practiceDays' => [$this->practiceDays->last()->id],
 					$this->field->id => 'yes'
 				]
 			
@@ -112,11 +113,16 @@ class UpdateTest extends TestCase {
 		
 		$this->assertDatabaseHas('competitor_sport', [
 			'sport_id' => $this->sport->id,
-			'practice_day_id' => $this->practiceDays->last()->id,
 			'competitor_id' => $this->competitor->user->id,
 			'data' => json_encode([
 				$this->field->id => 'yes'
 			])
+		]);
+		
+		
+		$this->assertDatabaseHas('competitor_practice_day',[
+			'competitor_id' =>  $this->competitor->user->id,
+			'practice_day_id' => $this->practiceDays->last()->id
 		]);
 		
 	}
@@ -134,7 +140,7 @@ class UpdateTest extends TestCase {
 			'sports' => [
 				$this->sport->id => [
 					$this->sport->id,
-					'practiceDay' => $this->practiceDays->last()->id,
+					'practiceDays' => [$this->practiceDays->last()->id],
 					$this->field->id => 'yes'
 				]
 			
@@ -163,11 +169,16 @@ class UpdateTest extends TestCase {
 		
 		$this->assertDatabaseHas('competitor_sport', [
 			'sport_id' => $this->sport->id,
-			'practice_day_id' => $this->practiceDays->last()->id,
 			'competitor_id' => $this->competitor->user->id,
 			'data' => json_encode([
 				$this->field->id => 'yes'
 			])
+		]);
+		
+		
+		$this->assertDatabaseHas('competitor_practice_day',[
+			'competitor_id' =>  $this->competitor->user->id,
+			'practice_day_id' => $this->practiceDays->last()->id
 		]);
 		
 		Event::assertDispatched(CompetitorSubmitted::class, function ($event) {
@@ -192,10 +203,10 @@ class UpdateTest extends TestCase {
 			'sports' => [
 				$this->sport->id => [
 					0,
-					'practiceDay' => 0,
+					'practiceDays' => [0],
 					$this->field->id => 'yes'
 				]
 			]
-		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$this->sport->id}.practiceDay", "sports.{$this->sport->id}.0"]);
+		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$this->sport->id}.practiceDays.0", "sports.{$this->sport->id}.0"]);
 	}
 }

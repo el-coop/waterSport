@@ -19,6 +19,10 @@ class PracticeDay extends Model {
 		return $this->belongsTo(Sport::class);
 	}
 	
+	public function competitors() {
+		return $this->belongsToMany(Competitor::class);
+	}
+	
 	public function getDateAttribute() {
 		return $this->date_time->format('Y-m-d');
 	}

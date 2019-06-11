@@ -11,10 +11,9 @@
 				<label class="label" v-text="sport[`practice_day_title_${lang}`]"/>
 				<div class="buttons">
 					<button v-for="day in sport.practice_days" type="button" class="button"
-							:class="{'is-link': practiceDay === day.id}"
-							v-text="day.formattedDate" @click="practiceDay = day.id"></button>
+							:class="{'is-link': practiceDays.includes(day.id)}"
+							v-text="day.formattedDate" @click="togglePracticeDay(day.id)"></button>
 				</div>
-				<input type="hidden" name="practiceDay" v-model="practiceDay"/>
 			</div>
 			<component v-for="(field, key) in fields" :key="key" :field="fieldSetup(field)"
 					   :is="`${field.type}-field`"></component>
@@ -45,22 +44,35 @@
 
 		data() {
 			return {
-				practiceDay: null,
+				practiceDays: [],
 				lang: document.documentElement.lang
 			}
 		},
 
 		methods: {
 			opened() {
-				if (this.form.practiceDay) {
-					return this.practiceDay = parseInt(this.form.practiceDay);
+				if (this.form.practiceDays) {
+					return this.practiceDays = this.form.practiceDays;
 				}
 				if (this.sport.practice_days) {
-					return this.practiceDay = this.sport.practice_days[0].id;
+					return this.practiceDays.push(this.sport.practice_days[0].id);
 				}
 
 				return null;
 			},
+
+			togglePracticeDay(day) {
+				const index = this.practiceDays.indexOf(day);
+				if (index > -1) {
+					this.practiceDays.splice(index, 1);
+					if (this.practiceDays.length === 0) {
+						this.practiceDays.push(this.sport.practice_days[0].id);
+					}
+				} else {
+					this.practiceDays.push(day);
+				}
+			},
+
 			fieldSetup(field) {
 				return {
 					label: field.title,
@@ -76,6 +88,7 @@
 				(new FormData(this.$refs.form)).forEach((value, key) => {
 					data[key] = value;
 				});
+				data['practiceDays'] = this.practiceDays;
 				this.$modal.hide('sportModal');
 				this.$emit('filled', {
 					sport: this.sport.id,

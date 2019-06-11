@@ -13,8 +13,14 @@
 							<input :key="`sport_${sport}`" type="hidden" :name="`sports[${sport}][0]`"
 								   :value="sport">
 							<template v-for="(info,key) in data">
-								<input :key="`sport_${sport}_${key}`" type="hidden" :name="`sports[${sport}][${key}]`"
+								<input v-if="key !== 'practiceDays'" :key="`sport_${sport}_${key}`" type="hidden"
+									   :name="`sports[${sport}][${key}]`"
 									   :value="info">
+								<template v-else v-for="(practiceDay,practiceKey) in info">
+									<input :key="`sport_practice_${sport}_${key}_${practiceKey}`" type="hidden"
+										   :name="`sports[${sport}][${key}][${practiceKey}]`"
+										   :value="practiceDay">
+								</template>
 							</template>
 						</template>
 						<input v-if="submitData" type="hidden" name="validate" value="1">
@@ -31,10 +37,11 @@
 		<div class="tile is-parent">
 			<div class="tile is-child">
 				<div class="buttons has-content-justified-center">
-					<button class="button is-info" @click="$refs.form.submit()" v-text="$translations.save">
+					<button class="button is-info" @click="$refs.form.submit()" v-text="$translations.save"
+							:disabled="! selectedSports.length">
 					</button>
 					<button v-if="! submitted" class="button is-success" @click="submitForm"
-							v-text="$translations.submit"></button>
+							v-text="$translations.submit" :disabled="! selectedSports.length"></button>
 				</div>
 			</div>
 		</div>

@@ -29,7 +29,8 @@ class UpdateCompetitorRequest extends FormRequest {
 			'email' => ['required', 'string', 'email', 'max:255', "unique:users,email," . $this->user()->id],
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
-			'sports.*.practiceDay' => 'required|exists:practice_days,id',
+			'sports.*.practiceDays' => 'required|exists:practice_days,id',
+			'sports.*.practiceDays.*' => 'required|exists:practice_days,id',
 			'sports.*' => 'array',
 		]);
 		if ($this->input('validate')) {
@@ -50,7 +51,8 @@ class UpdateCompetitorRequest extends FormRequest {
 		$sports = collect();
 		foreach ($this->input('sports', []) as $sport => $data) {
 			$data = collect($data);
-			$sports->put($sport, ['data' => $data->except('practiceDay', 0), 'practice_day_id' => $data->get('practiceDay')]);
+			$sports->put($sport, ['data' => $data->except('practiceDays', 0)]);
+			$user->user->practiceDays()->sync($data->get('practiceDays'));
 		}
 		$user->user->sports()->sync($sports);
 		$user->user->data = array_filter($this->input('competitor'));
