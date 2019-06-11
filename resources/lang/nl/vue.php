@@ -6,7 +6,7 @@ return [
 		'noData' => 'Geen data beschikbaar',
 		'delete' => 'Verwijderen',
 	],
-	'competitionDates' => 'Competitie dagen',
+	'competitionDates' => 'Wedstrijddag',
 	'save' => 'Opslaan',
 	'updateSuccess' => 'Update succesvol',
 	'tryLater' => 'Probeer het later opnieuw',
@@ -30,7 +30,7 @@ return [
 	'practiceDay' => 'Oefendag',
 	'sports' => 'Sporten',
 	'addSport' => 'Sport toevoegen',
-	'submit' => 'Indienen voor beoordeling',
+	'submit' => 'Inschrijving afronden',
 	'registrationEmailPdf' => 'TBT',
 	'homepagePdf' => 'TBT'
 ];

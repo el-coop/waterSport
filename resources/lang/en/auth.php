@@ -25,5 +25,6 @@ return [
 	'alreadyHave' => 'Already have an account?',
 	'rememberMe' => 'Remember me',
 	'forgot' => 'I forgot my password',
-	'termsConditions' => 'Terms and Conditions'
+	'termsConditions' => 'Terms and Conditions',
+	'emailWarning' => 'Same as the one used when filling the application'
 ];

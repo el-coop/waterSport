@@ -1,5 +1,5 @@
 <participant-form method="patch" :sports="{{ $sports }}" :init-selected-sports="{{ $selectedSports }}"
-				  :init-sports-data="{{ $sportsData }}" :submitted="{{ $user->user->submitted ? 'true' : 'false' }}">
+				  :init-sports-data="{{ $sportsData }}">
 	<dynamic-fields slot="personal" :fields="{{ $user->user->fulldata->map(function($item) use($errors){
 					$fieldName = str_replace(']','',str_replace('[','.',$item['name']));
 

@@ -13,7 +13,6 @@ class CreateCompetitorsTable extends Migration {
 	public function up() {
 		Schema::create('competitors', function (Blueprint $table) {
 			$table->bigIncrements('id');
-			$table->boolean('submitted')->default(false);
 			$table->json('data')->nullable();
 			$table->timestamps();
 		});

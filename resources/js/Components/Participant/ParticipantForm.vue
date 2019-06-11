@@ -23,7 +23,6 @@
 								</template>
 							</template>
 						</template>
-						<input v-if="submitData" type="hidden" name="validate" value="1">
 					</form>
 				</div>
 			</div>
@@ -37,10 +36,7 @@
 		<div class="tile is-parent">
 			<div class="tile is-child">
 				<div class="buttons has-content-justified-center">
-					<button class="button is-info" @click="$refs.form.submit()" v-text="$translations.save"
-							:disabled="! selectedSports.length">
-					</button>
-					<button v-if="! submitted" class="button is-success" @click="submitForm"
+					<button class="button is-success" @click="$refs.form.submit()"
 							v-text="$translations.submit" :disabled="! selectedSports.length"></button>
 				</div>
 			</div>
@@ -89,18 +85,8 @@
 				sportsData: this.initSportsData,
 				csrf: window.token.content,
 				selectedSports: this.initSelectedSports,
-				submitData: false
 			}
 		},
-
-		methods: {
-			async submitForm() {
-				this.submitData = true;
-				await this.$nextTick;
-				this.$refs.form.submit();
-			}
-		}
-
 	}
 </script>
 

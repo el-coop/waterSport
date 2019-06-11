@@ -3,7 +3,7 @@
 @section('title', $user->name)
 
 @section('content')
-	@if($user->user->submitted)
+	@if($message)
 		@include('competitor.message')
 	@endif
 	<tabs>

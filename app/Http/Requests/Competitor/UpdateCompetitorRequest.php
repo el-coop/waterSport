@@ -37,12 +37,11 @@ class UpdateCompetitorRequest extends FormRequest {
 			'sports.*.practiceDays.*' => 'required|exists:practice_days,id',
 			'sports.*' => 'array',
 		]);
-		if ($this->input('validate')) {
-			$rules['competitor'] = 'required|array';
-			$requiredFields = Field::getRequiredFields(Competitor::class);
-			$protectedFields = Field::getProtectedFields(Competitor::class);
-			$rules = $rules->merge($requiredFields)->merge($protectedFields);
-		}
+		
+		$rules['competitor'] = 'required|array';
+		$requiredFields = Field::getRequiredFields(Competitor::class);
+		$protectedFields = Field::getProtectedFields(Competitor::class);
+		$rules = $rules->merge($requiredFields)->merge($protectedFields);
 		return $rules->toArray();
 	}
 	
@@ -64,12 +63,10 @@ class UpdateCompetitorRequest extends FormRequest {
 		}
 		$user->user->sports()->sync($sports);
 		$user->user->data = array_filter($this->input('competitor'));
-		if ($this->input('validate')) {
-			$user->user->submitted = true;
-			event(new CompetitorSubmitted($user->user));
-			$this->session()->flash('fireworks', true);
-			
-		}
+		
+		event(new CompetitorSubmitted($user->user));
+		$this->session()->flash('fireworks', true);
+		
 		$user->user->save();
 		$user->save();
 	}
