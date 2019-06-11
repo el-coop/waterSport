@@ -3,15 +3,13 @@
     label: '@lang('sports.sport')',
     type: 'text'
     }, {
-        name: 'practiceDay',
-        label: '@lang('vue.practiceDay')',
+        name: 'date',
+        label: '@lang('global.date')',
         type: 'text',
-			subType: 'date',
     }, {
-        name: 'competition',
-        label: '@lang('sports.competitionDates')',
+        name: 'type',
+        label: '@lang('global.type')',
         type: 'text',
-			subType: 'date',
     }
     ]" :init-fields="{{$user->user->schedule}}">
 

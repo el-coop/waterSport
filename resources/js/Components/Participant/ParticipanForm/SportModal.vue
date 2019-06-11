@@ -4,8 +4,10 @@
 		<p class="content" v-html="sport.formattedDescription"></p>
 		<form v-if="sport" @submit.prevent="submit" ref="form">
 			<div class="field">
-				<label class="label" v-text="$translations.competitionDay"/>
-				<button type="button" class="button is-link" v-text="sport.competition"></button>
+				<label class="label" v-text="$translations.competitionDates"/>
+				<div class="buttons">
+					<button v-for="(date, index) in sport.competition_days" type="button" :key="index" class="button is-link" v-text="date.formattedDate"></button>
+				</div>
 			</div>
 			<div class="field">
 				<label class="label" v-text="sport[`practice_day_title_${lang}`]"/>

@@ -63,12 +63,16 @@ class Sport extends Model {
 		}, 'fields' => function ($query) {
 			$language = App::getLocale();
 			$query->select('id', 'sport_id', 'type', "name_{$language} as title", "placeholder_{$language} as placeholder");
-		}])->get()->each(function ($sport) {
-//			$sport->competition = $sport->date->format('d/m/Y');
+		}, 'competitionDays'])->get()->each(function ($sport) {
 			$sport->formattedDescription = nl2br($sport->description);
 			$sport->practiceDays->each(function ($practiceDay) {
 				$practiceDay->formattedDate = $practiceDay->date_time->format('d/m/Y H:i');
 			});
+
+			$sport->competitionDays->each(function ($competitionDay) {
+				$competitionDay->formattedDate = $competitionDay->date_time->format('d/m/Y H:i');
+			});
+
 		});
 	}
 
