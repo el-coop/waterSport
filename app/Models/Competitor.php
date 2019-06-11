@@ -82,7 +82,7 @@ class Competitor extends Model {
 			return [
 				'sport' => 	$sport->name,
 				'practiceDay' => $practiceDay ? PracticeDay::find($practiceDay)->date: '',
-				'competition' => $sport->date->format('Y-m-d')
+				'competition' => $sport->competitionDaysList
 			];
 		});
 	}

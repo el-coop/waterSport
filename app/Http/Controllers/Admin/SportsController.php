@@ -64,6 +64,10 @@ class SportsController extends Controller {
 		return $sport->practiceDays;
 	}
 
+	public function getCompetitionDays(Sport $sport) {
+		return $sport->competitionDays;
+	}
+
 	/**
 	 * @param Sport $sport
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

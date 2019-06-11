@@ -32,7 +32,7 @@ class StorePracticeDayRequest extends FormRequest {
 	 */
 	public function rules() {
 		return [
-			'date' => 'required|date|before:' . $this->sport->date,
+			'date' => 'required|date',
 			'time' => 'required|date_format:H:i',
 		];
 	}

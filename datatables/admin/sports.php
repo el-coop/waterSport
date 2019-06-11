@@ -2,9 +2,11 @@
 
 return [
 	'model' => \App\Models\Sport::class,
+	'joins' => [['competition_days', 'sports.id', 'competition_days.sport_id']],
 	'fields' => [
 		[
 			'name' => 'id',
+			'table' => 'sports',
 			'visible' => false
 		
 		],
@@ -13,9 +15,9 @@ return [
 			'title' => 'global.name',
 		],
 		[
-			'name' => 'date',
-			'title' => 'global.date',
-			'callback' => 'date'
+			'name' => 'competitionDaysList',
+			'title' => 'sports.competitionDates',
+			'noTable' => true,
 		]
 	]
 ];

@@ -6,9 +6,10 @@ use App;
 use Illuminate\Database\Eloquent\Model;
 
 class Sport extends Model {
-	
-	protected $dates = [
-		'date'
+
+
+	protected $appends = [
+		'competitionDaysList'
 	];
 	
 	public function getFullDataAttribute() {
@@ -24,13 +25,6 @@ class Sport extends Model {
 				'label' => __('sports.description'),
 				'type' => 'textarea',
 				'value' => $this->description
-			],
-			[
-				'name' => 'date',
-				'label' => __('sports.competitionDate'),
-				'type' => 'text',
-				'subType' => 'date',
-				'value' => $this->date ? $this->date->format('Y-m-d') : null
 			],
 			[
 				'name' => 'practiceDayTitleNl',
@@ -64,17 +58,26 @@ class Sport extends Model {
 	}
 	
 	static function registrationOptions() {
-		return static::select('id', 'name', 'date', 'description', 'practice_day_title_nl', 'practice_day_title_en')->with(['practiceDays' => function ($query) {
+		return static::select('id', 'name', 'description', 'practice_day_title_nl', 'practice_day_title_en')->with(['practiceDays' => function ($query) {
 			$query->select('id', 'sport_id', 'date_time');
 		}, 'fields' => function ($query) {
 			$language = App::getLocale();
 			$query->select('id', 'sport_id', 'type', "name_{$language} as title", "placeholder_{$language} as placeholder");
 		}])->get()->each(function ($sport) {
-			$sport->competition = $sport->date->format('d/m/Y');
+//			$sport->competition = $sport->date->format('d/m/Y');
 			$sport->formattedDescription = nl2br($sport->description);
 			$sport->practiceDays->each(function ($practiceDay) {
 				$practiceDay->formattedDate = $practiceDay->date_time->format('d/m/Y H:i');
 			});
 		});
+	}
+
+	public function competitionDays() {
+		return $this->hasMany(CompetitionDay::class);
+	}
+
+	public function getCompetitionDaysListAttribute() {
+		return $this->competitionDays->implode('date_time', ', ');
+
 	}
 }

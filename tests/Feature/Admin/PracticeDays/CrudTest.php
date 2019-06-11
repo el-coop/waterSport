@@ -11,6 +11,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CrudTest extends TestCase {
+	use WithFaker;
 	use RefreshDatabase;
 	
 	private $admin;
@@ -31,7 +32,7 @@ class CrudTest extends TestCase {
 	}
 	
 	public function test_admin_can_create_practice_day() {
-		$practiceDate = $this->sport->date->subDays(1)->format('Y-m-d');
+		$practiceDate = $this->faker->date;
 		$this->actingAs($this->admin)->post(action('Admin\PracticeDaysController@store', $this->sport), [
 			'date' => $practiceDate,
 			'time' => '10:00',
@@ -53,7 +54,7 @@ class CrudTest extends TestCase {
 	}
 	
 	public function test_admin_can_update_practice_day() {
-		$practiceDate = $this->sport->date->subDays(1)->format('Y-m-d');
+		$practiceDate = $this->faker->date;
 		
 		$this->actingAs($this->admin)->patch(action('Admin\PracticeDaysController@update', [$this->sport, $this->practiceDay]), [
 			'date' => $practiceDate,
@@ -68,7 +69,7 @@ class CrudTest extends TestCase {
 	
 	public function test_admin_update_practice_day_validation() {
 		$this->actingAs($this->admin)->patch(action('Admin\PracticeDaysController@update', [$this->sport, $this->practiceDay]), [
-			'date' => $this->sport->date->addDay(1)
+			'date' => ''
 		])->assertSessionHasErrors('date');
 	}
 	

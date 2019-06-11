@@ -17,7 +17,6 @@ class CreateSportsTable extends Migration {
 			$table->text('description');
 			$table->string('practice_day_title_nl')->default('Practice Day');
 			$table->string('practice_day_title_en')->default('Practice Day');
-			$table->timestamp('date');
 			$table->timestamps();
 		});
 	}
