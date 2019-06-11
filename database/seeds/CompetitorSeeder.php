@@ -16,8 +16,11 @@ class CompetitorSeeder extends Seeder {
 			$user = factory(User::class)->make();
 			$competitor->user()->save($user);
 			$sports = Sport::inRandomOrder()->limit(2)->get();
-			foreach ($sports as $sport){
-				$competitor->sports()->attach($sport, ['data' => '[]','practice_day_id' => $sport->practiceDays()->inRandomOrder()->first()->id]);
+			foreach ($sports as $sport) {
+				$competitor->sports()->attach($sport, ['data' => '[]']);
+				foreach ($sport->practiceDays as $practiceDay) {
+					$competitor->practiceDays()->save($practiceDay);
+				}
 			}
 		});
 		factory(Competitor::class, 1)->create()->each(function ($competitor) {
@@ -27,8 +30,11 @@ class CompetitorSeeder extends Seeder {
 			]);
 			$competitor->user()->save($user);
 			$sports = Sport::inRandomOrder()->limit(2)->get();
-			foreach ($sports as $sport){
-				$competitor->sports()->attach($sport, ['data' => '[]','practice_day_id' => $sport->practiceDays()->inRandomOrder()->first()->id]);
+			foreach ($sports as $sport) {
+				$competitor->sports()->attach($sport, ['data' => '[]']);
+				foreach ($sport->practiceDays as $practiceDay) {
+					$competitor->practiceDays()->save($practiceDay);
+				}
 			}
 		});
 	}

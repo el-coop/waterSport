@@ -56,7 +56,7 @@ class Sport extends Model {
 	}
 	
 	public function competitors() {
-		return $this->belongsToMany(Competitor::class)->using(CompetitorSport::class)->withPivot('data', 'practiceDay');
+		return $this->belongsToMany(Competitor::class)->using(CompetitorSport::class)->withPivot('data');
 	}
 	
 	public function sportManagers() {

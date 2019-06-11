@@ -32,7 +32,8 @@ class RegisterCompetitorRequest extends FormRequest {
 			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
-			'sports.*.practiceDay' => 'required|exists:practice_days,id',
+			'sports.*.practiceDays' => 'required|array',
+			'sports.*.practiceDays.*' => 'required|exists:practice_days,id',
 			'sports.*' => 'array',
 		]);
 		if ($this->input('validate')) {
@@ -53,8 +54,10 @@ class RegisterCompetitorRequest extends FormRequest {
 		$sports = collect();
 		foreach ($this->input('sports', []) as $sport => $data) {
 			$data = collect($data);
-			$sports->put($sport, ['data' => $data->except('practiceDay', 0), 'practice_day_id' => $data->get('practiceDay')]);
+			$sports->put($sport, ['data' => $data->except('practiceDays', 0)]);
+			$competitor->practiceDays()->sync($data->get('practiceDays'));
 		}
+		
 		$competitor->sports()->sync($sports);
 		$user->name = $this->input('name');
 		$user->email = $this->input('email');
