@@ -16,7 +16,7 @@ return [
 		],
 		[
 			'name' => 'competitionDaysList',
-			'title' => 'global.date',
+			'title' => 'sports.competitionDates',
 			'noTable' => true,
 		]
 	]

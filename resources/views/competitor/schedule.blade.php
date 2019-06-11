@@ -9,7 +9,7 @@
 			subType: 'date',
     }, {
         name: 'competition',
-        label: '@lang('sports.competitionDate')',
+        label: '@lang('sports.competitionDates')',
         type: 'text',
 			subType: 'date',
     }
