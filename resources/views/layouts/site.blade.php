@@ -2,7 +2,7 @@
 
 @section('body')
 	<main>
-		<navbar title="@lang('global.title')" :menu="false" title-link="/"
+		<navbar title="@lang('global.title')" :menu="false" title-link="/" logo="{{asset('images/logo.png')}}"
 				class="is-dark" :fluid="false">
 			@auth
 				@component('components.logout', [
