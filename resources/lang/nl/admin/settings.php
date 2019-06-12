@@ -1,7 +1,7 @@
 <?php
 return [
 	'settings' => 'Instellingen',
-	'use' => 'TBT',
+	'use' => 'Gebruik',
 	
 	'login_text_en' => 'Login tekst EN',
 	'login_text_nl' => 'Login tekst NL',
@@ -29,6 +29,6 @@ return [
 	'sport_manager_registration_email_body_en' => 'Sport manager registratie email tekst EN',
 	'sport_manager_registration_email_body_nl' => 'Sport manager registratie email tekst NL',
 	
-	'confirmation_success_text_nl' => 'TBT',
-	'confirmation_success_text_en' => 'TBT'
+	'confirmation_success_text_nl' => 'Deelnemer registratie succesvol tekst NL',
+	'confirmation_success_text_en' => 'Deelnemer registratie succesvol tekst EN'
 ];

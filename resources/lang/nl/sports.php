@@ -7,6 +7,7 @@ return [
 	'fields' => 'Velden',
 	'sport' => 'Sport',
 	'description' => 'Omschrijving',
-	'practiceDayTitle' => 'TBT'
+	'practiceDayTitleNl' => 'Oefendag Titel NL',
+	'practiceDayTitleen' => 'Oefendag Titel NL'
 
 ];

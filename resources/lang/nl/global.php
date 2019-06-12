@@ -10,7 +10,7 @@ return [
 	'nl' => 'Nederlands',
 	'logout' => 'Uitloggen',
 	'date' => 'Datum',
-	'time' => 'TBT',
+	'time' => 'Tijd',
 	'register' => 'Aanmelden',
 	'language' => 'Taal',
 	'placeholder_nl' => 'Plaatshouder NL',

@@ -31,6 +31,6 @@ return [
 	'sports' => 'Sporten',
 	'addSport' => 'Sport toevoegen',
 	'submit' => 'Inschrijving afronden',
-	'registrationEmailPdf' => 'TBT',
-	'homepagePdf' => 'TBT'
+	'registrationEmailPdf' => 'Registratie email',
+	'homepagePdf' => 'Registratie document PDF'
 ];
