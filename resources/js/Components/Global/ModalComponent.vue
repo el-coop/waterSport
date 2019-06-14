@@ -5,9 +5,12 @@
 		   :pivotY="pivotY"
 		   :pivotX="pivotX"
 		   ref="modal">
-		<div class="box h-100 modal-body">
-			<button class="modal-close is-large" @click="$modal.hide(name)"></button>
-			<slot/>
+		<div class="modal is-active">
+			<div class="modal-content box">
+				<button class="modal-close is-large" @click="$modal.hide(name)"></button>
+				<slot/>
+
+			</div>
 		</div>
 	</modal>
 </template>
@@ -46,9 +49,8 @@
 <style lang="scss">
 	@import "../../../sass/variables";
 
-	.modal-body {
-		overflow-x: hidden;
-		overflow-y: auto;
+	.modal-content {
+		max-height: 100%;
 
 		> *:last-child {
 			margin-bottom: 1rem;
