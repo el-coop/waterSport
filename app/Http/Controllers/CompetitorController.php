@@ -17,11 +17,8 @@ class CompetitorController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Request $request) {
-		$message = '';
-		if ($request->user()->user->submitted) {
-			$locale = App::getLocale();
-			$message = app('settings')->get("confirmation_success_text_{$locale}");
-		}
+		$locale = App::getLocale();
+		$message = app('settings')->get("confirmation_success_text_{$locale}");
 		
 		$user = $request->user()->load('user.sports');
 		$selectedSports = $user->user->sports->pluck('id');

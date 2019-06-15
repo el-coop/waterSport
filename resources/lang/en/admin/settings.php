@@ -30,5 +30,8 @@ return [
 	'sport_manager_registration_email_body_nl' => 'Sport manager registration email body nl',
 	
 	'confirmation_success_text_nl' => 'Competitor profile registration success text nl',
-	'confirmation_success_text_en' => 'Competitor profile registration success text en'
+	'confirmation_success_text_en' => 'Competitor profile registration success text en',
+	
+	'application_success_modal_nl' => 'Application success modal nl',
+	'application_success_modal_en' => 'Application success modal en',
 ];
