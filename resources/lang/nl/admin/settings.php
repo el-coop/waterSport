@@ -30,5 +30,9 @@ return [
 	'sport_manager_registration_email_body_nl' => 'Sport manager registratie email tekst NL',
 	
 	'confirmation_success_text_nl' => 'Deelnemer registratie succesvol tekst NL',
-	'confirmation_success_text_en' => 'Deelnemer registratie succesvol tekst EN'
+	'confirmation_success_text_en' => 'Deelnemer registratie succesvol tekst EN',
+	
+	'application_success_modal_nl' => 'Application success modal nl TBT',
+	'application_success_modal_en' => 'Application success modal en TBT',
+
 ];

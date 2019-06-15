@@ -43,11 +43,11 @@
 				])
 					@if(\Session::has('confirmEmail'))
 						<p class="title">
-							{{ App::make('settings')->get('registration_success_' . App::getLocale()) }}
+							{!!  str_replace(PHP_EOL,'<br>',App::make('settings')->get('registration_success_' . App::getLocale()))  !!}
 						</p>
 					@else
 						<p class="title">
-							{{ App::make('settings')->get('login_text_' . App::getLocale()) }}
+							{!!  str_replace(PHP_EOL,'<br>',App::make('settings')->get('login_text_' . App::getLocale()))  !!}
 						</p>
 					@endif
 				@endcomponent
