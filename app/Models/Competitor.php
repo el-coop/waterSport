@@ -49,7 +49,7 @@ class Competitor extends Model {
 		$fullData = collect([
 			[
 				'name' => 'name',
-				'label' => __('global.name'),
+				'label' => __('global.firstName'),
 				'type' => 'text',
 				'value' => $this->user->name ?? '',
 			],[

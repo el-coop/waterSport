@@ -25,5 +25,6 @@ return [
 	'general' => 'General',
 	'status' => 'Status',
 	'profile' => 'Profile',
-	'lastName' => 'Last Name'
+	'lastName' => 'Last Name',
+	'firstName' => 'First Name'
 ];

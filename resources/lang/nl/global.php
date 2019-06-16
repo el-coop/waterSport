@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'name' => 'Naam',
+	'name' => 'TBT',
 	'login' => 'Inloggen',
 	'email' => 'Email',
 	'password' => 'Wachtwoord',
@@ -25,5 +25,6 @@ return [
 	'general' => 'Algemeen',
 	'status' => 'Satus',
 	'profile' => 'Profiel',
-	'lastName' => 'TBT'
+	'lastName' => 'TBT',
+	'firstName' => 'TBT'
 ];

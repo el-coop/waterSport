@@ -17,7 +17,7 @@ return [
 		],
 		[
 			'name' => 'name',
-			'title' => 'global.name',
+			'title' => 'global.firstName',
 			'table' => 'users',
 			'sortField' => 'name',
 		],[
