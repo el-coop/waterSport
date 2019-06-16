@@ -7,6 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSportManagerRequest extends FormRequest {
 	private $sportManager;
+
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
@@ -33,9 +34,9 @@ class UpdateSportManagerRequest extends FormRequest {
 	}
 
 	public function commit() {
-		if ($this->sportManager->sport->id != $this->input('sport')){
+		if ($this->sportManager->sport->id != $this->input('sport')) {
 			$this->sportManager->sport()->dissociate();
-			$sport =  Sport::find($this->input('sport'));
+			$sport = Sport::find($this->input('sport'));
 			$sport->sportManagers()->save($this->sportManager);
 		}
 		$this->sportManager->user->name = $this->input('name');
