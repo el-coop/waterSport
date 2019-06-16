@@ -97,6 +97,7 @@
     .navbar-item > img {
         max-height: 2.5em;
         height: 2.5em;
+        width: auto;
         max-width: unset;
     }
 

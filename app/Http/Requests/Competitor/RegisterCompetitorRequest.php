@@ -32,8 +32,8 @@ class RegisterCompetitorRequest extends FormRequest {
 			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
-			'sports.*.practiceDays' => 'required|array',
-			'sports.*.practiceDays.*' => 'required|exists:practice_days,id',
+			'sports.*.practiceDays' => 'array',
+			'sports.*.practiceDays.*' => 'exists:practice_days,id',
 			'sports.*' => 'array',
 		]);
 		$rules['competitor'] = 'required|array';
