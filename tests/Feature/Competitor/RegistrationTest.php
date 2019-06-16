@@ -69,6 +69,7 @@ class RegistrationTest extends TestCase {
 		]);
 		$this->post(action('Auth\RegisterController@register'), [
 			'name' => 'name',
+			'lastName' => 'last',
 			'email' => 'email@email.com',
 			'language' => 'en',
 			'competitor' => [
@@ -95,6 +96,7 @@ class RegistrationTest extends TestCase {
 		
 		$this->assertDatabaseHas('users', [
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => 'email@email.com',
 			'language' => 'en',
 			'user_type' => Competitor::class

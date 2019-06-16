@@ -24,5 +24,6 @@ return [
 	'password_confirm' => 'Confirm Password',
 	'general' => 'General',
 	'status' => 'Status',
-	'profile' => 'Profile'
+	'profile' => 'Profile',
+	'lastName' => 'Last Name'
 ];

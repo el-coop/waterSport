@@ -77,6 +77,7 @@ class UpdateTest extends TestCase {
 	public function test_competitor_can_update_himself() {
 		$this->actingAs($this->competitor)->patch(action('CompetitorController@update'), [
 			'name' => 'name',
+			'lastName' => 'last',
 			'email' => $this->competitor->email,
 			'language' => 'en',
 			'competitor' => [
@@ -105,6 +106,7 @@ class UpdateTest extends TestCase {
 		
 		$this->assertDatabaseHas('users', [
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => $this->competitor->email,
 			'language' => 'en',
 			'user_type' => Competitor::class,

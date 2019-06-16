@@ -71,15 +71,18 @@ class CrudTest extends TestCase {
 		Notification::fake();
 		$this->actingAs($this->admin)->post(action('Admin\CompetitorController@store'), [
 			'name' => 'name',
+			'lastName' => 'last',
 			'email' => 'test@test.com',
 			'language' => 'en'
 		])->assertSuccessful()->assertJson([
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => 'test@test.com',
 		]);
 		
 		$this->assertDatabaseHas('users', [
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => 'test@test.com',
 			'user_type' => Competitor::class
 		]);
@@ -107,16 +110,19 @@ class CrudTest extends TestCase {
 	public function test_admin_can_update_competitor() {
 		$this->actingAs($this->admin)->patch(action('Admin\CompetitorController@update', $this->competitor->user), [
 			'name' => 'name',
+			'lastName' => 'last',
 			'email' => 'test@test.com',
 			'language' => 'en',
 			'competitor' => ['data' => 'test']
 		])->assertSuccessful()->assertJson([
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => 'test@test.com',
 		]);
 		
 		$this->assertDatabaseHas('users', [
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => 'test@test.com',
 			'user_type' => Competitor::class,
 			'id' => $this->competitor->id
@@ -152,6 +158,7 @@ class CrudTest extends TestCase {
 	public function test_admin_can_update_competitor_form() {
 		$this->actingAs($this->admin)->patch(action('Admin\CompetitorController@updateForm', $this->competitor->user), [
 			'name' => 'name',
+			'lastName' => 'last',
 			'email' => $this->competitor->email,
 			'language' => 'en',
 			'competitor' => [
@@ -180,6 +187,7 @@ class CrudTest extends TestCase {
 		
 		$this->assertDatabaseHas('users', [
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => $this->competitor->email,
 			'language' => 'en',
 			'user_type' => Competitor::class,
