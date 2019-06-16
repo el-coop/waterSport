@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'name' => 'TBT',
+	'name' => 'Naam',
 	'login' => 'Inloggen',
 	'email' => 'Email',
 	'password' => 'Wachtwoord',
