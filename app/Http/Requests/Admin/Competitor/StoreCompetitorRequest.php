@@ -26,6 +26,7 @@ class StoreCompetitorRequest extends FormRequest {
 	public function rules() {
 		return [
 			'name' => 'required|string',
+			'lastName' => 'required|string',
 			'email' => 'required|email|unique:users',
 			'language' => 'required|in:en,nl',
 		];
@@ -35,6 +36,7 @@ class StoreCompetitorRequest extends FormRequest {
 		$competitor = new Competitor;
 		$user = New User;
 		$user->name = $this->input('name');
+		$user->last_name = $this->input('lastName');
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
 		$user->password = '';
@@ -46,6 +48,7 @@ class StoreCompetitorRequest extends FormRequest {
 		return [
 			'id' => $competitor->id,
 			'name' => $this->input('name'),
+			'last_name' => $this->input('lastName'),
 			'email' => $this->input('email'),
 			'sportsList' => ''
 		];

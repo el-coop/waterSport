@@ -87,16 +87,19 @@ class CrudTest extends TestCase {
 		$sport = Sport::first();
 		$this->actingAs($this->admin)->post(action('Admin\SportManagerController@store'),[
 			'name' => 'name',
+			'lastName' => 'last',
 			'email' => 'test@test.com',
 			'language' => 'en',
 			'sport' => $sport->id
 		])->assertSuccessful()->assertJsonFragment([
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => 'test@test.com',
 			'sport' => $sport->name
 		]);
 		$this->assertDatabaseHas('users', [
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => 'test@test.com',
 			'language' => 'en',
 			'user_type' => SportManager::class
@@ -134,16 +137,19 @@ class CrudTest extends TestCase {
 		$sport = factory(Sport::class)->create();
 		$this->actingAs($this->admin)->patch(action('Admin\SportManagerController@update', $this->sportManager->user),[
 			'name' => 'name',
+			'lastName' => 'last',
 			'email' => 'test@test.com',
 			'language' => 'en',
 			'sport' => $sport->id
 		])->assertSuccessful()->assertJsonFragment([
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => 'test@test.com',
 			'sport' => $sport->name
 		]);
 		$this->assertDatabaseHas('users', [
 			'name' => 'name',
+			'last_name' => 'last',
 			'email' => 'test@test.com',
 			'language' => 'en',
 			'user_type' => SportManager::class,

@@ -25,4 +25,6 @@ return [
 	'general' => 'Algemeen',
 	'status' => 'Satus',
 	'profile' => 'Profiel',
+	'lastName' => 'TBT',
+	'firstName' => 'TBT'
 ];

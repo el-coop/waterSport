@@ -17,9 +17,14 @@ return [
 		],
 		[
 			'name' => 'name',
-			'title' => 'global.name',
+			'title' => 'global.firstName',
 			'table' => 'users',
 			'sortField' => 'name',
+		],[
+			'name' => 'last_name',
+			'title' => 'global.lastName',
+			'table' => 'users',
+			'sortField' => 'last_name',
 		], [
 			'name' => 'email',
 			'title' => 'global.email',

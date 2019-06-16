@@ -7,6 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSportManagerRequest extends FormRequest {
 	private $sportManager;
+
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
@@ -24,7 +25,8 @@ class UpdateSportManagerRequest extends FormRequest {
 	 */
 	public function rules() {
 		return [
-			'name' => 'required',
+			'name' => 'required|string',
+			'lastName' => 'required|string',
 			'email' => 'required|email|unique:users,email,' . $this->sportManager->user->id,
 			'language' => 'required|in:en,nl',
 			'sport' => 'required|exists:sports,id'
@@ -32,12 +34,13 @@ class UpdateSportManagerRequest extends FormRequest {
 	}
 
 	public function commit() {
-		if ($this->sportManager->sport->id != $this->input('sport')){
+		if ($this->sportManager->sport->id != $this->input('sport')) {
 			$this->sportManager->sport()->dissociate();
-			$sport =  Sport::find($this->input('sport'));
+			$sport = Sport::find($this->input('sport'));
 			$sport->sportManagers()->save($this->sportManager);
 		}
 		$this->sportManager->user->name = $this->input('name');
+		$this->sportManager->user->last_name = $this->input('lastName');
 		$this->sportManager->user->email = $this->input('email');
 		$this->sportManager->user->language = $this->input('language');
 		$this->sportManager->user->save();
@@ -45,6 +48,7 @@ class UpdateSportManagerRequest extends FormRequest {
 		return [
 			'id' => $this->sportManager->id,
 			'name' => $this->input('name'),
+			'last_name' => $this->input('lastName'),
 			'email' => $this->input('email'),
 			'sport' => $this->sportManager->sport->name
 		];
