@@ -67,9 +67,6 @@
 				const index = this.practiceDays.indexOf(day);
 				if (index > -1) {
 					this.practiceDays.splice(index, 1);
-					if (this.practiceDays.length === 0) {
-						this.practiceDays.push(this.sport.practice_days[0].id);
-					}
 				} else {
 					this.practiceDays.push(day);
 				}
