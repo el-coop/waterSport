@@ -38,7 +38,12 @@ class SportManager extends Model {
 				'label' => __('global.name'),
 				'type' => 'text',
 				'value' => $this->user->name ?? '',
-			], [
+			],[
+				'name' => 'lastName',
+				'label' => __('global.lastName'),
+				'type' => 'text',
+				'value' => $this->user->last_name ?? '',
+			],  [
 				'name' => 'email',
 				'label' => __('global.email'),
 				'type' => 'text',

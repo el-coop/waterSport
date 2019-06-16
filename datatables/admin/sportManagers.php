@@ -19,6 +19,11 @@ return [
 			'title' => 'global.name',
 			'table' => 'users',
 			'sortField' => 'name',
+		],[
+			'name' => 'last_name',
+			'title' => 'global.lastName',
+			'table' => 'users',
+			'sortField' => 'last_name',
 		], [
 			'name' => 'email',
 			'title' => 'global.email',

@@ -25,7 +25,8 @@ class StoreSportManagerRequest extends FormRequest {
 	 */
 	public function rules() {
 		return [
-			'name' => 'required',
+			'name' => 'required|string',
+			'lastName' => 'required|string',
 			'email' => 'required|email|unique:users',
 			'language' => 'required|in:en,nl',
 			'sport' => 'required|exists:sports,id'
@@ -38,6 +39,7 @@ class StoreSportManagerRequest extends FormRequest {
 		$sport->sportManagers()->save($sportManager);
 		$user = new User;
 		$user->name = $this->input('name');
+		$user->last_name = $this->input('lastName');
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
 		$user->password = '';
@@ -48,6 +50,7 @@ class StoreSportManagerRequest extends FormRequest {
 		return [
 			'id' => $sportManager->id,
 			'name' => $this->input('name'),
+			'last_name' => $this->input('lastName'),
 			'email' => $this->input('email'),
 			'sport' => $sport->name
 		];

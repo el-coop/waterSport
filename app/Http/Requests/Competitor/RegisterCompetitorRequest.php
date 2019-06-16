@@ -29,6 +29,7 @@ class RegisterCompetitorRequest extends FormRequest {
 	public function rules() {
 		$rules = collect([
 			'name' => ['required', 'string', 'max:255'],
+			'lastName' => ['required','string','max:255'],
 			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
@@ -60,6 +61,7 @@ class RegisterCompetitorRequest extends FormRequest {
 		$user->name = $this->input('name');
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
+		$user->last_name = $this->input('lastName');
 		$user->password = '';
 		$competitor->user()->save($user);
 		$competitor->save();

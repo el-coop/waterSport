@@ -30,6 +30,7 @@ class UpdateCompetitorRequest extends FormRequest {
 		
 		$rules = collect([
 			'name' => ['required', 'string', 'max:255'],
+			'lastName' => ['required','string','max:255'],
 			'email' => ['required', 'string', 'email', 'max:255', "unique:users,email," . $user->id],
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
@@ -52,6 +53,7 @@ class UpdateCompetitorRequest extends FormRequest {
 		}
 		
 		$user->name = $this->input('name');
+		$user->last_name = $this->input('lastName');
 		$user->email = $this->input('email');
 		$user->language = $this->input('language');
 		$sports = collect();
