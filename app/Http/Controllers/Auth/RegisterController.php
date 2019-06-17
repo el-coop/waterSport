@@ -50,9 +50,9 @@ class RegisterController extends Controller {
 	 */
 	public function showRegistrationForm() {
 		$sports = Sport::registrationOptions();
-		
+
 		$file = Pdf::where('use', 'homepagePdf')->first();
-		
+
 		$competitor = new App\Models\Competitor;
 		return view('auth.register', compact('sports', 'competitor', 'file'));
 	}

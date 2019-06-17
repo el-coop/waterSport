@@ -15,7 +15,8 @@ class CreateCompetitionDaysTable extends Migration
     {
         Schema::create('competition_days', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->timestamp('date_time');
+			$table->timestamp('start_time');
+			$table->timestamp('end_time');
 			$table->bigInteger('sport_id')->unsigned();
 			$table->timestamps();
 

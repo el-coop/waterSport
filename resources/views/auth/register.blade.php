@@ -4,7 +4,6 @@
 @section('content')
 	<div class="section">
 		<participant-form :sports="{{ $sports }}">
-
 			<dynamic-fields slot="personal" :fields="{{ $competitor->fulldata->map(function($item) use($errors){
 					$fieldName = str_replace(']','',str_replace('[','.',$item['name']));
 
@@ -14,7 +13,7 @@
 				}) }}">
 			</dynamic-fields>
 		</participant-form>
-		@isset($file)
+		 @isset($file)
 			<div class="has-text-centered">
 				Watersportverbond <a href="{{ action('ResourceController@view', $file) }}">@lang('auth.termsConditions')</a>
 			</div>

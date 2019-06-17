@@ -33,12 +33,14 @@ class StorePracticeDayRequest extends FormRequest {
 	public function rules() {
 		return [
 			'date' => 'required|date',
-			'time' => 'required|date_format:H:i',
+			'startHour' => 'required|date_format:H:i',
+			'endHour' => 'required|date_format:H:i'
 		];
 	}
 	
 	public function commit() {
-		$this->practiceDay->date_time = Carbon::createFromFormat('Y-m-d H:i',$this->input('date') . ' ' .$this->input('time'));
+		$this->practiceDay->start_time = Carbon::createFromFormat('Y-m-d H:i',$this->input('date') . ' ' .$this->input('startHour'));
+		$this->practiceDay->end_time = Carbon::createFromFormat('Y-m-d H:i',$this->input('date') . ' ' .$this->input('endHour'));
 		$this->sport->practiceDays()->save($this->practiceDay);
 		
 		return $this->practiceDay;

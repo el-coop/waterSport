@@ -26,5 +26,7 @@ return [
 	'status' => 'Status',
 	'profile' => 'Profile',
 	'lastName' => 'Last Name',
-	'firstName' => 'First Name'
+	'firstName' => 'First Name',
+	'startTime' => 'Start Time',
+	'endTime' => 'End Time',
 ];
