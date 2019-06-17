@@ -6,9 +6,13 @@
                     callback: 'date',
                     label: '@lang('global.date')'
                 },{
-                    name: 'time',
+                    name: 'startHour',
                     subType: 'time',
-                    label: '@lang('global.time')'
+                    label: '@lang('global.startTime')'
+                },{
+                    name: 'endHour',
+                    subType: 'time',
+                    label: '@lang('global.endTime')'
                 }]"
 				   :init-fields-from-url="`{{Request::url()}}/practice/${object.id}`"
 				   :action="`{{Request::url()}}/practice/${object.id}`">

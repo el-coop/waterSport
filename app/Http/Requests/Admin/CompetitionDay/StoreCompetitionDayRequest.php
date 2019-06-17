@@ -33,12 +33,14 @@ class StoreCompetitionDayRequest extends FormRequest {
 	public function rules() {
 		return [
 			'date' => 'required|date',
-			'time' => 'required|date_format:H:i',
+			'startHour' => 'required|date_format:H:i',
+			'endHour' => 'required|date_format:H:i'
 		];
 	}
 
 	public function commit() {
-		$this->competitionDay->date_time = Carbon::createFromFormat('Y-m-d H:i',$this->input('date') . ' ' .$this->input('time'));
+		$this->competitionDay->start_time = Carbon::createFromFormat('Y-m-d H:i',$this->input('date') . ' ' .$this->input('startHour'));
+		$this->competitionDay->end_time = Carbon::createFromFormat('Y-m-d H:i',$this->input('date') . ' ' .$this->input('endHour'));
 		$this->sport->competitionDays()->save($this->competitionDay);
 
 		return $this->competitionDay;

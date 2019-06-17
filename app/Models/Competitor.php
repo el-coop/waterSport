@@ -89,7 +89,7 @@ class Competitor extends Model {
 		});
 		$practiceDates = $this->practiceDays;
 		$dates = $dates->merge($practiceDates);
-		$dates = $dates->sortBy('date_time')->values();
+		$dates = $dates->sortBy('start_time')->values();
 		return $dates->map(function ($date){
 			if (class_basename($date) == class_basename(PracticeDay::class)){
 				$type = __('vue.practiceDay');
@@ -97,7 +97,9 @@ class Competitor extends Model {
 				$type = __('vue.competitionDay');
 			}
 			return [
-				'date' => $date->date_time->format('d/m/Y H:i'),
+				'date' => $date->date,
+				'start' => $date->startHour,
+				'end' => $date->endHour,
 				'type' => $type,
 				'sport' => $date->sport->name
 			];

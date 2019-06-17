@@ -26,5 +26,7 @@ return [
 	'status' => 'Satus',
 	'profile' => 'Profiel',
 	'lastName' => 'TBT',
-	'firstName' => 'TBT'
+	'firstName' => 'TBT',
+	'startTime' => 'Begintijd',
+	'endTime' => 'Eindtijd',
 ];

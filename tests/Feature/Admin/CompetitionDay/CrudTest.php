@@ -54,11 +54,13 @@ class CrudTest extends TestCase {
 		$competitionDate = $this->faker->date;
 		$this->actingAs($this->admin)->post(action('Admin\CompetitionDayController@store', $this->sport), [
 			'date' => $competitionDate,
-			'time' => '10:00',
+			'startHour' => '10:00',
+			'endHour' => '12:00'
 		])->assertSuccessful();
 		$this->assertDatabaseHas('competition_days', [
 			'sport_id' => $this->sport->id,
-			'date_time' => $competitionDate . ' 10:00:00'
+			'start_time' => $competitionDate . ' 10:00:00',
+			'end_time' => $competitionDate . ' 12:00:00'
 		]);
 	}
 
@@ -85,11 +87,13 @@ class CrudTest extends TestCase {
 
 		$this->actingAs($this->admin)->patch(action('Admin\CompetitionDayController@update', [$this->sport, $this->competitionDay]), [
 			'date' => $competitionDate,
-			'time' => '10:00',
+			'startHour' => '10:00',
+			'endHour' => '12:00'
 		])->assertSuccessful();
 		$this->assertDatabaseHas('competition_days', [
 			'sport_id' => $this->sport->id,
-			'date_time' => $competitionDate . ' 10:00:00',
+			'start_time' => $competitionDate . ' 10:00:00',
+			'end_time' => $competitionDate . ' 12:00:00',
 			'id' => $this->competitionDay->id
 		]);
 	}

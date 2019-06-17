@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class PracticeDay extends Model {
-	
+
 	protected $dates = [
-		'date_time'
+		'start_time',
+		'end_time'
 	];
-	
+
 	protected $appends = [
 		'date',
-		'time'
+		'startHour',
+		'endHour'
 	];
 	
 	public function sport() {
@@ -22,12 +24,17 @@ class PracticeDay extends Model {
 	public function competitors() {
 		return $this->belongsToMany(Competitor::class);
 	}
-	
+
 	public function getDateAttribute() {
-		return $this->date_time->format('Y-m-d');
+		return $this->start_time->format('Y-m-d');
 	}
-	
-	public function getTimeAttribute() {
-		return $this->date_time->format('H:i');
+
+	public function getStartHourAttribute() {
+		return $this->start_time->format('H:i');
+	}
+
+
+	public function getEndHourAttribute() {
+		return $this->end_time->format('H:i');
 	}
 }
