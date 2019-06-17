@@ -3,6 +3,6 @@
 return [
 	'competitors' => 'Deelnemers',
 	'setPassword' => 'Wachtwoord instellen',
-	'fillProfile' => 'Profiel invullen',
+	'fillProfile' => 'Inloggen',
 	'schedule' => 'Schema'
 ];
