@@ -2,6 +2,6 @@
 return [
 	'competitors' => 'Competitors',
 	'setPassword' => 'Set Password',
-	'fillProfile' => 'Fill Profile',
+	'fillProfile' => 'Login',
 	'schedule' => 'Schedule'
 ];

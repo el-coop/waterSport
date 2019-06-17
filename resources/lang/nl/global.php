@@ -25,8 +25,8 @@ return [
 	'general' => 'Algemeen',
 	'status' => 'Satus',
 	'profile' => 'Profiel',
-	'lastName' => 'TBT',
-	'firstName' => 'TBT',
+	'lastName' => 'Achternaam',
+	'firstName' => 'Voornaam',
 	'startTime' => 'Begintijd',
 	'endTime' => 'Eindtijd',
 ];
