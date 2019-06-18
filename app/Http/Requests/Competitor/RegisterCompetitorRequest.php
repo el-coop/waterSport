@@ -35,6 +35,8 @@ class RegisterCompetitorRequest extends FormRequest {
 			'sports.*.0' => 'required|exists:sports,id',
 			'sports.*.practiceDays' => 'array',
 			'sports.*.practiceDays.*' => 'exists:practice_days,id',
+			'sports.*.competitionDays' => 'required|array',
+			'sports.*.competitionDays.*' => 'required|exists:competition_days,id',
 			'sports.*' => 'array',
 		]);
 		$rules['competitor'] = 'required|array';
@@ -53,8 +55,9 @@ class RegisterCompetitorRequest extends FormRequest {
 		$sports = collect();
 		foreach ($this->input('sports', []) as $sport => $data) {
 			$data = collect($data);
-			$sports->put($sport, ['data' => $data->except('practiceDays', 0)]);
+			$sports->put($sport, ['data' => $data->except('practiceDays', 0,'competitionDays')]);
 			$competitor->practiceDays()->sync($data->get('practiceDays'));
+			$competitor->competitionDays()->sync($data->get('competitionDays'));
 		}
 		
 		$competitor->sports()->sync($sports);

@@ -50,7 +50,7 @@
 								 :init-filters="initFilters"></DatatableFilter>
 			</div>
 		</div>
-		<DatatableRowDisplay :width="editWidth" :name="_uid">
+		<DatatableRowDisplay :width="editWidth" :name="_uid" v-if="edit">
 			<slot :object="object" :on-update="updateObject" :on-delete="deleteObject"></slot>
 		</DatatableRowDisplay>
 	</div>
@@ -125,6 +125,11 @@
 			delete: {
 				type: Boolean,
 				default: false
+			},
+
+			edit: {
+				type: Boolean,
+				default: true
 			}
 		},
 
@@ -202,7 +207,9 @@
 				})
 			},
 			cellClicked(data, field, event) {
-				this.$modal.show(`datatable-row${this._uid}`);
+				if (this.edit) {
+					this.$modal.show(`datatable-row${this._uid}`);
+				}
 				this.object = data;
 				this.$bus.$emit('vuetable-cell-clicked', {
 					data, event

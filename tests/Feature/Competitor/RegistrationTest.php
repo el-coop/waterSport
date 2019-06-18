@@ -4,6 +4,7 @@ namespace Tests\Feature\Competitor;
 
 use App\Events\CompetitorSubmitted;
 use App\Models\Admin;
+use App\Models\CompetitionDay;
 use App\Models\Competitor;
 use App\Models\PracticeDay;
 use App\Models\Sport;
@@ -64,6 +65,10 @@ class RegistrationTest extends TestCase {
 		$practiceDay = factory(PracticeDay::class)->create([
 			'sport_id' => $sport->id
 		]);
+		
+		$competitionDay = factory(CompetitionDay::class)->create([
+			'sport_id' => $sport->id
+		]);
 		$field = factory(SportField::class)->create([
 			'sport_id' => $sport->id
 		]);
@@ -79,6 +84,7 @@ class RegistrationTest extends TestCase {
 				$sport->id => [
 					$sport->id,
 					'practiceDays' => [$practiceDay->id],
+					'competitionDays' => [$competitionDay->id],
 					$field->id => 'yes'
 				]
 			
@@ -113,6 +119,11 @@ class RegistrationTest extends TestCase {
 		$this->assertDatabaseHas('competitor_practice_day',[
 			'competitor_id' => $competitor->id,
 			'practice_day_id' => $practiceDay->id
+		]);
+		
+		$this->assertDatabaseHas('competition_day_competitor',[
+			'competitor_id' => $competitor->id,
+			'competition_day_id' => $competitionDay->id
 		]);
 		
 		Notification::assertSentTo(User::where('email', 'email@email.com')->first(), CompetitorCreated::class);

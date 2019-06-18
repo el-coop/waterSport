@@ -41,6 +41,10 @@ class Competitor extends Model {
 		return $this->belongsToMany(PracticeDay::class);
 	}
 	
+	public function competitionDays() {
+		return $this->belongsToMany(CompetitionDay::class);
+	}
+	
 	public function getSportsListAttribute() {
 		return $this->sports->implode('name', ', ');
 	}
@@ -52,12 +56,12 @@ class Competitor extends Model {
 				'label' => __('global.firstName'),
 				'type' => 'text',
 				'value' => $this->user->name ?? '',
-			],[
+			], [
 				'name' => 'lastName',
 				'label' => __('global.lastName'),
 				'type' => 'text',
 				'value' => $this->user->last_name ?? '',
-			],  [
+			], [
 				'name' => 'email',
 				'label' => __('global.email'),
 				'type' => 'text',
@@ -79,19 +83,13 @@ class Competitor extends Model {
 	static function indexPage() {
 		return action('Admin\CompetitorController@index', [], false);
 	}
-
+	
 	public function getScheduleAttribute() {
-		$dates = collect();
-		$this->sports->map(function ($sport) use ($dates) {
-			 $sport->competitionDays->map(function ($date) use ( $dates){
-			 	$dates->push($date);
-			 });
-		});
-		$practiceDates = $this->practiceDays;
-		$dates = $dates->merge($practiceDates);
+		$dates = $this->competitionDays;
+		$dates = $dates->concat($this->practiceDays);
 		$dates = $dates->sortBy('start_time')->values();
-		return $dates->map(function ($date){
-			if (class_basename($date) == class_basename(PracticeDay::class)){
+		return $dates->map(function ($date) {
+			if (class_basename($date) == class_basename(PracticeDay::class)) {
 				$type = __('vue.practiceDay');
 			} else {
 				$type = __('vue.competitionDay');

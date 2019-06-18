@@ -3,6 +3,7 @@
 namespace Tests\Feature\Admin\Competitor;
 
 use App\Models\Admin;
+use App\Models\CompetitionDay;
 use App\Models\Competitor;
 use App\Models\PracticeDay;
 use App\Models\Sport;
@@ -25,6 +26,7 @@ class CrudTest extends TestCase {
 	private $practiceDays;
 	private $sport;
 	private $field;
+	private $competitionDays;
 	
 	public function setUp(): void {
 		parent::setUp();
@@ -39,8 +41,12 @@ class CrudTest extends TestCase {
 		$this->practiceDays = factory(PracticeDay::class, 2)->create([
 			'sport_id' => $this->sport->id
 		]);
+		$this->competitionDays = factory(CompetitionDay::class, 2)->create([
+			'sport_id' => $this->sport->id
+		]);
 		
 		$this->competitor->user->practiceDays()->attach($this->practiceDays->first()->id);
+		$this->competitor->user->competitionDays()->attach($this->practiceDays->last()->id);
 		
 		$this->competitorField = factory(Field::class)->create();
 	}
@@ -168,6 +174,7 @@ class CrudTest extends TestCase {
 				$this->sport->id => [
 					$this->sport->id,
 					'practiceDays' => [$this->practiceDays->last()->id],
+					'competitionDays' => [$this->competitionDays->first()->id],
 					$this->field->id => 'yes'
 				]
 			
@@ -206,6 +213,11 @@ class CrudTest extends TestCase {
 		$this->assertDatabaseHas('competitor_practice_day', [
 			'competitor_id' => $this->competitor->user->id,
 			'practice_day_id' => $this->practiceDays->last()->id
+		]);
+		
+		$this->assertDatabaseHas('competition_day_competitor', [
+			'competitor_id' => $this->competitor->user->id,
+			'competition_day_id' => $this->competitionDays->first()->id
 		]);
 	}
 	
