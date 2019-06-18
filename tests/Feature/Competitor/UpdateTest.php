@@ -4,6 +4,7 @@ namespace Tests\Feature\Competitor;
 
 use App\Events\CompetitorSubmitted;
 use App\Models\Admin;
+use App\Models\CompetitionDay;
 use App\Models\Competitor;
 use App\Models\PracticeDay;
 use App\Models\Sport;
@@ -26,6 +27,7 @@ class UpdateTest extends TestCase {
 	private $practiceDays;
 	private $field;
 	private $competitorField;
+	private $competitionDays;
 	
 	public function setUp(): void {
 		parent::setUp();
@@ -35,6 +37,9 @@ class UpdateTest extends TestCase {
 		factory(Competitor::class)->create()->user()->save($this->competitor);
 		$this->sport = factory(Sport::class)->create();
 		$this->practiceDays = factory(PracticeDay::class, 2)->create([
+			'sport_id' => $this->sport->id
+		]);
+		$this->competitionDays = factory(CompetitionDay::class, 2)->create([
 			'sport_id' => $this->sport->id
 		]);
 		$this->field = factory(SportField::class)->create([
@@ -48,6 +53,7 @@ class UpdateTest extends TestCase {
 		]]);
 		
 		$this->competitor->user->practiceDays()->attach($this->practiceDays->first()->id);
+		$this->competitor->user->competitionDays()->attach($this->competitionDays->last()->id);
 		
 		$this->competitorField = factory(Field::class)->create();
 		
@@ -87,6 +93,7 @@ class UpdateTest extends TestCase {
 				$this->sport->id => [
 					$this->sport->id,
 					'practiceDays' => [$this->practiceDays->last()->id],
+					'competitionDays' => [$this->competitionDays->first()->id],
 					$this->field->id => 'yes'
 				]
 			
@@ -125,6 +132,11 @@ class UpdateTest extends TestCase {
 		$this->assertDatabaseHas('competitor_practice_day',[
 			'competitor_id' =>  $this->competitor->user->id,
 			'practice_day_id' => $this->practiceDays->last()->id
+		]);
+		
+		$this->assertDatabaseHas('competition_day_competitor',[
+			'competitor_id' =>  $this->competitor->user->id,
+			'competition_day_id' => $this->competitionDays->first()->id
 		]);
 		
 	}

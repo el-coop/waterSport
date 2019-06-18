@@ -30,12 +30,14 @@ class UpdateCompetitorRequest extends FormRequest {
 		
 		$rules = collect([
 			'name' => ['required', 'string', 'max:255'],
-			'lastName' => ['required','string','max:255'],
+			'lastName' => ['required', 'string', 'max:255'],
 			'email' => ['required', 'string', 'email', 'max:255', "unique:users,email," . $user->id],
 			'language' => ['required', 'in:en,nl'],
 			'sports.*.0' => 'required|exists:sports,id',
 			'sports.*.practiceDays' => 'array',
 			'sports.*.practiceDays.*' => 'exists:practice_days,id',
+			'sports.*.competitionDays' => 'required|array',
+			'sports.*.competitionDays.*' => 'required|exists:competition_days,id',
 			'sports.*' => 'array',
 		]);
 		
@@ -58,10 +60,12 @@ class UpdateCompetitorRequest extends FormRequest {
 		$user->language = $this->input('language');
 		$sports = collect();
 		$user->user->practiceDays()->detach();
+		$user->user->competitionDays()->detach();
 		foreach ($this->input('sports', []) as $sport => $data) {
 			$data = collect($data);
-			$sports->put($sport, ['data' => $data->except('practiceDays', 0)]);
+			$sports->put($sport, ['data' => $data->except('practiceDays', 0,'competitionDays')]);
 			$user->user->practiceDays()->attach($data->get('practiceDays'));
+			$user->user->competitionDays()->attach($data->get('competitionDays'));
 		}
 		$user->user->sports()->sync($sports);
 		$user->user->data = array_filter($this->input('competitor'));

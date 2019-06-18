@@ -14,15 +14,15 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PageTest extends TestCase {
-
+	
 	use RefreshDatabase;
-
+	
 	private $admin;
 	private $competitor;
 	private $sportManager;
-	private $practiceDays;
 	private $competitionDay;
-
+	private $practiceDay;
+	
 	public function setUp(): void {
 		parent::setUp();
 		$this->admin = factory(User::class)->make();
@@ -34,48 +34,49 @@ class PageTest extends TestCase {
 			$sport = factory(Sport::class)->create();
 			$sport->sportManagers()->save($manager);
 			$manager->user()->save($this->sportManager);
-			$this->practiceDays = factory(PracticeDay::class, 1)->create([
+			$this->practiceDay = factory(PracticeDay::class)->create([
+				'sport_id' => Sport::first()->id
+			]);
+			$this->competitionDay = factory(CompetitionDay::class)->create([
 				'sport_id' => Sport::first()->id
 			]);
 		});
-		$this->competitor->user->practiceDays()->attach($this->practiceDays->first()->id);
+		$this->competitor->user->practiceDays()->attach($this->practiceDay->id);
+		$this->competitor->user->competitionDays()->attach($this->competitionDay->id);
 		$this->competitor->user->sports()->attach(Sport::first()->id, ['data' => 'test']);
-		$this->competitionDay = factory(CompetitionDay::class)->create([
-			'sport_id' => Sport::first()->id
-		]);
 	}
-
+	
 	public function test_guest_cant_get_sport_manager_page() {
 		$this->get(action('SportManagerController@home'))->assertRedirect(action('Auth\LoginController@login'));
 	}
-
+	
 	public function test_competitor_cant_get_sport_manager_page() {
 		$this->actingAs($this->competitor)->get(action('SportManagerController@home'))->assertForbidden();
 	}
-
+	
 	public function test_admin_cant_get_sport_manager_page() {
 		$this->actingAs($this->admin)->get(action('SportManagerController@home'))->assertForbidden();
 	}
-
+	
 	public function test_sport_manager_can_get_sport_manager_page() {
 		$this->actingAs($this->sportManager)->get(action('SportManagerController@home'))->assertSuccessful();
 	}
-
+	
 	public function test_guest_cant_get_practice_day_datatable() {
-		$this->get(action('SportManagerController@practiceDayTable', $this->practiceDays->first()))->assertRedirect(action('Auth\LoginController@login'));
+		$this->get(action('SportManagerController@practiceDayTable', $this->practiceDay))->assertRedirect(action('Auth\LoginController@login'));
 	}
-
+	
 	public function test_competitor_cant_get_practice_day_datatable() {
-		$this->actingAs($this->competitor)->get(action('SportManagerController@practiceDayTable', $this->practiceDays->first()))->assertForbidden();
+		$this->actingAs($this->competitor)->get(action('SportManagerController@practiceDayTable', $this->practiceDay))->assertForbidden();
 	}
-
+	
 	public function test_admin_cant_get_practice_day_datatable() {
-		$this->actingAs($this->admin)->get(action('SportManagerController@practiceDayTable', $this->practiceDays->first()))->assertForbidden();
+		$this->actingAs($this->admin)->get(action('SportManagerController@practiceDayTable', $this->practiceDay))->assertForbidden();
 	}
-
+	
 	public function test_sport_manager_can_get_practice_day_datatable() {
 		$response = $this->actingAs($this->sportManager)->get(action('SportManagerController@practiceDayTable', [
-			'practiceDay' => $this->practiceDays->first(),
+			'practiceDay' => $this->practiceDay->id,
 			'attribute' => 'competitorsForManager',
 			'per_page' => 20,
 			'sort' => 'name|asc'
@@ -84,22 +85,22 @@ class PageTest extends TestCase {
 			'name' => $this->competitor->name
 		]);
 	}
-
+	
 	public function test_guest_cant_get_competition_day_datatable() {
 		$this->get(action('SportManagerController@competitionDayTable', $this->competitionDay))->assertRedirect(action('Auth\LoginController@login'));
 	}
-
+	
 	public function test_competitor_cant_get_competition_day_datatable() {
 		$this->actingAs($this->competitor)->get(action('SportManagerController@competitionDayTable', $this->competitionDay))->assertForbidden();
 	}
-
+	
 	public function test_admin_cant_get_competition_day_datatable() {
 		$this->actingAs($this->admin)->get(action('SportManagerController@competitionDayTable', $this->competitionDay))->assertForbidden();
 	}
-
+	
 	public function test_sport_manager_can_get_competition_day_datatable() {
 		$response = $this->actingAs($this->sportManager)->get(action('SportManagerController@competitionDayTable', [
-			'competitionDay' => $this->competitionDay,
+			'competitionDay' => $this->competitionDay->id,
 			'attribute' => 'competitorsForManager',
 			'per_page' => 20,
 			'sort' => 'name|asc'
@@ -108,27 +109,27 @@ class PageTest extends TestCase {
 			'name' => $this->competitor->name
 		]);
 	}
-
+	
 	public function test_guest_cant_update_sport_manager() {
 		$this->patch(action('SportManagerController@update', $this->sportManager->user))->assertRedirect(action('Auth\LoginController@login'));
 	}
-
+	
 	public function test_competitor_cant_update_sport_manager() {
 		$this->actingAs($this->competitor)->patch(action('SportManagerController@update', $this->sportManager->user))->assertForbidden();
 	}
-
+	
 	public function test_admin_cant_update_sport_manager() {
 		$this->actingAs($this->admin)->patch(action('SportManagerController@update', $this->sportManager->user))->assertForbidden();
 	}
-
+	
 	public function test_sport_manager_can_update_sport_manager() {
-		$this->actingAs($this->sportManager)->patch(action('SportManagerController@update', $this->sportManager->user),[
+		$this->actingAs($this->sportManager)->patch(action('SportManagerController@update', $this->sportManager->user), [
 			'name' => 'name',
 			'lastName' => 'last',
 			'email' => 'test@test.com',
 			'language' => 'en'
 		])->assertRedirect();
-		$this->assertDatabaseHas('users',[
+		$this->assertDatabaseHas('users', [
 			'name' => 'name',
 			'last_name' => 'last',
 			'email' => 'test@test.com',

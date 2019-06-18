@@ -6,13 +6,17 @@
 			<div class="field">
 				<label class="label" v-text="$translations.competitionDates"/>
 				<div class="buttons">
-					<button v-for="(date, index) in sport.competition_days" type="button" :key="index" class="button is-link" v-text="date.formattedDate"></button>
+					<button v-for="day in sport.competition_days" type="button" class="button"
+							:key="`competition_day_${day.id}`"
+							:class="{'is-link': competitionDays.includes(day.id)}"
+							v-text="day.formattedDate" @click="toggleCompetitionDay(day.id)"></button>
 				</div>
 			</div>
 			<div class="field">
 				<label class="label" v-text="sport[`practice_day_title_${lang}`]"/>
 				<div class="buttons">
 					<button v-for="day in sport.practice_days" type="button" class="button"
+							:key="`pracrtice_day_${day.id}`"
 							:class="{'is-link': practiceDays.includes(day.id)}"
 							v-text="day.formattedDate" @click="togglePracticeDay(day.id)"></button>
 				</div>
@@ -47,6 +51,7 @@
 		data() {
 			return {
 				practiceDays: [],
+				competitionDays: [],
 				lang: document.documentElement.lang
 			}
 		},
@@ -54,13 +59,19 @@
 		methods: {
 			opened() {
 				if (this.form.practiceDays) {
-					return this.practiceDays = this.form.practiceDays;
+					this.practiceDays = this.form.practiceDays;
+				} else {
+					this.practiceDays.push(this.sport.practice_days[0].id);
 				}
 				if (this.sport.practice_days) {
-					return this.practiceDays.push(this.sport.practice_days[0].id);
 				}
 
-				return null;
+				if (this.form.competitionDays) {
+					this.competitionDays = this.form.competitionDays;
+				} else {
+					this.competitionDays.push(this.sport.competition_days[0].id);
+				}
+
 			},
 
 			togglePracticeDay(day) {
@@ -69,6 +80,17 @@
 					this.practiceDays.splice(index, 1);
 				} else {
 					this.practiceDays.push(day);
+				}
+			},
+			toggleCompetitionDay(day) {
+				const index = this.competitionDays.indexOf(day);
+				if (index > -1) {
+					this.competitionDays.splice(index, 1);
+					if (this.competitionDays.length === 0) {
+						this.competitionDays.push(this.sport.competition_days[0].id);
+					}
+				} else {
+					this.competitionDays.push(day);
 				}
 			},
 
@@ -88,6 +110,7 @@
 					data[key] = value;
 				});
 				data['practiceDays'] = this.practiceDays;
+				data['competitionDays'] = this.competitionDays;
 				this.$modal.hide('sportModal');
 				this.$emit('filled', {
 					sport: this.sport.id,

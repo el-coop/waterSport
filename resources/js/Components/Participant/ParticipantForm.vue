@@ -13,13 +13,21 @@
 							<input :key="`sport_${sport}`" type="hidden" :name="`sports[${sport}][0]`"
 								   :value="sport">
 							<template v-for="(info,key) in data">
-								<input v-if="key !== 'practiceDays'" :key="`sport_${sport}_${key}`" type="hidden"
+								<input v-if="key !== 'practiceDays' && key !== 'competitionDays'"
+									   :key="`sport_${sport}_${key}`" type="hidden"
 									   :name="`sports[${sport}][${key}]`"
 									   :value="info">
-								<template v-else v-for="(practiceDay,practiceKey) in info">
-									<input :key="`sport_practice_${sport}_${key}_${practiceKey}`" type="hidden"
+								<template v-if="key === 'practiceDays'">
+									<input v-for="(practiceDay,practiceKey) in info"
+										   :key="`sport_practice_${sport}_${key}_${practiceKey}`" type="hidden"
 										   :name="`sports[${sport}][${key}][${practiceKey}]`"
 										   :value="practiceDay">
+								</template>
+								<template v-if="key === 'competitionDays'">
+									<input v-for="(competitionDay,competitionKey) in info"
+										   :key="`sport_competition_${sport}_${key}_${competitionKey}`" type="hidden"
+										   :name="`sports[${sport}][${key}][${competitionKey}]`"
+										   :value="competitionDay">
 								</template>
 							</template>
 						</template>

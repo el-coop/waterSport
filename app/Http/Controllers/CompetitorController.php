@@ -24,11 +24,13 @@ class CompetitorController extends Controller {
 		$selectedSports = $user->user->sports->pluck('id');
 		$sportsData = $user->user->sports->mapWithKeys(function ($sport) use ($user) {
 			$practiceDays = $user->user->practiceDays()->select('practice_days.id')->where('sport_id', $sport->id)->get()->pluck('id');
+			$competitionDays = $user->user->competitionDays()->select('competition_days.id')->where('sport_id', $sport->id)->get()->pluck('id');
 			if (is_string($sport->pivot->data)) {
 				$data = collect(['practiceDays' => $practiceDays]);
 			} else {
 				$data = collect($sport->pivot->data)->put('practiceDays', $practiceDays);
 			}
+			$data->put('competitionDays', $competitionDays);
 			return [$sport->id => $data];
 		});
 		$sports = Sport::registrationOptions();
