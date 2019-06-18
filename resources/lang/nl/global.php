@@ -23,7 +23,7 @@ return [
 	'name_en' => 'Engelse naam',
 	'password_confirm' => 'Wachtwoord bevestigen',
 	'general' => 'Algemeen',
-	'status' => 'Satus',
+	'status' => 'Status',
 	'profile' => 'Profiel',
 	'lastName' => 'Achternaam',
 	'firstName' => 'Voornaam',
