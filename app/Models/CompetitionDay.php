@@ -33,4 +33,31 @@ class CompetitionDay extends Model {
 	public function getEndHourAttribute() {
 		return $this->end_time->format('H:i');
 	}
+
+	public function getCompetitorsForManagerAttribute() {
+		return [
+			'model' => Competitor::class,
+			'where' => [
+				['competitor_sport.sport_id', $this->sport->id],
+				['users.user_type', Competitor::class]
+			],
+			'joins' => [
+				['users', 'users.user_id', 'competitors.id'],
+				['competitor_sport', 'competitor_sport.competitor_id', 'competitors.id']
+			],
+			'fields' => [[
+				'name' => 'name',
+				'title' => __('global.firstName'),
+				'sortField' => 'name'
+			], [
+				'name' => 'last_name',
+				'title' => __('global.lastName'),
+				'sortField' => 'last_name'
+			], [
+				'name' => 'email',
+				'title' => __('global.email'),
+				'sortField' => 'email'
+			]]
+		];
+	}
 }

@@ -16,5 +16,16 @@ class SportManagerSeeder extends Seeder {
 			$user = factory(\App\Models\User::class)->make();
 			$sportManager->user()->save($user);
 		});
+		factory(\App\Models\SportManager::class,1)->make()->each(function ($sportManager){
+			$sport = \App\Models\Sport::first();
+			$sport->sportManagers()->save($sportManager);
+			$sportManager->save();
+			$user = factory(\App\Models\User::class)->make([
+				'email' => 'manager@elcoop.io',
+				'password' => bcrypt('123456'),
+				'language' => 'en'
+			]);
+			$sportManager->user()->save($user);
+		});
 	}
 }

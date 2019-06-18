@@ -13,12 +13,12 @@ class SportManager extends Model {
 		});
 	}
 
-//	protected $appends = [
-//		'sportName'
-//	];
 
-//	public function homePage() {
-//	}
+
+	public function homePage() {
+		return action('SportManagerController@home');
+
+	}
 
 	public function user() {
 		return $this->morphOne(User::class, 'user');

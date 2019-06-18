@@ -39,7 +39,7 @@ class SportManagerPolicy {
 	 * @return mixed
 	 */
 	public function update(User $user, SportManager $sportManager) {
-		return $user->user_type === Admin::class;
+		return $user->user_type === Admin::class || ($user->user_type == SportManager::class && $user->user_id == $sportManager->id);
 
 	}
 
