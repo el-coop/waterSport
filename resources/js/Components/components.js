@@ -19,6 +19,8 @@ Vue.component('Toast', require('./Global/Toast').default);
 Vue.component('Tabs', require('./Global/Tabs/Tabs').default);
 Vue.component('Tab', require('./Global/Tabs/Tab').default);
 Vue.component('SubmitModal', require('./Global/SubmitModal').default);
+Vue.component('SelectChooser', require('./Global/SelectChooser/SelectChooser').default);
+Vue.component('SelectView', require('./Global/SelectChooser/SelectView').default);
 
 // form
 Vue.component('AjaxForm', require('./Form/AjaxForm').default);
