@@ -81,7 +81,8 @@ class Sport extends Model {
 	}
 
 	public function getCompetitionDaysListAttribute() {
-		return $this->competitionDays->implode('start_time', ', ');
-
+		return $this->competitionDays->map(function ($day) {
+			return $day->start_time->format('d/m/Y H:i');
+		})->implode(', ');
 	}
 }
