@@ -106,9 +106,12 @@
 
 			submit() {
 				const data = {};
-				(new FormData(this.$refs.form)).forEach((value, key) => {
-					data[key] = value;
-				});
+				const formData = new FormData(this.$refs.form);
+
+				for(const pair of formData.entries()){
+					data[pair[0]] = pair[1];
+				}
+
 				data['practiceDays'] = this.practiceDays;
 				data['competitionDays'] = this.competitionDays;
 				this.$modal.hide('sportModal');
