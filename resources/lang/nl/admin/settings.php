@@ -29,8 +29,8 @@ return [
 	'sport_manager_registration_email_body_en' => 'Email na succesvolle registratie (sportmanager) tekst EN',
 	'sport_manager_registration_email_body_nl' => 'Email na succesvolle registratie (sportmanager) tekst NL',
 	
-	'confirmation_success_text_nl' => 'Deelnemer registratie succesvol tekst NL',
-	'confirmation_success_text_en' => 'Deelnemer registratie succesvol tekst EN',
+	'confirmation_success_text_nl' => 'Pop-up Deelnemer registratie succesvol tekst NL',
+	'confirmation_success_text_en' => 'Pop-up Deelnemer registratie succesvol tekst EN',
 	
 	'application_success_modal_nl' => 'Tekst rechterblok na succesvolle registratie NL',
 	'application_success_modal_en' => 'Tekst rechterblok na succesvolle registratie EN',
