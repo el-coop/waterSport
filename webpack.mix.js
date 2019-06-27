@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 
+require('laravel-mix-polyfill');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -13,4 +14,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-	.browserSync('watersports.test');
+	.browserSync('watersports.test')
+	.polyfill({
+		targets: "> 0.5%, last 2 versions, Safari >= 9"
+	});
