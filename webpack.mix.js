@@ -17,4 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
 	.browserSync('watersports.test')
 	.polyfill({
 		targets: "> 0.5%, last 2 versions, Safari >= 9"
-	});
+	})
+	.version();
