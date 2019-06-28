@@ -63,12 +63,10 @@
 				} else {
 					this.practiceDays.push(this.sport.practice_days[0].id);
 				}
-				if (this.sport.practice_days) {
-				}
 
 				if (this.form.competitionDays) {
 					this.competitionDays = this.form.competitionDays;
-				} else {
+				} else if (this.sport.competition_days.length) {
 					this.competitionDays.push(this.sport.competition_days[0].id);
 				}
 
@@ -106,10 +104,13 @@
 
 			submit() {
 				const data = {};
-				const formData = new FormData(this.$refs.form);
 
-				for(const pair of formData.entries()){
-					data[pair[0]] = pair[1];
+				const formInputs = this.$refs.form.elements;
+
+				for (let i = 0; i < formInputs.length; i++) {
+					if (formInputs[i].name) {
+						data[formInputs[i].name] = formInputs[i].value;
+					}
 				}
 
 				data['practiceDays'] = this.practiceDays;
