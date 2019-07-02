@@ -1,5 +1,5 @@
 <template>
-	<div class="pl-1 border-left">
+	<div class="mr-half">
 		<h4 class="title is-4" v-text="$translations.sports"></h4>
 
 		<div class="panel" v-if="selectedSports.length">
@@ -8,8 +8,11 @@
 						<font-awesome-icon icon="edit"></font-awesome-icon>
 					</span>
 				<span v-text="findSport(sport).name"></span>
-				<span class="tag is-danger ml-auto" @click="removeSport(index)">
-					<font-awesome-icon icon="times-circle"></font-awesome-icon>
+				<span class="mr-1 ml-auto has-text-success">
+					<font-awesome-icon icon="check"></font-awesome-icon>
+				</span>
+				<span class="tag is-danger" @click="removeSport(sport)">
+					<font-awesome-icon icon="trash"></font-awesome-icon>
 				</span>
 			</p>
 		</div>
