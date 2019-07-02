@@ -1,7 +1,13 @@
 <template>
 	<div class="tile is-ancestor is-vertical box">
 		<div class="tile is-12">
-			<div class="tile is-parent is-7">
+			<div class="tile is-parent">
+				<div class="tile is-child">
+					<SportSelector :sports="sports" :init-selected-sports="selectedSports"
+								   v-model="sportsData"/>
+				</div>
+			</div>
+			<div class="tile is-parent is-6">
 				<div class="tile is-child">
 					<form method="post" ref="form">
 						<input type="hidden" name="_token" :value="csrf">
@@ -32,12 +38,6 @@
 							</template>
 						</template>
 					</form>
-				</div>
-			</div>
-			<div class="tile is-parent">
-				<div class="tile is-child">
-					<SportSelector :sports="sports" :init-selected-sports="selectedSports"
-								   v-model="sportsData"/>
 				</div>
 			</div>
 		</div>
