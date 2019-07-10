@@ -14,7 +14,10 @@
 Route::get('/', 'Auth\RegisterController@showRegistrationForm');
 Route::post('/', 'Auth\RegisterController@register');
 
-Route::get('datatable/list', '\ElCoop\Datatable\Controllers\DatatableController@list');
+Route::middleware(['auth', 'userType:' . \App\Models\Admin::class])->group(function () {
+	Route::get('datatable/list', '\ElCoop\Datatable\Controllers\DatatableController@list');
+	Route::get('datatable/export', '\ElCoop\Datatable\Controllers\DatatableController@export');
+});
 
 Auth::routes(['verify' => false, 'register' => false]);
 
