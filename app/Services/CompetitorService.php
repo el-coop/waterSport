@@ -17,6 +17,7 @@ class CompetitorService implements FromCollection, WithHeadings {
 
 	public function headings(): array {
 		$headers = CompetitorExportColumn::orderBy('order')->get()->pluck('name');
+		$headers->push(__('sports.sport'));
 		$headers->push(__('practiceDays.practiceDays'));
 		$headers->push(__('sports.competitionDates'));
 		return $headers->toArray();
@@ -29,13 +30,13 @@ class CompetitorService implements FromCollection, WithHeadings {
 		$data = collect();
 		foreach ($sports as $sport){
 			foreach ($sport->competitors as $competitor){
-				$data->push($this->listSportData($fields,$competitor));
+				$data->push($this->listSportData($fields,$competitor,$sport));
 			}
 		}
 		return $data;
 	}
 
-	protected function listSportData($fields, Competitor $competitor) {
+	protected function listSportData($fields, Competitor $competitor, Sport $sport) {
 		$result = collect();
 		foreach ($fields as $field) {
 			$model = strtok($field, '.');
@@ -46,6 +47,7 @@ class CompetitorService implements FromCollection, WithHeadings {
 				$result->push($competitor->data[$column] ?? '');
 			}
 		}
+		$result->push($sport->name);
 		$result->push($competitor->getSportsPracticeDays($competitor->pivot->sport_id));
 		$result->push($competitor->getSportCompetitionDays($competitor->pivot->sport_id));
 		return $result;

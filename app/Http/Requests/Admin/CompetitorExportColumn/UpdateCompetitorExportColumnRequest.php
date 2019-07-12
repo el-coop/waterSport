@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin\CompetitorExportColumn;
 
 use App\Models\CompetitorExportColumn;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCompetitorExportColumnRequest extends FormRequest {
 
