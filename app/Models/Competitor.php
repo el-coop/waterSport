@@ -103,5 +103,13 @@ class Competitor extends Model {
 			];
 		});
 	}
-	
+
+	public function getSportsPracticeDays($sportId) {
+		return $this->practiceDays->where('sport_id', $sportId)->sortBy('start_time')->implode('start_time', PHP_EOL);
+	}
+
+	public function getSportCompetitionDays($sportId) {
+		return $this->competitionDays->where('sport_id', $sportId)->sortBy('start_time')->implode('start_time', PHP_EOL);
+	}
+
 }

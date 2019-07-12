@@ -50,6 +50,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userType:' . \App\M
 		Route::patch('/{field}', 'FieldController@edit');
 	});
 
+	Route::group(['prefix' => 'exportCompetitors'], function (){
+		Route::get('/', 'CompetitorExportColumnController@show');
+		Route::patch('/order', 'CompetitorExportColumnController@saveOrder');
+		Route::post('/', 'CompetitorExportColumnController@create');
+		Route::patch('/{competitorExportColumn}', 'CompetitorExportColumnController@update');
+		Route::delete('/{competitorExportColumn}', 'CompetitorExportColumnController@destroy');
+		Route::get('/export', 'CompetitorExportColumnController@export');
+	});
+
 	Route::group(['prefix' => 'settings'],  function (){
 		Route::get('/' , 'SettingsController@show');
 		Route::patch('/', 'SettingsController@update');

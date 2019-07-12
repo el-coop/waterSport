@@ -5,12 +5,14 @@ namespace App\Providers;
 use App\Models\Admin;
 use App\Models\CompetitionDay;
 use App\Models\Competitor;
+use App\Models\CompetitorExportColumn;
 use App\Models\Pdf;
 use App\Models\PracticeDay;
 use App\Models\Sport;
 use App\Models\SportField;
 use App\Models\SportManager;
 use App\Policies\CompetitionDayPolicy;
+use App\Policies\CompetitorExportColumnPolicy;
 use App\Policies\CompetitorPolicy;
 use App\Policies\FieldPolicy;
 use App\Policies\PdfPolicy;
@@ -36,7 +38,8 @@ class AuthServiceProvider extends ServiceProvider {
 		Field::class => FieldPolicy::class,
 		SportManager::class => SportManagerPolicy::class,
 		Pdf::class => PdfPolicy::class,
-		CompetitionDay::class => CompetitionDayPolicy::class
+		CompetitionDay::class => CompetitionDayPolicy::class,
+		CompetitorExportColumn::class => CompetitorExportColumnPolicy::class
 	];
 	
 	/**

@@ -15,4 +15,5 @@ return [
 	'placeholder_nl' => 'Plaatshouder NL',
 	'placeholder_en' => 'Plaatshouder EN',
 	'checkbox' => 'Selectievakje',
+	'field' => 'Veld'
 ];

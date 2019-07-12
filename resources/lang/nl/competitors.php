@@ -4,5 +4,6 @@ return [
 	'competitors' => 'Deelnemers',
 	'setPassword' => 'Wachtwoord instellen',
 	'fillProfile' => 'Inloggen',
-	'schedule' => 'Schema'
+	'schedule' => 'Schema',
+	'export' => 'Exporteer Deelnemers'
 ];
