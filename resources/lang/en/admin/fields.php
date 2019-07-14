@@ -15,4 +15,5 @@ return [
 	'none' => 'None',
 	'placeholder_nl' => 'Dutch Placeholder',
 	'placeholder_en' => 'English Placeholder',
+	'field' => 'Field'
 ];
