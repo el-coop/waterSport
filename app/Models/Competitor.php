@@ -106,13 +106,13 @@ class Competitor extends Model {
 
 	public function getSportsPracticeDays($sportId) {
 		return $this->practiceDays->where('sport_id', $sportId)->sortBy('start_time')->map(function ($date) {
-			return $date->start_time->format('m/d/Y H:i');
+			return $date->start_time->format('d/m/Y H:i');
 		})->implode(PHP_EOL);
 	}
 
 	public function getSportCompetitionDays($sportId) {
 		return $this->competitionDays->where('sport_id', $sportId)->sortBy('start_time')->map(function ($date) {
-			return $date->start_time->format('m/d/Y H:i');
+			return $date->start_time->format('d/m/Y H:i');
 		})->implode(PHP_EOL);
 	}
 
