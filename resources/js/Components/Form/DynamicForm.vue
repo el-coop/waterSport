@@ -23,6 +23,7 @@
     import TextField from './TextField';
     import SelectField from './SelectField';
     import TextareaField from './TextareatField';
+    import TitleField from './TitleField';
 
     export default {
         name: "DynamicForm",
@@ -30,6 +31,7 @@
             TextField,
             TextareaField,
             SelectField,
+            TitleField
         },
 
         props: {

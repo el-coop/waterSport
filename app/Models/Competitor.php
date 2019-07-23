@@ -4,6 +4,7 @@ namespace App\Models;
 
 use ElCoop\HasFields\HasFields;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class Competitor extends Model {
 	
@@ -77,7 +78,26 @@ class Competitor extends Model {
 				'value' => $this->user->language ?? 'nl',
 			]
 		]);
-		return $fullData->concat($this->getFieldsData());
+		$fullData = $fullData->concat($this->getFieldsData());
+		$locale = App::getLocale();
+		$this->sports->each(function ($sport) use ($fullData, $locale){
+			$fullData->push([
+				'id' => $sport->id,
+				'name' => $sport->name,
+				'label' => $sport->name,
+				'fields' =>  !is_string($sport->pivot->data) ? $sport->pivot->data : [],
+				'type' => 'title',
+				'sportFields' => $sport->fields->map(function ($field) use ($locale) {
+					return [
+						'title' => $field->{'name_' . $locale},
+						'placeholder' => $field->{'placeholder_' . $locale},
+						'id' => $field->id,
+						'type' => $field->type
+					];
+				})
+				]);
+		});
+		return $fullData;
 	}
 	
 	static function indexPage() {

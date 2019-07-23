@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCompetitorRequest extends FormRequest {
 	private $competitor;
-	
+
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
@@ -16,7 +16,7 @@ class UpdateCompetitorRequest extends FormRequest {
 		$this->competitor = $this->route('competitor');
 		return $this->user()->can('update', $this->competitor);
 	}
-	
+
 	/**
 	 * Get the validation rules that apply to the request.
 	 *
@@ -31,13 +31,18 @@ class UpdateCompetitorRequest extends FormRequest {
 			'competitor' => 'required|array'
 		];
 	}
-	
+
 	public function commit() {
 		$this->competitor->user->name = $this->input('name');
 		$this->competitor->user->last_name = $this->input('lastName');
 		$this->competitor->user->email = $this->input('email');
 		$this->competitor->user->language = $this->input('language');
 		$this->competitor->data = array_filter($this->input('competitor'));
+		if ($this->input('sports')){
+			foreach ($this->input('sports') as $sportId => $sportData) {
+				$this->competitor->sports()->updateExistingPivot($sportId, ['data' => $sportData]);
+			}
+		}
 		$this->competitor->user->save();
 		$this->competitor->save();
 		return [
