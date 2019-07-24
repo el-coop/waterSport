@@ -3,7 +3,7 @@
 		<label class="label" v-text="field.label"></label>
 		<div class="control" :class="{'has-icons-left': field.icon || false}">
 			<input class="input" :class="{'is-danger': error}" :type="field.subType || 'text'" v-model="value"
-				   @keypress.enter.prevent
+				   @keypress.enter.preven0t
 				   :required="field.required || false"
 				   :name="field.name" step="any" :disabled="field.readonly" :placeholder="field.placeholder || ''">
 			<span class="icon is-small is-left" v-if="field.icon || false">

@@ -12,12 +12,14 @@
     import TextField from './TextField';
     import SelectField from './SelectField';
     import TextareaField from './TextareatField';
-    export default {
+	import SportField from './SportField';
+	export default {
         name: "DynamicFields",
         components: {
             TextField,
             TextareaField,
             SelectField,
+			SportField
         },
         props: {
             url: {

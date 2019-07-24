@@ -44,7 +44,7 @@ class CrudTest extends TestCase {
 		$this->competitionDays = factory(CompetitionDay::class, 2)->create([
 			'sport_id' => $this->sport->id
 		]);
-		
+		$this->competitor->user->sports()->attach($this->sport, ['data' => [$this->field->id => 'test']]);
 		$this->competitor->user->practiceDays()->attach($this->practiceDays->first()->id);
 		$this->competitor->user->competitionDays()->attach($this->practiceDays->last()->id);
 		
@@ -92,6 +92,7 @@ class CrudTest extends TestCase {
 			'email' => 'test@test.com',
 			'user_type' => Competitor::class
 		]);
+
 		Notification::assertSentTo(User::where('email', 'test@test.com')->first(), CompetitorCreated::class);
 	}
 	
@@ -119,7 +120,8 @@ class CrudTest extends TestCase {
 			'lastName' => 'last',
 			'email' => 'test@test.com',
 			'language' => 'en',
-			'competitor' => ['data' => 'test']
+			'competitor' => ['data' => 'test'],
+			'sports' => [$this->sport->id => [$this->field->id => 'new data']]
 		])->assertSuccessful()->assertJson([
 			'name' => 'name',
 			'last_name' => 'last',
@@ -139,6 +141,11 @@ class CrudTest extends TestCase {
 			'data' => json_encode([
 				'data' => 'test'
 			])
+		]);
+		$this->assertDatabaseHas('competitor_sport',[
+			'competitor_id' => $this->competitor->user->id,
+			'sport_id' => $this->sport->id,
+			'data' => json_encode([$this->field->id => 'new data'])
 		]);
 	}
 	
