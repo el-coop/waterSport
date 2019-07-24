@@ -12,7 +12,7 @@
     import TextField from './TextField';
     import SelectField from './SelectField';
     import TextareaField from './TextareatField';
-	import TitleField from './TitleField';
+	import TitleField from './SportField';
 	export default {
         name: "DynamicFields",
         components: {

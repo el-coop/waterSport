@@ -34,4 +34,4 @@ Vue.component('CheckboxField', require('./Form/CheckboxField').default);
 Vue.component('AlternativeSubmitField', require('./Form/AlternativeSubmitField').default);
 Vue.component('HelpField', require('./Form/HelpField').default);
 Vue.component('MultiselectField', require('./Form/MultiselectField').default);
-Vue.component('TitleField', require('./Form/TitleField').default);
+Vue.component('SportField', require('./Form/SportField').default);

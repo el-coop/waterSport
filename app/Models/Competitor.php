@@ -86,7 +86,7 @@ class Competitor extends Model {
 				'name' => $sport->name,
 				'label' => $sport->name,
 				'fields' =>  !is_string($sport->pivot->data) ? $sport->pivot->data : [],
-				'type' => 'title',
+				'type' => 'sport',
 				'sportFields' => $sport->fields->map(function ($field) use ($locale) {
 					return [
 						'title' => $field->{'name_' . $locale},

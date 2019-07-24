@@ -10,7 +10,7 @@
     import FieldMixin from './FieldMixin';
 
     export default {
-        name: "TitleField",
+        name: "SportField",
         mixins: [FieldMixin],
         methods: {
             fieldSetup(sportField) {

@@ -28,7 +28,8 @@ class UpdateCompetitorRequest extends FormRequest {
 			'lastName' => 'required|string',
 			'email' => 'required|email|unique:users,email,' . $this->competitor->user->id,
 			'language' => 'required|in:en,nl',
-			'competitor' => 'required|array'
+			'competitor' => 'required|array',
+			'sports' => 'required|array'
 		];
 	}
 
@@ -38,10 +39,8 @@ class UpdateCompetitorRequest extends FormRequest {
 		$this->competitor->user->email = $this->input('email');
 		$this->competitor->user->language = $this->input('language');
 		$this->competitor->data = array_filter($this->input('competitor'));
-		if ($this->input('sports')){
-			foreach ($this->input('sports') as $sportId => $sportData) {
-				$this->competitor->sports()->updateExistingPivot($sportId, ['data' => $sportData]);
-			}
+		foreach ($this->input('sports') as $sportId => $sportData) {
+			$this->competitor->sports()->updateExistingPivot($sportId, ['data' => $sportData]);
 		}
 		$this->competitor->user->save();
 		$this->competitor->save();

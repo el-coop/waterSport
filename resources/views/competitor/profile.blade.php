@@ -1,7 +1,7 @@
 <participant-form method="patch" :sports="{{ $sports }}" :init-selected-sports="{{ $selectedSports }}"
                   :init-sports-data="{{ $sportsData }}">
     <dynamic-fields slot="personal" :fields="{{ $user->user->fulldata->filter(function ($item){
-	                return $item['type'] !== 'title';
+	                return $item['type'] !== 'sport';
 	})->map(function($item) use($errors){
 					$fieldName = str_replace(']','',str_replace('[','.',$item['name']));
 
