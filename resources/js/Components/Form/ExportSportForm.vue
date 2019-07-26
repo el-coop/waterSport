@@ -6,7 +6,7 @@
                 <label class="label" v-text="sports.label"></label>
                 <div class="control">
                     <div class="select is-fullwidth">
-                        <select v-model="sport" :name="sports.name">
+                        <select v-model="sport" :name="sports.name" required>
                             <option v-for="(option, val) in sports.options" :value="val" v-text="option"></option>
                         </select>
                     </div>
@@ -16,7 +16,7 @@
                 <label class="label">Date Type</label>
                 <div class="control">
                     <div class="select is-fullwidth">
-                        <select v-model="dateType" name="dateTypes">
+                        <select v-model="dateType" name="dateType" required>
                             <option v-for="(option,val) in dateTypes" :value="val" v-text="option"></option>
                         </select>
                     </div>
@@ -26,7 +26,7 @@
                 <label class="label">Date:</label>
                 <div class="control">
                     <div class="select is-fullwidth">
-                        <select v-model="date" name="date">
+                        <select v-model="date" name="date" required>
                             <option v-for="(option, val) in dates" :value="val" v-text="option"></option>
                         </select>
                     </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="buttons">
                 <button class="button is-fullwidth is-info"
-                        type="submit" v-text="this.$translations.export">
+                        type="submit" v-text="$translations.export">
                 </button>
             </div>
         </form>
@@ -84,7 +84,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

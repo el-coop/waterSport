@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\CompetitorExportColumn\CreateCompetitorExportColumnRequest;
 use App\Http\Requests\Admin\CompetitorExportColumn\DestroyCompetitorExportColumnRequest;
+use App\Http\Requests\Admin\CompetitorExportColumn\ExportSportByDateRequest;
 use App\Http\Requests\Admin\CompetitorExportColumn\OrderCompetitorExportColumnRequest;
 use App\Http\Requests\Admin\CompetitorExportColumn\UpdateCompetitorExportColumnRequest;
 use App\Models\CompetitionDay;
@@ -78,13 +79,14 @@ class CompetitorExportColumnController extends Controller {
 		return $excel->download($competitorService, 'competitors.xls');
 	}
 
-	public function exportSportDate(Request $request,Excel $excel) {
+	public function exportSportDate(ExportSportByDateRequest $request,Excel $excel) {
 		$sport = Sport::find($request->input('sport'))->name;
-		if ($request->input('dateType') === 0){
+		if ($request->input('dateType') == 0){
 			$date = CompetitionDay::find($request->input('date'));
 		} else {
 			$date = PracticeDay::find($request->input('date'));
 		}
+//		dd($date);
 		$sportDateService = new SportDateService($date);
 		return $excel->download($sportDateService,"{$sport}_{$date->start_time->format('d m Y H:i')}.xls");
 	}

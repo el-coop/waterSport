@@ -8,6 +8,7 @@ return [
 	'sport' => 'Sport',
 	'description' => 'Omschrijving',
 	'practiceDayTitleNl' => 'Oefendag Titel NL',
-	'practiceDayTitleen' => 'Oefendag Titel NL'
+	'practiceDayTitleen' => 'Oefendag Titel NL',
+	'export' => 'TBT'
 
 ];

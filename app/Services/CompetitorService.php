@@ -6,7 +6,6 @@ use App;
 use App\Models\Competitor;
 use App\Models\CompetitorExportColumn;
 use App\Models\Sport;
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
