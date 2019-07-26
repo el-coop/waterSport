@@ -32,5 +32,6 @@ return [
 	'addSport' => 'Sport toevoegen',
 	'submit' => 'Inschrijving afronden',
 	'registrationEmailPdf' => 'Registratie email',
-	'homepagePdf' => 'Registratie document PDF'
+	'homepagePdf' => 'Registratie document PDF',
+	'export' => 'Exporteer'
 ];

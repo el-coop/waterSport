@@ -32,6 +32,7 @@ return [
 	'addSport' => 'Add sport',
 	'submit' => 'Submit for review',
 	'registrationEmailPdf' => 'Registration email attachment',
-	'homepagePdf' => 'Registration Page PDF'
+	'homepagePdf' => 'Registration Page PDF',
+	'export' => 'Export'
 
 ];

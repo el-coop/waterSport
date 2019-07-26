@@ -57,6 +57,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'userType:' . \App\M
 		Route::patch('/{competitorExportColumn}', 'CompetitorExportColumnController@update');
 		Route::delete('/{competitorExportColumn}', 'CompetitorExportColumnController@destroy');
 		Route::get('/export', 'CompetitorExportColumnController@export');
+		Route::post('/exportByDate', 'CompetitorExportColumnController@exportSportDate');
 	});
 
 	Route::group(['prefix' => 'settings'],  function (){
