@@ -9,6 +9,6 @@ return [
 	'description' => 'Omschrijving',
 	'practiceDayTitleNl' => 'Oefendag Titel NL',
 	'practiceDayTitleen' => 'Oefendag Titel NL',
-	'export' => 'TBT'
+	'export' => 'Exporteer'
 
 ];
