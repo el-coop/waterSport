@@ -11,7 +11,7 @@
 				<span class="mr-1 ml-auto has-text-success">
 					<font-awesome-icon icon="check"></font-awesome-icon>
 				</span>
-				<span class="tag is-danger" @click="removeSport(sport)">
+				<span class="tag is-danger" @click="removeSport(index)">
 					<font-awesome-icon icon="trash"></font-awesome-icon>
 				</span>
 			</p>
@@ -74,7 +74,11 @@
 				this.$modal.show('sportModal')
 			},
 			removeSport(sportIndex) {
-				this.selectedSports.splice(sportIndex, 1)
+				const sport = this.selectedSports[sportIndex];
+				this.selectedSports.splice(sportIndex, 1);
+                const val = Object.assign({}, this.value);
+				delete val[sport];
+				this.$emit('input', val);
 			},
 			saveSportsForm(data) {
 				if (!this.selectedSports.includes(data.sport)) {
