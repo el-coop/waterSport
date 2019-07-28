@@ -35,3 +35,4 @@ Vue.component('AlternativeSubmitField', require('./Form/AlternativeSubmitField')
 Vue.component('HelpField', require('./Form/HelpField').default);
 Vue.component('MultiselectField', require('./Form/MultiselectField').default);
 Vue.component('SportField', require('./Form/SportField').default);
+Vue.component('ExportSportFrom', require('./Form/ExportSportForm').default);

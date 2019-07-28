@@ -8,5 +8,6 @@ return [
 	'sport' => 'Sport',
 	'description' => 'Description',
 	'practiceDayTitleNl' => 'Practice Day Title NL',
-	'practiceDayTitleEn' => 'Practice Day Title EN'
+	'practiceDayTitleEn' => 'Practice Day Title EN',
+	'export' => 'Export Sport By Date'
 ];
