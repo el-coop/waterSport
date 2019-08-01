@@ -34,7 +34,8 @@ class CompetitorController extends Controller {
 			return [$sport->id => $data];
 		});
 		$sports = Sport::registrationOptions();
-		return view('competitor.view', compact('user', 'sports', 'selectedSports', 'sportsData', 'message'));
+        
+        return view('competitor.view', compact('user', 'sports', 'selectedSports', 'sportsData', 'message'));
 	}
 	
 	/**

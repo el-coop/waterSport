@@ -34,14 +34,16 @@ class StoreCompetitionDayRequest extends FormRequest {
 		return [
 			'date' => 'required|date',
 			'startHour' => 'required|date_format:H:i',
-			'endHour' => 'required|date_format:H:i'
-		];
+			'endHour' => 'required|date_format:H:i',
+            'max_participants' => 'required|integer|min:0',
+        ];
 	}
 
 	public function commit() {
 		$this->competitionDay->start_time = Carbon::createFromFormat('Y-m-d H:i',$this->input('date') . ' ' .$this->input('startHour'));
 		$this->competitionDay->end_time = Carbon::createFromFormat('Y-m-d H:i',$this->input('date') . ' ' .$this->input('endHour'));
-		$this->sport->competitionDays()->save($this->competitionDay);
+        $this->competitionDay->max_participants = $this->input('max_participants');
+        $this->sport->competitionDays()->save($this->competitionDay);
 
 		return $this->competitionDay;
 	}

@@ -155,4 +155,116 @@ class UpdateTest extends TestCase {
 			]
 		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$this->sport->id}.practiceDays.0", "sports.{$this->sport->id}.0"]);
 	}
+    
+    public function test_cant_register_to_practice_day_over_the_limit() {
+        $practiceDay = $this->practiceDays->last();
+        $practiceDay->max_participants = 0;
+        $practiceDay->save();
+        $this->actingAs($this->competitor)->patch(action('CompetitorController@update'), [
+            'name' => 'name',
+            'lastName' => 'last',
+            'email' => $this->competitor->email,
+            'language' => 'en',
+            'competitor' => [
+                $this->competitorField->id => 'gla'
+            ],
+            'sports' => [
+                $this->sport->id => [
+                    $this->sport->id,
+                    'practiceDays' => [$practiceDay->id],
+                    'competitionDays' => [$this->competitionDays->first()->id],
+                    $this->field->id => 'yes'
+                ]
+            ]
+        ])->assertRedirect()->assertSessionHasErrors(['fullDays']);
+    }
+    
+    public function test_can_register_to_practice_day_over_the_limit_when_already_member() {
+        $practiceDay = $this->practiceDays->last();
+        $practiceDay->max_participants = 1;
+        $practiceDay->save();
+        $practiceDay->competitors()->attach($this->competitor->user);
+        $this->actingAs($this->competitor)->patch(action('CompetitorController@update'), [
+            'name' => 'name',
+            'lastName' => 'last',
+            'email' => $this->competitor->email,
+            'language' => 'en',
+            'competitor' => [
+                $this->competitorField->id => 'gla'
+            ],
+            'sports' => [
+                $this->sport->id => [
+                    $this->sport->id,
+                    'practiceDays' => [$practiceDay->id],
+                    'competitionDays' => [$this->competitionDays->first()->id],
+                    $this->field->id => 'yes'
+                ]
+            ]
+        ])->assertRedirect()->assertSessionHas('toast', [
+            'type' => 'success',
+            'title' => '',
+            'message' => __('vue.updateSuccess', [], 'en')
+        ]);
+        
+        $this->assertDatabaseHas('competitor_practice_day',[
+            'competitor_id' =>  $this->competitor->user->id,
+            'practice_day_id' => $practiceDay->id
+        ]);
+    }
+    
+    public function test_cant_register_to_competition_day_over_the_limit() {
+        $competitionDay = $this->competitionDays->first();
+        $competitionDay->max_participants = 0;
+        $competitionDay->save();
+        $this->actingAs($this->competitor)->patch(action('CompetitorController@update'), [
+            'name' => 'name',
+            'lastName' => 'last',
+            'email' => $this->competitor->email,
+            'language' => 'en',
+            'competitor' => [
+                $this->competitorField->id => 'gla'
+            ],
+            'sports' => [
+                $this->sport->id => [
+                    $this->sport->id,
+                    'practiceDays' => [$this->practiceDays->last()->id],
+                    'competitionDays' => [$competitionDay->id],
+                    $this->field->id => 'yes'
+                ]
+            ]
+        ])->assertRedirect()->assertSessionHasErrors(['fullDays']);
+    }
+    
+    public function test_can_register_to_competition_day_over_the_limit_when_already_member() {
+        $competitionDay = $this->competitionDays->first();
+        $competitionDay->max_participants = 0;
+        $competitionDay->save();
+        $competitionDay->competitors()->attach($this->competitor->user);
+        $this->actingAs($this->competitor)->patch(action('CompetitorController@update'), [
+            'name' => 'name',
+            'lastName' => 'last',
+            'email' => $this->competitor->email,
+            'language' => 'en',
+            'competitor' => [
+                $this->competitorField->id => 'gla'
+            ],
+            'sports' => [
+                $this->sport->id => [
+                    $this->sport->id,
+                    'practiceDays' => [$this->practiceDays->last()->id],
+                    'competitionDays' => [$competitionDay->id],
+                    $this->field->id => 'yes'
+                ]
+            ]
+        ])->assertRedirect()->assertSessionHas('toast', [
+            'type' => 'success',
+            'title' => '',
+            'message' => __('vue.updateSuccess', [], 'en')
+        ]);
+        
+        $this->assertDatabaseHas('competition_day_competitor',[
+            'competitor_id' =>  $this->competitor->user->id,
+            'competition_day_id' => $competitionDay->id
+        ]);
+    }
 }

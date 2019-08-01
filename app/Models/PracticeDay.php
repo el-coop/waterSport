@@ -24,8 +24,12 @@ class PracticeDay extends Model {
 	public function competitors() {
 		return $this->belongsToMany(Competitor::class);
 	}
-
-	public function getDateAttribute() {
+    
+    public function getIsFullAttribute(){
+        return  ($this->competitors->count() >= $this->max_participants);
+    }
+    
+    public function getDateAttribute() {
 		return $this->start_time->format('Y-m-d');
 	}
 

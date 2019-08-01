@@ -36,13 +36,15 @@ class CrudTest extends TestCase {
 		$this->actingAs($this->admin)->post(action('Admin\PracticeDaysController@store', $this->sport), [
 			'date' => $practiceDate,
 			'startHour' => '10:00',
-			'endHour' => '12:00'
-		])->assertSuccessful();
+			'endHour' => '12:00',
+            'max_participants' => 100
+        ])->assertSuccessful();
 		$this->assertDatabaseHas('practice_days', [
 			'sport_id' => $this->sport->id,
 			'start_time' => $practiceDate . ' 10:00:00',
-			'end_time' => $practiceDate . ' 12:00:00'
-		]);
+			'end_time' => $practiceDate . ' 12:00:00',
+            'max_participants' => 100
+        ]);
 	}
 	
 	public function test_admin_create_practice_day_validation() {
@@ -61,14 +63,16 @@ class CrudTest extends TestCase {
 		$this->actingAs($this->admin)->patch(action('Admin\PracticeDaysController@update', [$this->sport, $this->practiceDay]), [
 			'date' => $practiceDate,
 			'startHour' => '10:00',
-			'endHour' => '12:00'
-		])->assertSuccessful();
+			'endHour' => '12:00',
+            'max_participants' => 100
+        ])->assertSuccessful();
 		$this->assertDatabaseHas('practice_days', [
 			'sport_id' => $this->sport->id,
 			'start_time' => $practiceDate . ' 10:00:00',
 			'end_time' => $practiceDate . ' 12:00:00',
-			'id' => $this->practiceDay->id
-		]);
+			'id' => $this->practiceDay->id,
+            'max_participants' => 100
+        ]);
 	}
 	
 	public function test_admin_update_practice_day_validation() {

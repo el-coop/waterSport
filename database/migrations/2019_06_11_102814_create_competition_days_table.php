@@ -17,7 +17,8 @@ class CreateCompetitionDaysTable extends Migration
             $table->bigIncrements('id');
 			$table->timestamp('start_time');
 			$table->timestamp('end_time');
-			$table->bigInteger('sport_id')->unsigned();
+            $table->integer('max_participants')->unsigned();
+            $table->bigInteger('sport_id')->unsigned();
 			$table->timestamps();
 
 			$table->foreign('sport_id')

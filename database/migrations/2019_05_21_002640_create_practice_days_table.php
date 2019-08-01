@@ -16,7 +16,8 @@ class CreatePracticeDaysTable extends Migration
         Schema::create('practice_days', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamp('start_time');
-			$table->timestamp('end_time');
+            $table->timestamp('end_time');
+            $table->integer('max_participants')->unsigned();
 			$table->bigInteger('sport_id')->unsigned();
             $table->timestamps();
 

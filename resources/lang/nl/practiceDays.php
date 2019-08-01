@@ -1,5 +1,7 @@
 <?php
 
 return [
-	'practiceDays' => 'Oefendagen'
+	'practiceDays' => 'Oefendagen',
+    'maxParticipants' => 'TBT',
+    'full' => 'TBT'
 ];
