@@ -57,7 +57,7 @@ class UpdateCompetitorRequest extends FormRequest {
         $validator->after(function ($validator) {
             foreach ($this->input('sports', []) as $data) {
                 $data = collect($data);
-                foreach ($data->get('practiceDays') as $day) {
+                foreach ($data->get('practiceDays',[]) as $day) {
                     $dayEntry = PracticeDay::find($day);
                     if ($dayEntry && $dayEntry->isFull && !$dayEntry->competitors()->where('competitor_id',$this->competitor->user->id)->exists()) {
                         $validator->errors()->add('fullDays', __('practiceDays.full'));
