@@ -13,6 +13,10 @@
                     name: 'endHour',
                     subType: 'time',
                     label: '@lang('global.endTime')'
+                },{
+                    name: 'max_participants',
+                    subType: 'number',
+                    label: '@lang('practiceDays.maxParticipants')'
                 }]"
 				   :init-fields-from-url="`{{Request::url()}}/competition/${object.id}`"
 				   :action="`{{Request::url()}}/competition/${object.id}`">

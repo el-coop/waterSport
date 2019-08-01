@@ -26,8 +26,11 @@ class RegistrationTest extends TestCase {
 	private $admin;
 	private $competitor;
 	private $field;
-	
-	public function setUp(): void {
+    private $sport;
+    private $practiceDay;
+    private $competitionDay;
+    
+    public function setUp(): void {
 		parent::setUp();
 		$this->admin = factory(User::class)->make();
 		factory(Admin::class)->create()->user()->save($this->admin);
@@ -35,6 +38,14 @@ class RegistrationTest extends TestCase {
 		factory(Competitor::class)->create()->user()->save($this->competitor);
 		
 		$this->field = factory(Field::class)->create();
+        $this->sport = factory(Sport::class)->create();
+        $this->practiceDay = factory(PracticeDay::class)->create([
+            'sport_id' => $this->sport->id
+        ]);
+        
+        $this->competitionDay = factory(CompetitionDay::class)->create([
+            'sport_id' => $this->sport->id
+        ]);
 	}
 	
 	
@@ -61,16 +72,9 @@ class RegistrationTest extends TestCase {
 	
 	public function test_guest_can_post_registration_form() {
 		Notification::fake();
-		$sport = factory(Sport::class)->create();
-		$practiceDay = factory(PracticeDay::class)->create([
-			'sport_id' => $sport->id
-		]);
 		
-		$competitionDay = factory(CompetitionDay::class)->create([
-			'sport_id' => $sport->id
-		]);
 		$field = factory(SportField::class)->create([
-			'sport_id' => $sport->id
+			'sport_id' => $this->sport->id
 		]);
 		$this->post(action('Auth\RegisterController@register'), [
 			'name' => 'name',
@@ -81,10 +85,10 @@ class RegistrationTest extends TestCase {
 				$this->field->id => 'gla'
 			],
 			'sports' => [
-				$sport->id => [
-					$sport->id,
-					'practiceDays' => [$practiceDay->id],
-					'competitionDays' => [$competitionDay->id],
+				$this->sport->id => [
+					$this->sport->id,
+					'practiceDays' => [$this->practiceDay->id],
+					'competitionDays' => [$this->competitionDay->id],
 					$field->id => 'yes'
 				]
 			
@@ -109,7 +113,7 @@ class RegistrationTest extends TestCase {
 		]);
 		
 		$this->assertDatabaseHas('competitor_sport', [
-			'sport_id' => $sport->id,
+			'sport_id' => $this->sport->id,
 			'competitor_id' => $competitor->id,
 			'data' => json_encode([
 				$field->id => 'yes'
@@ -118,12 +122,12 @@ class RegistrationTest extends TestCase {
 		
 		$this->assertDatabaseHas('competitor_practice_day',[
 			'competitor_id' => $competitor->id,
-			'practice_day_id' => $practiceDay->id
+			'practice_day_id' => $this->practiceDay->id
 		]);
 		
 		$this->assertDatabaseHas('competition_day_competitor',[
 			'competitor_id' => $competitor->id,
-			'competition_day_id' => $competitionDay->id
+			'competition_day_id' => $this->competitionDay->id
 		]);
 		
 		Notification::assertSentTo(User::where('email', 'email@email.com')->first(), CompetitorCreated::class);
@@ -143,5 +147,59 @@ class RegistrationTest extends TestCase {
 			]
 		])->assertRedirect()->assertSessionHasErrors(['name', 'email', 'language', "sports.{$sport->id}.practiceDays.0", "sports.{$sport->id}.0"]);
 	}
-	
+    
+    public function test_cant_register_to_practice_day_over_the_limit() {
+        
+        $field = factory(SportField::class)->create([
+            'sport_id' => $this->sport->id
+        ]);
+        
+        $this->practiceDay->max_participants = 0;
+        $this->practiceDay->save();
+        $this->post(action('Auth\RegisterController@register'), [
+            'name' => 'name',
+            'lastName' => 'last',
+            'email' => 'email@email.com',
+            'language' => 'en',
+            'competitor' => [
+                $this->field->id => 'gla'
+            ],
+            'sports' => [
+                $this->sport->id => [
+                    $this->sport->id,
+                    'practiceDays' => [$this->practiceDay->id],
+                    'competitionDays' => [$this->competitionDay->id],
+                    $field->id => 'yes'
+                ]
+            ]
+        ])->assertRedirect()->assertSessionHasErrors(['fullDays']);
+    }
+    
+    
+    public function test_cant_register_to_competition_day_over_the_limit() {
+        
+        $field = factory(SportField::class)->create([
+            'sport_id' => $this->sport->id
+        ]);
+        
+        $this->competitionDay->max_participants = 0;
+        $this->competitionDay->save();
+        $this->post(action('Auth\RegisterController@register'), [
+            'name' => 'name',
+            'lastName' => 'last',
+            'email' => 'email@email.com',
+            'language' => 'en',
+            'competitor' => [
+                $this->field->id => 'gla'
+            ],
+            'sports' => [
+                $this->sport->id => [
+                    $this->sport->id,
+                    'practiceDays' => [$this->practiceDay->id],
+                    'competitionDays' => [$this->competitionDay->id],
+                    $field->id => 'yes'
+                ]
+            ]
+        ])->assertRedirect()->assertSessionHasErrors(['fullDays']);
+    }
 }

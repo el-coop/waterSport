@@ -59,7 +59,7 @@ class Sport extends Model {
 	
 	static function registrationOptions() {
 		return static::select('id', 'name', 'description', 'practice_day_title_nl', 'practice_day_title_en')->with(['practiceDays' => function ($query) {
-			$query->select('id', 'sport_id', 'start_time','end_time');
+			$query->select('id', 'sport_id', 'start_time','end_time','max_participants');
 		}, 'fields' => function ($query) {
 			$language = App::getLocale();
 			$query->select('id', 'sport_id', 'type', "name_{$language} as title", "placeholder_{$language} as placeholder");
@@ -67,10 +67,12 @@ class Sport extends Model {
 			$sport->formattedDescription = nl2br($sport->description);
 			$sport->practiceDays->each(function ($practiceDay) {
 				$practiceDay->formattedDate = $practiceDay->start_time->format('d/m/Y H:i');
+                $practiceDay->isFull = $practiceDay->isFull;
 			});
 
 			$sport->competitionDays->each(function ($competitionDay) {
 				$competitionDay->formattedDate = $competitionDay->start_time->format('d/m/Y H:i');
+                $competitionDay->isFull = $competitionDay->isFull;
 			});
 
 		});

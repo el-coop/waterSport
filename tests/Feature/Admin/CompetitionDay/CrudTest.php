@@ -55,12 +55,14 @@ class CrudTest extends TestCase {
 		$this->actingAs($this->admin)->post(action('Admin\CompetitionDayController@store', $this->sport), [
 			'date' => $competitionDate,
 			'startHour' => '10:00',
-			'endHour' => '12:00'
+			'endHour' => '12:00',
+            'max_participants' => 100
 		])->assertSuccessful();
 		$this->assertDatabaseHas('competition_days', [
 			'sport_id' => $this->sport->id,
 			'start_time' => $competitionDate . ' 10:00:00',
-			'end_time' => $competitionDate . ' 12:00:00'
+			'end_time' => $competitionDate . ' 12:00:00',
+            'max_participants' => 100
 		]);
 	}
 
@@ -88,14 +90,16 @@ class CrudTest extends TestCase {
 		$this->actingAs($this->admin)->patch(action('Admin\CompetitionDayController@update', [$this->sport, $this->competitionDay]), [
 			'date' => $competitionDate,
 			'startHour' => '10:00',
-			'endHour' => '12:00'
-		])->assertSuccessful();
+			'endHour' => '12:00',
+            'max_participants' => 100
+        ])->assertSuccessful();
 		$this->assertDatabaseHas('competition_days', [
 			'sport_id' => $this->sport->id,
 			'start_time' => $competitionDate . ' 10:00:00',
 			'end_time' => $competitionDate . ' 12:00:00',
-			'id' => $this->competitionDay->id
-		]);
+			'id' => $this->competitionDay->id,
+            'max_participants' => 100
+        ]);
 	}
 
 	public function test_admin_update_competition_day_validation() {

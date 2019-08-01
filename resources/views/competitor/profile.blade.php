@@ -1,3 +1,8 @@
+@if($errors->has('fullDays'))
+    <div class="notification is-danger">
+        @lang('practiceDays.full')
+    </div>
+@endif
 <participant-form method="patch" :sports="{{ $sports }}" :init-selected-sports="{{ $selectedSports }}"
                   :init-sports-data="{{ $sportsData }}">
     <dynamic-fields slot="personal" :fields="{{ $user->user->fulldata->filter(function ($item){
