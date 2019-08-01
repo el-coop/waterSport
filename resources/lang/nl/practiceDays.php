@@ -2,6 +2,6 @@
 
 return [
 	'practiceDays' => 'Oefendagen',
-    'maxParticipants' => 'TBT',
-    'full' => 'TBT'
+    'maxParticipants' => 'Maximaal aantal deelnemers',
+    'full' => 'Op één van de geselecteerde dagen is het maximaal aantal deelnemers bereikt'
 ];
