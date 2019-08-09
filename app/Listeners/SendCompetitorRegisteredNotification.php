@@ -28,6 +28,6 @@ class SendCompetitorRegisteredNotification
      */
     public function handle(CompetitorSubmitted $event)
     {
-        Notification::route('mail','Info@amsterdamsewaterspelen.nl')->notify(new CompetitorRegistered($event->competitor));
+        Notification::route('mail','info@amsterdamsewaterspelen.nl')->notify(new CompetitorRegistered($event->competitor));
     }
 }
