@@ -94,7 +94,6 @@ class UpdateCompetitorRequest extends FormRequest {
         $this->competitor->user->sports()->sync($sports);
         $this->competitor->user->data = array_filter($this->input('competitor'));
         
-        event(new CompetitorSubmitted($this->competitor->user));
         $this->session()->flash('fireworks', true);
         
         $this->competitor->user->save();
