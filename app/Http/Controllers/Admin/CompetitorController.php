@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\Competitor\DestroyCompetitorRequest;
 use App\Http\Requests\Admin\Competitor\StoreCompetitorRequest;
-use App\Http\Requests\Admin\Competitor\updateCompetitorRequest;
+use App\Http\Requests\Admin\Competitor\UpdateCompetitorRequest;
 use App\Http\Requests\Competitor\UpdateCompetitorRequest as UpdateCompetitorFormRequest;
 use App\Models\Competitor;
 use App\Models\Sport;
