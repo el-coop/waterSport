@@ -30,7 +30,7 @@ class ExportSportByDateRequest extends FormRequest {
 		return [
 			'sport' => 'required|exists:sports,id',
 			'dateType' => 'required|in:0,1',
-			'date' => 'required|exists:' . $class . ',id'
+			'date' => 'required'
 
 		];
 	}
