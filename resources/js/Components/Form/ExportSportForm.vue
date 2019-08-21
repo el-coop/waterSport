@@ -27,6 +27,7 @@
                 <div class="control">
                     <div class="select is-fullwidth">
                         <select v-model="date" name="date" required>
+                            <option value="0">All</option>
                             <option v-for="(option, val) in dates" :value="val" v-text="option"></option>
                         </select>
                     </div>

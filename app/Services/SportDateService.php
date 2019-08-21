@@ -17,9 +17,9 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 class SportDateService implements FromCollection, WithHeadings {
 
 	use  Exportable;
-	private $date;
-	public function __construct( $date) {
-		$this->date = $date;
+	private $object;
+	public function __construct( $object) {
+		$this->object = $object;
 	}
 
 	public function headings(): array {
@@ -31,7 +31,7 @@ class SportDateService implements FromCollection, WithHeadings {
 	public function collection() {
 		$fields = CompetitorExportColumn::orderBy('order')->get()->pluck('column');
 		$data = collect();
-		foreach ($this->date->competitors as $competitor){
+		foreach ($this->object->competitors as $competitor){
 			$data->push($this->listCompetitorData($fields,$competitor));
 		}
 		return $data;
