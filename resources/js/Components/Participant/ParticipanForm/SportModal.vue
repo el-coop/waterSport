@@ -63,14 +63,23 @@
 				if (this.form.practiceDays) {
 					this.practiceDays = this.form.practiceDays;
 				} else {
-					this.practiceDays = [this.sport.practice_days[0].id];
-
+					const defaultPracticeDay = this.sport.practice_days.find((day) => {
+						return !day.isFull;
+					});
+					if (defaultPracticeDay) {
+						this.practiceDays = [defaultPracticeDay.id];
+					}
 				}
 
 				if (this.form.competitionDays) {
 					this.competitionDays = this.form.competitionDays;
 				} else if (this.sport.competition_days.length) {
-					this.competitionDays = [this.sport.competition_days[0].id];
+					const defaultCompetitionDay = this.sport.competition_days.find((day) => {
+						return !day.isFull;
+					});
+					if (defaultCompetitionDay) {
+						this.competitionDays = [defaultCompetitionDay.id];
+					}
 				}
 
 			},
