@@ -36,7 +36,7 @@ class RegisterCompetitorRequest extends FormRequest {
             'sports.*.0' => 'required|exists:sports,id',
             'sports.*.practiceDays' => 'array',
             'sports.*.practiceDays.*' => 'exists:practice_days,id',
-            'sports.*.competitionDays' => 'array',
+            'sports.*.competitionDays' => 'required|array',
             'sports.*.competitionDays.*' => 'exists:competition_days,id',
             'sports.*' => 'array',
         ]);
