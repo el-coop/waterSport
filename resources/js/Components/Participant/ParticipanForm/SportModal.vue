@@ -8,7 +8,7 @@
                 <div class="buttons">
                     <button v-for="day in sport.competition_days" type="button" class="button"
                             :key="`competition_day_${day.id}`"
-                            :disabled="day.isFull && !competitionDays.includes(day.id)"
+                            :disabled="(day.isFull || competitionDays.length >= sport.day_limit) && !competitionDays.includes(day.id)"
                             :class="{'is-link': competitionDays.includes(day.id)}"
                             v-text="day.formattedDate" @click="toggleCompetitionDay(day.id)"></button>
                 </div>

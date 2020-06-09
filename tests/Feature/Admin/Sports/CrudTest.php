@@ -43,7 +43,8 @@ class CrudTest extends TestCase {
 	public function test_admin_can_create_sport() {
 		$this->withoutExceptionHandling();
 		$this->actingAs($this->admin)->post(action('Admin\SportsController@store'), [
-			'name' => 'name',
+            'name' => 'name',
+            'dayLimit' => 5,
 			'description' => 'test',
             'practiceDayTitleNl' => 'test',
             'practiceDayTitleEn' => 'test',
@@ -51,7 +52,8 @@ class CrudTest extends TestCase {
             'competitionDayTitleEn' => 'test',
 		])->assertSuccessful()->assertJson([
 			'name' => 'name',
-			'description' => 'test',
+            'day_limit' => 5,
+            'description' => 'test',
 			'practice_day_title_nl' => 'test',
 			'practice_day_title_en' => 'test',
             'competition_day_title_en' => 'test',
@@ -60,7 +62,8 @@ class CrudTest extends TestCase {
 
 		$this->assertDatabaseHas('sports', [
 			'name' => 'name',
-			'description' => 'test',
+            'day_limit' => 5,
+            'description' => 'test',
 			'practice_day_title_nl' => 'test',
 			'practice_day_title_en' => 'test',
             'competition_day_title_en' => 'test',
@@ -98,14 +101,16 @@ class CrudTest extends TestCase {
 	public function test_admin_can_edit_sport() {
 		$this->actingAs($this->admin)->patch(action('Admin\SportsController@update', $this->sport), [
 			'name' => 'name',
-			'description' => 'test',
+            'dayLimit' => 5,
+            'description' => 'test',
 			'practiceDayTitleNl' => 'test',
 			'practiceDayTitleEn' => 'test',
             'competitionDayTitleNl' => 'test',
             'competitionDayTitleEn' => 'test',
 		])->assertSuccessful()->assertJson([
 			'name' => 'name',
-			'description' => 'test',
+            'day_limit' => 5,
+            'description' => 'test',
 			'practice_day_title_nl' => 'test',
 			'practice_day_title_en' => 'test',
             'competition_day_title_en' => 'test',
@@ -114,6 +119,7 @@ class CrudTest extends TestCase {
 
 		$this->assertDatabaseHas('sports', [
 			'id' => $this->sport->id,
+            'day_limit' => 5,
 			'name' => 'name',
 			'description' => 'test',
 			'practice_day_title_nl' => 'test',

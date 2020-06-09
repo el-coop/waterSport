@@ -11,6 +11,7 @@ return [
     'competitionDayTitleEn' => 'TBT',
     'practiceDayTitleNl' => 'Oefendag Titel NL',
     'practiceDayTitleEn' => 'Oefendag Titel NL',
-	'export' => 'Exporteer'
+	'export' => 'Exporteer',
+    'dayLimit' => 'TBT'
 
 ];
