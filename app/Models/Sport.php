@@ -11,7 +11,7 @@ class Sport extends Model {
 	protected $appends = [
 		'competitionDaysList'
 	];
-	
+
 	public function getFullDataAttribute() {
 		return collect([
 			[
@@ -20,12 +20,31 @@ class Sport extends Model {
 				'type' => 'text',
 				'value' => $this->name
 			],
-			[
-				'name' => 'description',
-				'label' => __('sports.description'),
-				'type' => 'textarea',
-				'value' => $this->description
-			],
+            [
+                'name' => 'description',
+                'label' => __('sports.description'),
+                'type' => 'textarea',
+                'value' => $this->description
+            ],
+            [
+                'name' => 'dayLimit',
+                'label' => __('sports.dayLimit'),
+                'type' => 'text',
+                'subType' => 'number',
+                'value' => $this->day_limit
+            ],
+            [
+                'name' => 'competitionDayTitleNl',
+                'label' => __('sports.competitionDayTitleNl'),
+                'type' => 'text',
+                'value' => $this->competition_day_title_nl
+            ],
+            [
+                'name' => 'competitionDayTitleEn',
+                'label' => __('sports.competitionDayTitleEn'),
+                'type' => 'text',
+                'value' => $this->competition_day_title_en
+            ],
 			[
 				'name' => 'practiceDayTitleNl',
 				'label' => __('sports.practiceDayTitleNl'),
@@ -40,25 +59,25 @@ class Sport extends Model {
 			],
 		]);
 	}
-	
+
 	public function practiceDays() {
 		return $this->hasMany(PracticeDay::class);
 	}
-	
+
 	public function fields() {
 		return $this->hasMany(SportField::class);
 	}
-	
+
 	public function competitors() {
 		return $this->belongsToMany(Competitor::class)->using(CompetitorSport::class)->withPivot('data');
 	}
-	
+
 	public function sportManagers() {
 		return $this->hasMany(SportManager::class);
 	}
-	
+
 	static function registrationOptions() {
-		return static::select('id', 'name', 'description', 'practice_day_title_nl', 'practice_day_title_en')->with(['practiceDays' => function ($query) {
+		return static::select('id', 'name', 'description', 'day_limit','competition_day_title_nl','competition_day_title_en', 'practice_day_title_nl', 'practice_day_title_en')->with(['practiceDays' => function ($query) {
 			$query->select('id', 'sport_id', 'start_time','end_time','max_participants');
 		}, 'fields' => function ($query) {
 			$language = App::getLocale();

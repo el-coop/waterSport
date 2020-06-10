@@ -7,8 +7,11 @@ return [
 	'fields' => 'Velden',
 	'sport' => 'Sport',
 	'description' => 'Omschrijving',
-	'practiceDayTitleNl' => 'Oefendag Titel NL',
-	'practiceDayTitleen' => 'Oefendag Titel NL',
-	'export' => 'Exporteer'
+    'competitionDayTitleNl' => 'TBT',
+    'competitionDayTitleEn' => 'TBT',
+    'practiceDayTitleNl' => 'Oefendag Titel NL',
+    'practiceDayTitleEn' => 'Oefendag Titel NL',
+	'export' => 'Exporteer',
+    'dayLimit' => 'TBT'
 
 ];

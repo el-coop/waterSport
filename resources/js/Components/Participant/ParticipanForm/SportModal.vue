@@ -4,16 +4,16 @@
         <p class="content" v-html="sport.formattedDescription"></p>
         <form v-if="sport" @submit.prevent="submit" ref="form">
             <div class="field">
-                <label class="label" v-text="$translations.competitionDates"/>
+                <label class="label" v-text="sport[`competition_day_title_${lang}`]"/>
                 <div class="buttons">
                     <button v-for="day in sport.competition_days" type="button" class="button"
                             :key="`competition_day_${day.id}`"
-                            :disabled="day.isFull && !competitionDays.includes(day.id)"
+                            :disabled="(day.isFull || competitionDays.length >= sport.day_limit) && !competitionDays.includes(day.id)"
                             :class="{'is-link': competitionDays.includes(day.id)}"
                             v-text="day.formattedDate" @click="toggleCompetitionDay(day.id)"></button>
                 </div>
             </div>
-            <div class="field">
+            <div class="field" v-if="sport.practice_days && sport.practice_days.length">
                 <label class="label" v-text="sport[`practice_day_title_${lang}`]"/>
                 <div class="buttons">
                     <button v-for="day in sport.practice_days" type="button" class="button"
