@@ -7,11 +7,11 @@ return [
 	'fields' => 'Velden',
 	'sport' => 'Sport',
 	'description' => 'Omschrijving',
-    'competitionDayTitleNl' => 'TBT',
-    'competitionDayTitleEn' => 'TBT',
+    'competitionDayTitleNl' => 'Wedstrijd Dag Titel NL',
+    'competitionDayTitleEn' => 'Wedstrijd Dag Titel EN',
     'practiceDayTitleNl' => 'Oefendag Titel NL',
-    'practiceDayTitleEn' => 'Oefendag Titel NL',
+    'practiceDayTitleEn' => 'Oefendag Titel EN',
 	'export' => 'Exporteer',
-    'dayLimit' => 'TBT'
+    'dayLimit' => 'Maximum aantal deelnemers per dag (laat leeg indien ongelimiteerd)'
 
 ];
